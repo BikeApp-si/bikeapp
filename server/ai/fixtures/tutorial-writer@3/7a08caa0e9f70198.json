@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Spend\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Expenses\",\"one\":\"expense\",\"many\":\"expenses\",\"sees\":\"all\",\"add\":\"Add an expense\",\"edit\":true,\"delete\":false,\"steps\":[\"Needs a receipt\",\"Submitted\",\"Approved\",\"Paid\",\"Rejected\"],\"movesFrom\":[\"Needs a receipt\"],\"movesTo\":[\"Submitted\",\"Rejected\"],\"stepRules\":[\"Out of Needs a receipt: only by the person who submitted the expense\",\"Approved: not by the person who submitted the expense\",\"Rejected: not by the person who submitted the expense\"],\"columns\":[\"What for\",\"Who\",\"Date\",\"Amount\",\"Category\",\"Project\",\"Billable to the client\",\"Paid with\",\"Receipt\",\"Paid on\",\"Note\"]},{\"name\":\"Purchases\",\"one\":\"purchase\",\"many\":\"purchases\",\"sees\":\"all\",\"add\":\"Request a purchase\",\"edit\":true,\"delete\":false,\"steps\":[\"Submitted\",\"Approved\",\"Ordered\",\"Received\",\"Rejected\"],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[\"Approved: not by the person who submitted the purchase\",\"Rejected: not by the person who submitted the purchase\"],\"columns\":[\"What\",\"Requested by\",\"Date\",\"Supplier\",\"Amount\",\"Project\",\"Quote\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you claim back what you paid for work and ask for things you need to buy.\",\"steps\":[{\"title\":\"Add an expense\",\"text\":\"Enter what you paid for, the amount, the date and the project. Add the receipt if you have it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Expenses\",\"step\":null}},{\"title\":\"Submit an expense\",\"text\":\"When the receipt is attached, move the expense on to Submitted. Only you can move your own expense out of Needs a receipt.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Expenses\",\"step\":\"Submitted\"}},{\"title\":\"Request a purchase\",\"text\":\"Fill in what you need, the supplier, the amount and the project. Attach the quote if there is one.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Purchases\",\"step\":null}},{\"title\":\"Check your purchases\",\"text\":\"Look at Purchases to see whether each request is approved, ordered or received.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Purchases\",\"step\":null}}],\"waits\":[\"Someone else approves your submitted expense; you can't approve your own.\",\"Approved expenses are paid by someone else.\",\"A purchase waits for approval before it can be ordered.\"],\"cannot\":[\"You can't delete an expense or a purchase.\",\"You can't approve or reject your own expense or purchase.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 446,
+      "tokensOut": 1517,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 6872
+  }
+}

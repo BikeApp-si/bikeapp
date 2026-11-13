@@ -1,0 +1,21 @@
+{
+  "message": "{\"today\":\"2026-10-27\",\"rows_read\":\"230 purchases\",\"table\":{\"columns\":[\"Month\",\"Spent\"],\"rows\":[[\"2026-07\",38700],[\"2026-08\",42000],[\"2026-09\",40300],[\"2026-10\",101900]],\"totals\":{\"Spent\":222900}},\"previous\":null}",
+  "retry": {
+    "answer": "{\"sentence\":\"Missing: purchases only start on 5 Jul 2026, so this covers 5 Jul to 27 Oct rather than the whole financial year from 1 Apr. **₹2,22,900** has been spent on purchases so far, and October alone is ₹1,01,900, nearly half of the total in under four weeks, well above July's ₹38,700.\"}",
+    "problems": [
+      "Start with a plain sentence, not a label such as “Missing:”."
+    ]
+  },
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"sentence\":\"Purchases only start on 5 Jul 2026, so this covers 5 Jul to 27 Oct rather than the whole financial year from 1 Apr. **₹2,22,900** has been spent on purchases so far, and October alone is ₹1,01,900, nearly half of the total in under four weeks, well above July's ₹38,700.\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 309,
+      "tokensOut": 120,
+      "cacheRead": 783,
+      "cacheWrite": 0
+    },
+    "ms": 1155
+  }
+}

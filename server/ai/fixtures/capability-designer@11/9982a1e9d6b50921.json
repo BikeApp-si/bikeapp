@@ -1,0 +1,16 @@
+{
+  "message": "Latest message from Wade Wilson:\nWho starts in November, and are their onboarding and laptop ready?",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"report\",\"lead\":\"I'll look up who has a start date in November and check their onboarding plan and laptop tasks.\",\"brief\":null,\"left_out\":null,\"question\":null,\"capability\":null,\"rule_requests\":[],\"rules_from\":null,\"suggested_connections\":[],\"also_changes\":[],\"experience\":null,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 39,
+      "tokensOut": 114,
+      "cacheRead": 14672,
+      "cacheWrite": 0
+    },
+    "ms": 1941
+  }
+}

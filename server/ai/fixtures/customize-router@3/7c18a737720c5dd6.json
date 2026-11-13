@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nEvery month on the 1st, add the office rent to Expenses: $2,400, Office, paid with the company card, for Wade.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 50,
+      "tokensOut": 10,
+      "cacheRead": 620,
+      "cacheWrite": 7
+    },
+    "ms": 775
+  }
+}

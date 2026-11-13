@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Lyft, Aug 27\",\"Who\":\"Dev Kumar\",\"Date\":\"Aug 27, 2026\",\"Amount\":\"$31\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Travel\",\"reason\":\"The expense is “Lyft, Aug 27”, a ride-share trip, so it fits Travel.\",\"confidence\":0.95,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 70,
+      "tokensOut": 64,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1143
+  }
+}

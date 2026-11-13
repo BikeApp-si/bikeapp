@@ -1,0 +1,231 @@
+{
+  "name": "Attendance",
+  "icon": "calendar-x",
+  "description": "Absences, marked by class teachers",
+  "sheets": [
+    {
+      "id": "absences",
+      "name": "Absences",
+      "kind": "list",
+      "row": {
+        "one": "absence",
+        "many": "absences"
+      },
+      "addAction": "Mark an absence",
+      "titleColumn": "student",
+      "sort": {
+        "column": "date",
+        "dir": "desc"
+      },
+      "columns": [
+        {
+          "id": "student",
+          "name": "Student",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:students",
+            "sheet": "students"
+          }
+        },
+        {
+          "id": "section",
+          "name": "Section",
+          "type": "link",
+          "link": {
+            "capability": "@app:students",
+            "sheet": "classes",
+            "pick": true
+          },
+          "required": true
+        },
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "required": true,
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "reason",
+          "name": "Reason",
+          "type": "choice",
+          "options": [
+            {
+              "id": "sick",
+              "name": "Sick"
+            },
+            {
+              "id": "family",
+              "name": "Family reason"
+            },
+            {
+              "id": "leave_note",
+              "name": "Leave note from parents"
+            },
+            {
+              "id": "not_known",
+              "name": "Not known"
+            }
+          ]
+        },
+        {
+          "id": "leave_note",
+          "name": "Leave note",
+          "type": "file"
+        },
+        {
+          "id": "parents_called_on",
+          "name": "Parents called on",
+          "type": "date"
+        },
+        {
+          "id": "note",
+          "name": "Note",
+          "type": "long_text"
+        },
+        {
+          "id": "marked_by",
+          "name": "Marked by",
+          "type": "person",
+          "default": {
+            "kind": "creator"
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "student_in_section",
+          "name": "The student is in this section",
+          "condition": {
+            "op": "eq",
+            "args": [
+              {
+                "col": "section",
+                "via": "student"
+              },
+              {
+                "col": "section"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "principal",
+      "name": "Principal and office",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:principal",
+          "@slot:office"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "class_teachers",
+      "name": "Class teachers",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "add",
+        "edit"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "absences": {
+          "column": "class_teacher",
+          "via": "section"
+        }
+      },
+      "view": {
+        "sheet": "absences",
+        "line": "Absences in your section",
+        "columns": [
+          {
+            "column": "date"
+          },
+          {
+            "column": "student"
+          },
+          {
+            "column": "reason"
+          },
+          {
+            "column": "parents_called_on"
+          }
+        ],
+        "form": [
+          "student",
+          "section",
+          "date",
+          "reason",
+          "leave_note",
+          "note"
+        ]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "unexplained",
+      "text": "An absence with no known reason waits on the class teacher to call the parents.",
+      "reading": {
+        "when": "An absence is marked with no known reason",
+        "then": "It waits on the class teacher until Parents called on is filled in"
+      },
+      "trigger": {
+        "kind": "row_created",
+        "sheet": "absences"
+      },
+      "condition": {
+        "op": "or",
+        "args": [
+          {
+            "op": "empty",
+            "args": [
+              {
+                "col": "reason"
+              }
+            ]
+          },
+          {
+            "op": "eq",
+            "args": [
+              {
+                "col": "reason"
+              },
+              "not_known"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "column": "class_teacher",
+          "via": "section",
+          "until": "parents_called_on",
+          "label": "Call the parents"
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "Days absent this year on each student"
+  ]
+}

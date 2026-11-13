@@ -1,0 +1,16 @@
+{
+  "message": "Company rules now:\n[\n {\n  \"id\": \"expenses_and_contracts_over_10_000_n\",\n  \"text\": \"Expenses and contracts over $10,000 need Lena's approval.\",\n  \"applies_to\": [\n   \"Spend · Expenses\",\n   \"Customer contracts · Contracts\"\n  ]\n }\n]\n\nConversation so far:\n[\n {\n  \"from\": \"person\",\n  \"text\": \"Expenses and contracts over $10,000 need Lena's approval\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"(sent a preview)\"\n },\n {\n  \"from\": \"person\",\n  \"text\": \"Apply\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"Applying the company rule. This takes a few seconds.\"\n }\n]\n\nRequest:\nMake that $20,000 instead of $10,000",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"change\",\"rule_id\":\"expenses_and_contracts_over_10_000_n\",\"reply\":\"The limit is now $20,000. It applies to Expenses in Spend and Contracts in Customer contracts, and Lena approves anything over it.\",\"text\":\"Expenses and contracts over $20,000 need Lena's approval.\",\"when\":\"An expense or a contract over $20,000 is added\",\"then\":\"It waits on Lena to approve it\",\"parts\":[{\"capability\":\"Spend\",\"text\":\"Expenses over $20,000 need Lena's approval.\",\"when\":\"An expense over $20,000 is added\",\"then\":\"It waits on Lena to approve it\",\"sheet\":\"Expenses\",\"trigger\":{\"kind\":\"row_created\",\"step\":null,\"field\":null,\"date\":null,\"offset_days\":null},\"condition\":\"{\\\"op\\\":\\\"gt\\\",\\\"args\\\":[{\\\"col\\\":\\\"Amount\\\"},20000]}\",\"actions\":[{\"kind\":\"ask_person\",\"step\":null,\"target\":null,\"via\":null,\"map\":[],\"people\":[],\"columns\":[],\"message\":null,\"person\":\"lena@fernwood.dev\",\"column\":null,\"manager_of\":null,\"until\":null,\"label\":null,\"decision\":null,\"question\":\"Do you approve this expense over $20,000?\",\"answer_column\":null}]},{\"capability\":\"Customer contracts\",\"text\":\"Contracts over $20,000 a year need Lena's approval.\",\"when\":\"A contract over $20,000 a year is added\",\"then\":\"It waits on Lena to approve it\",\"sheet\":\"Contracts\",\"trigger\":{\"kind\":\"row_created\",\"step\":null,\"field\":null,\"date\":null,\"offset_days\":null},\"condition\":\"{\\\"op\\\":\\\"gt\\\",\\\"args\\\":[{\\\"col\\\":\\\"Value a year\\\"},20000]}\",\"actions\":[{\"kind\":\"ask_person\",\"step\":null,\"target\":null,\"via\":null,\"map\":[],\"people\":[],\"columns\":[],\"message\":null,\"person\":\"lena@fernwood.dev\",\"column\":null,\"manager_of\":null,\"until\":null,\"label\":null,\"decision\":null,\"question\":\"Do you approve this contract over $20,000 a year?\",\"answer_column\":null}]}],\"could_not\":[],\"clarify\":null}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 278,
+      "tokensOut": 1427,
+      "cacheRead": 10022,
+      "cacheWrite": 0
+    },
+    "ms": 9177
+  }
+}

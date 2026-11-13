@@ -1,0 +1,17 @@
+[
+  {
+    "id": "big_requests",
+    "text": "Requests over $1,000 are sent to the team leads.",
+    "reading": { "when": "A request over $1,000 is added", "then": "The team leads are told" },
+    "enabled": true,
+    "applications": [
+      {
+        "id": "requests",
+        "capabilityId": "@app:requests",
+        "trigger": { "kind": "row_created", "sheet": "requests" },
+        "condition": { "op": "gt", "args": [{ "col": "amount" }, 100000] },
+        "actions": [{ "kind": "notify", "people": ["@slot:team_leads"], "message": "A request over $1,000 was added." }]
+      }
+    ]
+  }
+]

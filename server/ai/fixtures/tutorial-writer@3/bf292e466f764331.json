@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Timesheets\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Time\",\"one\":\"time entry\",\"many\":\"time entries\",\"sees\":\"all\",\"add\":\"Log time\",\"edit\":true,\"delete\":false,\"steps\":[\"Draft\",\"Submitted\",\"Approved\",\"Rejected\"],\"movesFrom\":[\"Draft\",\"Submitted\"],\"movesTo\":[\"Draft\",\"Submitted\",\"Approved\",\"Rejected\"],\"stepRules\":[\"Approved: not by the person who submitted the time entry\",\"Rejected: not by the person who submitted the time entry\"],\"columns\":[\"Who\",\"Project\",\"Date\",\"Hours\",\"Work done\",\"Billable\",\"Rate\",\"Value\"]}],\"rules\":[\"Submitted time waits on the person's manager.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you log the hours you work on each project, so they can be approved and billed.\",\"steps\":[{\"title\":\"Log your time\",\"text\":\"Add a time entry for each day you worked, with the project, date, hours and what you did. Keep it as a draft until it is ready to send.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Time\",\"step\":null}},{\"title\":\"Send your time for approval\",\"text\":\"When a time entry is complete, move it on to Submitted so your manager can check it.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Time\",\"step\":\"Submitted\"}},{\"title\":\"Check your time entries\",\"text\":\"Look through your time entries to see which are still in draft, waiting, approved or rejected.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Time\",\"step\":null}}],\"waits\":[\"Your manager approves or rejects submitted time.\",\"You can't approve your own time entries.\"],\"cannot\":[\"You can't delete a time entry once it is added.\",\"You can't approve or reject your own time.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 251,
+      "tokensOut": 321,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2033
+  }
+}

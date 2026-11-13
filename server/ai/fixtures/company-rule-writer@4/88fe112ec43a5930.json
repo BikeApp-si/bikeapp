@@ -1,0 +1,16 @@
+{
+  "message": "Company rules now:\n[]\n\nConversation so far:\n[]\n\nRequest:\nExpenses and contracts over $10,000 need Lena's approval",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"add\",\"rule_id\":null,\"reply\":\"I couldn't add this rule yet, because neither Expenses nor Contracts has a column for Lena to approve or decline in. Add an Approved/Declined choice column to each in that app's Customize, then ask me again.\",\"text\":\"Expenses and contracts over $10,000 need Lena's approval.\",\"when\":\"An expense or a contract is over $10,000\",\"then\":\"It waits on Lena to approve it\",\"parts\":[],\"could_not\":[{\"where\":\"Spend: Expenses\",\"reason\":\"Expenses has no Approved/Declined choice column for Lena's decision. Add one in the Spend app's Customize.\"},{\"where\":\"Customer contracts: Contracts\",\"reason\":\"Contracts has no Approved/Declined choice column for Lena's decision. Add one in the Customer contracts app's Customize.\"}],\"clarify\":null}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 50,
+      "tokensOut": 1032,
+      "cacheRead": 0,
+      "cacheWrite": 10022
+    },
+    "ms": 7872
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "Capabilities:\n[\n {\n  \"name\": \"Customer contracts\",\n  \"sheets\": [\n   {\n    \"name\": \"Contracts\",\n    \"kind\": \"list\",\n    \"columns\": [\n     \"Customer (text; required)\",\n     \"Value a year (money; required)\",\n     \"Start (date)\",\n     \"Renews on (date)\",\n     \"Notice (days)\",\n     \"Notice date (computed; worked out: Renews on + 0 days)\",\n     \"Owner (person)\",\n     \"Signed contract (file)\",\n     \"Status (step)\"\n    ],\n    \"steps\": [\n     \"Draft (start)\",\n     \"Signed\",\n     \"Legal review\",\n     \"Active\",\n     \"Renewal due\",\n     \"Renewed (last)\",\n     \"Ended (exit)\"\n    ]\n   },\n   {\n    \"name\": \"Renewals\",\n    \"kind\": \"list\",\n    \"columns\": [\n     \"Contract (link; required; links to Contracts)\",\n     \"Due (date)\",\n     \"New value a year (money)\",\n     \"Decision (choice; choices: Renew, End)\",\n     \"Notes (long_text)\"\n    ]\n   },\n   {\n    \"name\": \"Contacts\",\n    \"kind\": \"list\",\n    \"columns\": [\n     \"Contract (link; required; links to Contracts)\",\n     \"Name (text; required)\",\n     \"Role (text)\",\n     \"Email (email)\",\n     \"Phone (phone)\"\n    ]\n   }\n  ],\n  \"roles\": [\n   \"Contract managers: every row\",\n   \"Contract owners: their own rows\"\n  ],\n  \"rules\": [\n   \"90 days before a contract’s notice date, move it to Renewal due and remind its owner.\",\n   \"30 days before the notice date, if it is still in Renewal due, tell Wade and the owner.\",\n   \"When a signed PDF is added, an AI step reads it and fills the row for the owner to confirm; then it moves to Signed.\",\n   \"When a contract enters Legal review, Lena approves or declines it; the contract waits on her.\"\n  ]\n }\n]\n\nSentences:\n1. 14 days after a contract was added, if it is still in Draft, remind its owner.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"rules\":[{\"capability\":\"Customer contracts\",\"sheet\":\"Contracts\",\"text\":\"14 days after a contract was added, if it is still in Draft, remind its owner.\",\"when\":\"14 days after a contract was added, while it is still in Draft\",\"then\":\"Its owner is reminded and the contract waits on them\",\"trigger\":{\"kind\":\"date_reached\",\"step\":null,\"field\":null,\"date\":null,\"from_added\":true,\"offset_days\":14},\"condition\":\"{\\\"op\\\":\\\"eq\\\",\\\"args\\\":[{\\\"col\\\":\\\"Status\\\"},\\\"Draft\\\"]}\",\"actions\":[{\"kind\":\"ask_person\",\"step\":null,\"target\":null,\"via\":null,\"map\":[],\"people\":[],\"columns\":[],\"message\":null,\"person\":null,\"column\":\"Owner\",\"manager_of\":null,\"until\":\"Signed contract\",\"label\":\"Finish this draft contract\",\"decision\":null,\"question\":null,\"answer_column\":null},{\"kind\":\"notify\",\"step\":null,\"target\":null,\"via\":null,\"map\":[],\"people\":[],\"columns\":[\"Owner\"],\"message\":\"This contract has been in Draft for 14 days.\",\"person\":null,\"column\":null,\"manager_of\":null,\"until\":null,\"label\":null,\"decision\":null,\"question\":null,\"answer_column\":null}]}],\"could_not\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 696,
+      "tokensOut": 422,
+      "cacheRead": 7320,
+      "cacheWrite": 0
+    },
+    "ms": 3393
+  }
+}

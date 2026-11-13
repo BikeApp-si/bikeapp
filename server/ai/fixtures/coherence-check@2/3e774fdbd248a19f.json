@@ -1,0 +1,16 @@
+{
+  "message": "Check how these apps fit together.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"items\":[{\"text\":\"Onboarding adds a row to Tools in Tools and budgets when a plan enters First week, but only Wade and Lena can add tools there, and the new tool is owned by Jon, who is not named as able to see or add anything. The starter seat row may be refused or hidden from its owner, so Jon would not see it.\",\"capabilities\":[\"Onboarding\",\"Tools and budgets\"]},{\"text\":\"Spend sends a purchase over $2,000 to Krishna for approval, but Krishna is only said to see every purchase, with no right to edit or move them. He may not be able to approve or decline, so those purchases could wait on him forever.\",\"capabilities\":[\"Spend\"]},{\"text\":\"Hiring only asks Wade to approve an offer when the Offer Amount is above the opening's salary band, yet the Offer step has no rule that waits on that decision, and Wade is the only one who can decide. Offers within the band get no approval, and one waiting on Wade could stall.\",\"capabilities\":[\"Hiring\"]}]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 14,
+      "tokensOut": 337,
+      "cacheRead": 770,
+      "cacheWrite": 3611
+    },
+    "ms": 4020
+  }
+}

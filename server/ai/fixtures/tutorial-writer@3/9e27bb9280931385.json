@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Customer contracts\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Contracts\",\"one\":\"contract\",\"many\":\"contracts\",\"sees\":\"all\",\"add\":\"New contract\",\"edit\":true,\"delete\":true,\"steps\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\",\"Renewed\",\"Ended\"],\"movesFrom\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\"],\"movesTo\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\",\"Renewed\",\"Ended\"],\"stepRules\":[],\"columns\":[\"Customer\",\"Value a year\",\"Start\",\"Renews on\",\"Notice\",\"Notice date\",\"Owner\",\"Signed contract\",\"Customer, as typed\"]}],\"rules\":[\"60 days before a contract's notice date, if it is Active, move it to Renewal due and email its owner to ask them to decide on the renewal.\",\"30 days before the notice date, if the contract is still in Renewal due, email Wade, Krishna and the owner.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep customer contracts, from first draft to renewal or end.\",\"steps\":[{\"title\":\"Add a contract\",\"text\":\"Click New contract to record a new customer contract. Fill in the customer, value, start and renewal dates, notice terms and owner, and attach the signed copy when you have it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Contracts\",\"step\":null}},{\"title\":\"Update a contract\",\"text\":\"Open any contract to correct its details or add the signed copy. You can edit any contract in the list.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Contracts\",\"step\":null}},{\"title\":\"Move a contract along\",\"text\":\"Move a contract to its next step as it progresses, such as from Draft to Signed, or from Active to Renewal due. You can also move it to Renewed or Ended.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Contracts\",\"step\":\"Renewed\"}},{\"title\":\"Check renewals coming up\",\"text\":\"Look at contracts marked Renewal due to see which need a decision. The system moves an Active contract to Renewal due 60 days before its notice date and emails its owner.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Contracts\",\"step\":null}}],\"waits\":[\"The system moves an Active contract to Renewal due 60 days before its notice date and emails its owner.\",\"The system emails Wade, Krishna and the owner 30 days before the notice date if the contract is still in Renewal due.\"],\"cannot\":[\"You can't delete a contract from here unless you are the admin, and deleting is not part of your everyday work.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 325,
+      "tokensOut": 509,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2993
+  }
+}

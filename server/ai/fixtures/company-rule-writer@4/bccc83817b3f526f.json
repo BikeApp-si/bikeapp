@@ -1,0 +1,16 @@
+{
+  "message": "Company rules now:\n[\n {\n  \"id\": \"expenses_and_contracts_over_10_000_n\",\n  \"text\": \"Expenses and contracts over $20,000 need Lena's approval.\",\n  \"applies_to\": [\n   \"Spend · Expenses\",\n   \"Customer contracts · Contracts\"\n  ]\n }\n]\n\nConversation so far:\n[\n {\n  \"from\": \"person\",\n  \"text\": \"Expenses and contracts over $10,000 need Lena's approval\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"(sent a preview)\"\n },\n {\n  \"from\": \"person\",\n  \"text\": \"Apply\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"Applying the company rule. This takes a few seconds.\"\n },\n {\n  \"from\": \"person\",\n  \"text\": \"Make that $20,000 instead of $10,000\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"(sent a preview)\"\n },\n {\n  \"from\": \"person\",\n  \"text\": \"Apply\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"Applying the company rule. This takes a few seconds.\"\n },\n {\n  \"from\": \"person\",\n  \"text\": \"Big spending should be watched\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"What should happen with big spending, and who should watch it? Lena already approves expenses and contracts over $20,000.\"\n }\n]\n\nRequest:\nRemove the rule about expenses and contracts needing Lena's approval",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"remove\",\"rule_id\":\"expenses_and_contracts_over_10_000_n\",\"reply\":\"I removed the rule that expenses and contracts over $20,000 need Lena's approval. Expenses and contracts no longer wait on her for that reason.\",\"text\":null,\"when\":null,\"then\":null,\"parts\":[],\"could_not\":[],\"clarify\":null}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 497,
+      "tokensOut": 289,
+      "cacheRead": 10022,
+      "cacheWrite": 0
+    },
+    "ms": 2051
+  }
+}

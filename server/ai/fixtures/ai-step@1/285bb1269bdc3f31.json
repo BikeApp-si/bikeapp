@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Conference ticket\",\"Who\":\"Priya Nair\",\"Date\":\"Aug 10, 2026\",\"Amount\":\"$450\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Other\",\"reason\":\"A conference ticket doesn't clearly fit Meals, Travel, Software, Cloud, or Office; no receipt details are shown.\",\"confidence\":0.4,\"flags\":[\"Could be Travel if it is grouped with trip costs; the row alone does not say.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 65,
+      "tokensOut": 100,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1768
+  }
+}

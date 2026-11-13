@@ -1,0 +1,23 @@
+node_modules/
+.next/
+.next-e2e/
+next-env.d.ts
+*.tsbuildinfo
+.env
+.env.local
+.env.production
+tmp/
+coverage/
+playwright-report/
+test-results/
+.claude/settings.local.json
+CLAUDE.local.md
+.DS_Store
+
+# Editor autosave and lock files (Emacs)
+\#*#
+.#*
+.next-single/
+
+# The open Bike's backups (docs/install.md), when it runs from this folder
+/backups/

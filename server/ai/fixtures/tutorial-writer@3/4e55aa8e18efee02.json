@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Hiring\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Openings\",\"one\":\"role\",\"many\":\"roles\",\"sees\":\"own\",\"add\":\"Open a role\",\"edit\":true,\"delete\":false,\"steps\":[\"Draft\",\"Open\",\"Filled\",\"Closed\"],\"movesFrom\":[\"Draft\",\"Open\"],\"movesTo\":[\"Draft\",\"Open\",\"Filled\",\"Closed\"],\"stepRules\":[],\"columns\":[\"Role\",\"Team\",\"Hiring manager\",\"Salary band\",\"Opens on\"]},{\"name\":\"Candidates\",\"one\":\"candidate\",\"many\":\"candidates\",\"sees\":\"own\",\"add\":\"New candidate\",\"edit\":true,\"delete\":false,\"steps\":[\"Applied\",\"Screen\",\"Interview\",\"Offer\",\"Hired\",\"Rejected\"],\"movesFrom\":[\"Applied\",\"Screen\",\"Interview\",\"Offer\"],\"movesTo\":[\"Applied\",\"Screen\",\"Interview\",\"Offer\",\"Hired\",\"Rejected\"],\"stepRules\":[],\"columns\":[\"Name\",\"Opening\",\"Email\",\"Source\",\"Referred by\",\"CV\",\"Portfolio\",\"Offer\",\"Offer approval\",\"Start date\"]}],\"rules\":[\"An offer within the band waits on the hiring manager to send it.\",\"Once the partner approves an offer, it waits on the hiring manager to send it.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you track the roles Kestrel Partners is hiring for and the candidates you are working with.\",\"steps\":[{\"title\":\"Open a role\",\"text\":\"Start in Openings and add the role you are hiring for, with its team, salary band and the date it opens. You see only your own roles.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Openings\",\"step\":null}},{\"title\":\"Add a candidate\",\"text\":\"In Candidates, add each person who applies for one of your roles, with their email, where they came from and their CV. You see only your own candidates.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Candidates\",\"step\":null}},{\"title\":\"Move a candidate along\",\"text\":\"As a candidate progresses, move them to the next stage, such as Screen, Interview or Offer. You can also move them to Hired or Rejected.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Candidates\",\"step\":\"Interview\"}},{\"title\":\"Update a role's progress\",\"text\":\"Move your role through Draft, Open, Filled or Closed as it changes. Keep its details up to date as you go.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Openings\",\"step\":\"Filled\"}}],\"waits\":[\"An offer within the band waits on the hiring manager to send it.\",\"Once the partner approves an offer, it waits on the hiring manager to send it.\"],\"cannot\":[\"You can't delete roles or candidates here.\",\"You can't approve an offer yourself.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 426,
+      "tokensOut": 462,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2539
+  }
+}

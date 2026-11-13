@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Office plants\",\"Who\":\"Krishna\",\"Date\":\"Sep 4, 2026\",\"Amount\":\"$75\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Office\",\"reason\":\"The expense is for office plants, which fits the Office category.\",\"confidence\":0.85,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 61,
+      "tokensOut": 47,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1074
+  }
+}

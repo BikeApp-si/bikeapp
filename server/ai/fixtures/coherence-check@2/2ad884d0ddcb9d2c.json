@@ -1,0 +1,16 @@
+{
+  "message": "Check how these apps fit together.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"items\":[{\"text\":\"When a candidate is hired, Hiring starts a first-week plan in Onboarding using the candidate's start date and email. Onboarding requires a start date and a new starter, but Hiring leaves Start Date and Email optional, so a candidate can reach Hired without them and the plan may not be created.\",\"capabilities\":[\"Hiring\",\"Onboarding\"]}]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 14,
+      "tokensOut": 1541,
+      "cacheRead": 0,
+      "cacheWrite": 4314
+    },
+    "ms": 13328
+  }
+}

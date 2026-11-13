@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Figma, annual seat\",\"Who\":\"Omar Ali\",\"Date\":\"Sep 22, 2026\",\"Amount\":\"$180\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Software\",\"reason\":\"\\\"Figma, annual seat\\\" is a design software subscription.\",\"confidence\":0.92,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 67,
+      "tokensOut": 50,
+      "cacheRead": 0,
+      "cacheWrite": 777
+    },
+    "ms": 2075
+  }
+}

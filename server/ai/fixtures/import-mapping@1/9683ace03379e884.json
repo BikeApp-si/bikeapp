@@ -1,0 +1,16 @@
+{
+  "message": "File \"employees.csv\", header and up to 20 sample rows:\n\"Employee Name\",\"Work Email\",\"Designation\",\"Department\",\"Reporting Manager Email\",\"Date of Joining\"\n\"Wade Wilson\",\"wade@fernwood.dev\",\"Founder\",\"Leadership\",\"\",\"2024-01-15\"\n\"Priya Nair\",\"priya@fernwood.dev\",\"Engineering lead\",\"Engineering\",\"wade@fernwood.dev\",\"2024-03-01\"\n\"Maya Chen\",\"maya@fernwood.dev\",\"Backend engineer\",\"Engineering\",\"priya@fernwood.dev\",\"2024-06-10\"\n\"Omar Ali\",\"omar@fernwood.dev\",\"Frontend engineer\",\"Engineering\",\"priya@fernwood.dev\",\"2024-09-02\"\n\"Kim Tran\",\"kim@fernwood.dev\",\"Platform engineer\",\"Engineering\",\"priya@fernwood.dev\",\"2025-10-20\"\n\"Ana Ruiz\",\"ana@fernwood.dev\",\"Senior backend engineer\",\"Engineering\",\"priya@fernwood.dev\",\"2026-11-02\"\n\"Dev Kumar\",\"dev@fernwood.dev\",\"Growth lead\",\"Growth\",\"wade@fernwood.dev\",\"2024-04-08\"\n\"Rita Gomez\",\"rita@fernwood.dev\",\"Account manager\",\"Growth\",\"dev@fernwood.dev\",\"2025-01-13\"\n\"Leo Grant\",\"leo@fernwood.dev\",\"Sales executive\",\"Growth\",\"dev@fernwood.dev\",\"2026-11-10\"\n\"Nina Park\",\"nina@fernwood.dev\",\"Marketing manager\",\"Growth\",\"dev@fernwood.dev\",\"2025-03-03\"\n\"Krishna\",\"krishna@fernwood.dev\",\"Operations\",\"Operations\",\"wade@fernwood.dev\",\"2024-05-06\"\n\"Jon Bell\",\"jon@fernwood.dev\",\"IT and office\",\"Operations\",\"krishna@fernwood.dev\",\"2025-02-17\"\n\"Aisha Khan\",\"aisha@fernwood.dev\",\"People partner\",\"Operations\",\"krishna@fernwood.dev\",\"2025-08-04\"\n\"Lena Ortiz\",\"lena@fernwood.dev\",\"Accountant, part time\",\"Finance\",\"wade@fernwood.dev\",\"2024-07-01\"",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"mapping\":[{\"from\":\"Employee Name\",\"to\":\"Full name\",\"format\":null,\"values\":[]},{\"from\":\"Work Email\",\"to\":\"Work email\",\"format\":null,\"values\":[]},{\"from\":\"Designation\",\"to\":\"Job title\",\"format\":null,\"values\":[]},{\"from\":\"Department\",\"to\":\"Team\",\"format\":null,\"values\":[]},{\"from\":\"Reporting Manager Email\",\"to\":\"Manager email\",\"format\":null,\"values\":[]},{\"from\":\"Date of Joining\",\"to\":\"Start date\",\"format\":\"YYYY-MM-DD\",\"values\":[]}],\"unmapped\":[],\"problems\":[\"Date of Joining uses year-first ISO format (YYYY-MM-DD); the sample values such as 2024-01-15 and 2025-10-20 confirm day is last, so the format is unambiguous, but please confirm it matches the Start date column.\",\"Some start dates (for example 2026-11-02 and 2026-11-10) may be in the future relative to today; check whether they are intended.\",\"The Founder row (Wade Wilson) has an empty Reporting Manager Email, which will map to an empty Manager email; confirm that is acceptable.\",\"The employee named Krishna has a single name with no surname; check the Full name value.\",\"Department values such as Leadership, Engineering, Growth, Operations and Finance are copied directly into Team; no step or choice conversion was needed.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 741,
+      "tokensOut": 803,
+      "cacheRead": 0,
+      "cacheWrite": 895
+    },
+    "ms": 5111
+  }
+}

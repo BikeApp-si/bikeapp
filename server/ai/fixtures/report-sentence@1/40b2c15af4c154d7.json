@@ -1,0 +1,16 @@
+{
+  "message": "{\"today\":\"2026-10-26\",\"rows_read\":\"3 plans\",\"table\":{\"columns\":[\"Name\",\"Start date\",\"Onboarding\",\"Laptop\"],\"rows\":[[\"Ana Ruiz\",\"2026-11-02\",\"4 of 6 tasks done\",\"Ordered\"],[\"Leo Grant\",\"2026-11-10\",\"No tasks yet\",\"No laptop ordered\"],[\"Mei Chen\",\"2026-11-16\",\"1 of 6 tasks done\",\"Submitted\"]],\"totals\":{}},\"previous\":null}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"sentence\":\"**Three people start in November, and none is fully ready yet:** Ana starts Nov 2 with 4 of 6 onboarding tasks done and her laptop ordered, Mei starts Nov 16 with 1 of 6 tasks done and her laptop only submitted, and Leo starts Nov 10 with no onboarding tasks yet and no laptop ordered, so he is the one to chase first.\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 170,
+      "tokensOut": 140,
+      "cacheRead": 588,
+      "cacheWrite": 153
+    },
+    "ms": 1390
+  }
+}

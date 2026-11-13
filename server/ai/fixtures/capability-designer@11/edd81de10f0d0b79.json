@@ -1,0 +1,16 @@
+{
+  "message": "Latest message from Wade Wilson:\nHow much have we spent on purchases this financial year, by month?",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"report\",\"lead\":\"I'll work out what's been spent on purchases this financial year, month by month.\",\"brief\":null,\"left_out\":null,\"question\":null,\"capability\":null,\"rule_requests\":[],\"rules_from\":null,\"suggested_connections\":[],\"also_changes\":[],\"experience\":null,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 36,
+      "tokensOut": 108,
+      "cacheRead": 0,
+      "cacheWrite": 14672
+    },
+    "ms": 1989
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "message": "{\"access\":{\"capability\":\"Stock\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Items\",\"one\":\"item\",\"many\":\"items\",\"sees\":\"all\",\"add\":\"New item\",\"edit\":true,\"delete\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Item\",\"In stock\"]},{\"name\":\"Moves\",\"one\":\"move\",\"many\":\"moves\",\"sees\":\"all\",\"add\":\"New move\",\"edit\":false,\"delete\":false,\"reverse\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Move\",\"Item\",\"Quantity\",\"By\",\"Date\",\"In stock after\",\"Reverses\"]}],\"rules\":[]}}",
+  "retry": {
+    "answer": "{\"purpose\":\"Where you keep track of what stock we hold: the items, and each move that changes how many are in stock.\",\"steps\":[{\"title\":\"Add a new item\",\"text\":\"Open Items and add any new item you need to track. Give it a clear name so the team can find it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Items\",\"step\":null}},{\"title\":\"Record a move\",\"text\":\"Use New move on the Moves sheet each time stock comes in or goes out. Pick the item, enter the quantity and the date.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Moves\",\"step\":null}},{\"title\":\"Check what is in stock\",\"text\":\"Look at the In stock column on Items to see how many of each item you have now.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Items\",\"step\":null}},{\"title\":\"Look back at moves\",\"text\":\"Open Moves to see every move, who recorded it, and the In stock after figure at that point.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Moves\",\"step\":null}}],\"waits\":[],\"cannot\":[\"A move can't be edited or deleted once it is recorded; to undo one, reverse it.\"]}",
+    "problems": [
+      "“A move can't be edited or deleted once it is recorded; to undo one, reverse it.”: this person is an admin and can do this; leave it out of cannot."
+    ]
+  },
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep track of what stock we hold: the items, and each move that changes how many are in stock.\",\"steps\":[{\"title\":\"New item\",\"text\":\"Open Items and add any new item you need to track. Give it a clear name so the team can find it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Items\",\"step\":null}},{\"title\":\"New move\",\"text\":\"Use New move on the Moves sheet each time stock comes in or goes out. Pick the item, enter the quantity and the date.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Moves\",\"step\":null}},{\"title\":\"Check what is in stock\",\"text\":\"Look at the In stock column on Items to see how many of each item you have now.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Items\",\"step\":null}},{\"title\":\"Look back at moves\",\"text\":\"Open Moves to see every move, who recorded it, and the In stock after figure at that point.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Moves\",\"step\":null}}],\"waits\":[],\"cannot\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 713,
+      "tokensOut": 764,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 3814
+  }
+}

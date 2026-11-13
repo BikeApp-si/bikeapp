@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Exams and report cards\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Report cards\",\"one\":\"report card\",\"many\":\"report cards\",\"sees\":\"all\",\"add\":\"New report card\",\"edit\":true,\"delete\":false,\"steps\":[\"Draft\",\"Ready to check\",\"Issued\"],\"movesFrom\":[\"Draft\"],\"movesTo\":[\"Ready to check\"],\"stepRules\":[],\"columns\":[\"Student\",\"Section\",\"Class teacher\",\"Year\",\"Term\",\"Working days\",\"Days present\",\"Marks\",\"Out of\",\"Class teacher's remarks\"]},{\"name\":\"Marks\",\"one\":\"subject\",\"many\":\"subjects\",\"sees\":\"all\",\"add\":\"Add a subject\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Report card\",\"Subject\",\"Internal assessment (20)\",\"Exam (80)\",\"Total\",\"Out of\",\"Grade\"]},{\"name\":\"Exams\",\"one\":\"exam\",\"many\":\"exams\",\"sees\":\"all\",\"add\":\"New exam\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Subject\",\"Class\",\"Term\",\"Kind\",\"Date\",\"Maximum marks\",\"Teacher\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you write up report cards for your students and enter their marks and exam dates.\",\"steps\":[{\"title\":\"Start a report card\",\"text\":\"Open Report cards and add a new report card for each student in your class. Fill in the section, year, term, working days, days present and your remarks.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Report cards\",\"step\":null}},{\"title\":\"Enter the marks\",\"text\":\"For each subject on the report card, add a subject row and enter the internal assessment and exam marks. The total and grade are worked out for you.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Marks\",\"step\":null}},{\"title\":\"Check your exams\",\"text\":\"Look through the exams for your subjects and classes to confirm the dates and maximum marks are right.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Exams\",\"step\":null}},{\"title\":\"Add an exam\",\"text\":\"If an exam is missing from the list, add it with its subject, class, term, kind, date, maximum marks and your name as teacher.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Exams\",\"step\":null}},{\"title\":\"Fix a report card\",\"text\":\"Correct any detail on a report card you have written, such as a mark or a remark, before you pass it on.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Report cards\",\"step\":null}},{\"title\":\"Pass a report card on to be checked\",\"text\":\"When a draft report card is complete, move it on to Ready to check so it can be looked over.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Report cards\",\"step\":\"Ready to check\"}}],\"waits\":[\"Someone checks a report card once it is moved to Ready to check.\",\"A report card is issued after it has been checked; you can't issue it yourself.\"],\"cannot\":[\"You can't delete report cards, marks or exams.\",\"You can't move a report card once it has been checked and issued.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 434,
+      "tokensOut": 591,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 3121
+  }
+}

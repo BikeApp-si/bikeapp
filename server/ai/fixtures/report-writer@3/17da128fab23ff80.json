@@ -1,0 +1,16 @@
+{
+  "message": "Today is 2026-10-27. Rows and dates in each sheet:\n[{\"capability\":\"Hiring\",\"sheet\":\"Candidates\",\"rows\":46,\"dates\":{\"Applied On\":[\"2026-05-02\",\"2026-10-10\"],\"Start Date\":[\"2026-11-10\",\"2026-11-16\"]}},{\"capability\":\"Hiring\",\"sheet\":\"Openings\",\"rows\":0,\"dates\":{}},{\"capability\":\"Hiring\",\"sheet\":\"Interviews\",\"rows\":0,\"dates\":{}},{\"capability\":\"Tools and budgets\",\"sheet\":\"Tools\",\"rows\":38,\"dates\":{\"Renewal date\":[\"2026-11-05\",\"2027-10-04\"]}},{\"capability\":\"Tools and budgets\",\"sheet\":\"Budgets\",\"rows\":0,\"dates\":{}},{\"capability\":\"Onboarding\",\"sheet\":\"Plans\",\"rows\":0,\"dates\":{}},{\"capability\":\"Onboarding\",\"sheet\":\"Tasks\",\"rows\":0,\"dates\":{}},{\"capability\":\"Spend\",\"sheet\":\"Expenses\",\"rows\":2890,\"dates\":{\"Date\":[\"2025-01-02\",\"2026-10-20\"]}},{\"capability\":\"Spend\",\"sheet\":\"Purchases\",\"rows\":0,\"dates\":{}},{\"capability\":\"Spend\",\"sheet\":\"Renewal requests\",\"rows\":0,\"dates\":{}},{\"capability\":\"Time off\",\"sheet\":\"Leave requests\",\"rows\":214,\"dates\":{\"From\":[\"2025-01-06\",\"2026-12-03\"],\"To\":[\"2025-01-10\",\"2026-12-04\"]}},{\"capability\":\"Time off\",\"sheet\":\"Leave entries\",\"rows\":0,\"dates\":{}},{\"capability\":\"Customer contracts\",\"sheet\":\"Contracts\",\"rows\":12,\"dates\":{\"Start\":[\"2025-02-03\",\"2026-10-01\"],\"Renews on\":[\"2026-11-14\",\"2027-10-14\"]}}]\n\nLatest message from Wade Wilson:\nShow expenses by category for October.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"title\":\"Expenses by category, October\",\"query\":{\"from\":[{\"capability\":\"Spend\",\"sheet\":\"Expenses\"}],\"join\":[],\"where\":\"{\\\"op\\\":\\\"and\\\",\\\"args\\\":[{\\\"op\\\":\\\"between\\\",\\\"args\\\":[{\\\"col\\\":\\\"Expenses.Date\\\"},\\\"2026-10-01\\\",{\\\"ref\\\":\\\"today\\\"}]},{\\\"op\\\":\\\"not\\\",\\\"args\\\":[{\\\"op\\\":\\\"eq\\\",\\\"args\\\":[{\\\"col\\\":\\\"Expenses.Status\\\"},\\\"Rejected\\\"]}]}]}\",\"group_by\":[{\"column\":\"Expenses.Category\",\"by\":\"value\"}],\"measures\":[{\"fn\":\"sum\",\"source\":\"Expenses\",\"column\":\"Expenses.Payable\",\"where\":null,\"as\":\"Total\",\"hidden\":false},{\"fn\":\"count\",\"source\":\"Expenses\",\"column\":null,\"where\":null,\"as\":\"Expenses\",\"hidden\":false}],\"computed\":[],\"order_by\":[{\"column\":\"Total\",\"dir\":\"desc\"}],\"limit\":null},\"chart\":{\"kind\":\"bar\",\"series\":[{\"column\":\"Total\",\"role\":\"measure\"}]},\"how\":[\"Total: payable amount of expenses dated Oct 1–27, 2026, added up by category. Rejected expenses are left out.\",\"Expenses: number of expenses counted in each category.\"],\"missing\":null}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 658,
+      "tokensOut": 453,
+      "cacheRead": 0,
+      "cacheWrite": 6990
+    },
+    "ms": 3153
+  }
+}

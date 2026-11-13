@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fee_card",
+    "text": "Every new student gets a fee card for the year.",
+    "reading": {
+      "when": "A student is added",
+      "then": "A fee card for the year is added in Fees"
+    },
+    "enabled": true,
+    "applications": [
+      {
+        "id": "students",
+        "capabilityId": "@app:students",
+        "trigger": {
+          "kind": "row_created",
+          "sheet": "students"
+        },
+        "actions": [
+          {
+            "kind": "create_row_in",
+            "target": {
+              "capability": "@app:fees",
+              "sheet": "cards"
+            },
+            "map": {
+              "student": {
+                "ref": "row"
+              },
+              "class": {
+                "col": "class"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

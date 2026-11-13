@@ -1,0 +1,16 @@
+{
+  "message": "{\"today\":\"2026-10-27\",\"request\":\"the ones with a receipt\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"filters\":[],\"could_not\":[\"Bike can't filter by whether a receipt is attached.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 29,
+      "tokensOut": 35,
+      "cacheRead": 1816,
+      "cacheWrite": 0
+    },
+    "ms": 979
+  }
+}

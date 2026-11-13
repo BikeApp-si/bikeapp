@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Spend\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Expenses\",\"one\":\"expense\",\"many\":\"expenses\",\"sees\":\"all\",\"add\":\"Add an expense\",\"edit\":true,\"delete\":true,\"steps\":[\"Needs a receipt\",\"Submitted\",\"Approved\",\"Paid\",\"Rejected\"],\"movesFrom\":[\"Needs a receipt\",\"Submitted\",\"Approved\"],\"movesTo\":[\"Needs a receipt\",\"Submitted\",\"Approved\",\"Paid\",\"Rejected\"],\"stepRules\":[\"Out of Needs a receipt: only by the person who submitted the expense\",\"Approved: not by the person who submitted the expense\",\"Rejected: not by the person who submitted the expense\"],\"columns\":[\"What for\",\"Who\",\"Date\",\"Amount\",\"Category\",\"Project\",\"Billable to the client\",\"Paid with\",\"Receipt\",\"Paid on\",\"Note\"]},{\"name\":\"Purchases\",\"one\":\"purchase\",\"many\":\"purchases\",\"sees\":\"all\",\"add\":\"Request a purchase\",\"edit\":true,\"delete\":true,\"steps\":[\"Submitted\",\"Approved\",\"Ordered\",\"Received\",\"Rejected\"],\"movesFrom\":[\"Submitted\",\"Approved\",\"Ordered\"],\"movesTo\":[\"Submitted\",\"Approved\",\"Ordered\",\"Received\",\"Rejected\"],\"stepRules\":[\"Approved: not by the person who submitted the purchase\",\"Rejected: not by the person who submitted the purchase\"],\"columns\":[\"What\",\"Requested by\",\"Date\",\"Supplier\",\"Amount\",\"Project\",\"Quote\"]}],\"rules\":[\"Submitted expenses wait on finance to approve them.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you claim back what you paid for work, and ask for things your projects need to be bought.\",\"steps\":[{\"title\":\"Add an expense\",\"text\":\"Add an expense for something you paid for work, with the date, amount, project and a receipt where you have one. Your expenses start at Needs a receipt until you add one.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Expenses\",\"step\":null}},{\"title\":\"Send an expense for approval\",\"text\":\"Once the receipt is in, move the expense on to Submitted so finance can check it. Only you can move it back out of Needs a receipt.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Expenses\",\"step\":\"Submitted\"}},{\"title\":\"Request a purchase\",\"text\":\"Request a purchase with what it is, the supplier, the amount and the project it is for. Attach the quote if you have one.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Purchases\",\"step\":null}},{\"title\":\"Check your expenses\",\"text\":\"Look through your expenses to see which are still waiting, approved or paid.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Expenses\",\"step\":null}}],\"waits\":[\"Finance approves submitted expenses before they can be paid.\",\"You can't approve your own expenses or purchases.\",\"Your expense is paid once it has been approved and finance pays it out.\"],\"cannot\":[\"You can't approve or pay your own expenses or purchases.\",\"You can't move an expense back out of Submitted, Approved or Paid once it has passed Needs a receipt.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 524,
+      "tokensOut": 488,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2948
+  }
+}

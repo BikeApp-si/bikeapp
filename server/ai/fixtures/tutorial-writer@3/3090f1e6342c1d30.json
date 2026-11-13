@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Staff leave\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Leave\",\"one\":\"leave request\",\"many\":\"leave requests\",\"sees\":\"all\",\"add\":\"Ask for leave\",\"edit\":true,\"delete\":false,\"steps\":[\"Requested\",\"Approved\",\"Declined\"],\"movesFrom\":[\"Requested\"],\"movesTo\":[\"Approved\",\"Declined\"],\"stepRules\":[\"Approved: not by the person who submitted the leave request\",\"Declined: not by the person who submitted the leave request\"],\"columns\":[\"Who\",\"Type\",\"From\",\"To\",\"Days\",\"Reason\"]},{\"name\":\"Substitutions\",\"one\":\"substitution\",\"many\":\"substitutions\",\"sees\":\"all\",\"add\":\"New substitution\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Section\",\"Date\",\"Period\",\"In place of\",\"Substitute\",\"Leave\",\"Note\"]}],\"rules\":[\"Leave waits on the principal.\",\"When leave is approved, tell the person and the office.\",\"Tell a substitute about the period they take.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you manage leave requests for staff and set up cover for lessons when a teacher is away.\",\"steps\":[{\"title\":\"Approve leave requests\",\"text\":\"Open the Leave sheet and look at the requests that are still Requested. You see everyone's requests. Move a request to Approved when you agree to it. You can't approve your own request.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Leave\",\"step\":\"Approved\"}},{\"title\":\"Decline leave requests\",\"text\":\"For a request you don't agree to, move it to Declined. You can't decline your own request.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Leave\",\"step\":\"Declined\"}},{\"title\":\"Set up a substitution\",\"text\":\"When someone is away, add a row to Substitutions with the section, date, period and who they are replacing. Add the substitute and the leave request it covers.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Substitutions\",\"step\":null}}],\"waits\":[\"Once leave is approved, the person and the office are told.\",\"A substitute is told about the period they take.\"],\"cannot\":[\"Nobody can delete a leave request.\",\"Nobody can delete a substitution.\",\"You can't approve or decline your own leave request.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 363,
+      "tokensOut": 987,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 5140
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "<document name=\"Juniper Health signed contract.pdf\" pages=\"1\">\n[Page 1]\nSubscription agreement\nThis agreement is between Fernwood Labs, Inc., 210 Congress Ave, Austin, TX\n(\"Fernwood\") and Juniper Health, 41 Mill Street, Denver, CO (\"the Customer\").\nCustomer Juniper Health\nAnnual subscription fee $42,000 per year, billed yearly in advance\nStart date November 1, 2026\nInitial term 12 months, renewing for further 12-month terms\nNotice to end 60 days before the end of a term, in writing\nFernwood account owner Krishna Iyer\nThe Customer may use Fernwood CI for up to 40 seats. Fees are due within 30 days of\neach invoice.\nSigned for Fernwood Labs: Wade Wilson, Founder, October 24, 2026.\nSigned for Juniper Health: Dana Ruiz, COO, October 24, 2026.\n</document>\n\nFill in the fields it states.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"values\":[{\"column\":\"Customer\",\"value\":\"Juniper Health\"},{\"column\":\"Value a year\",\"value\":\"42000\"},{\"column\":\"Start\",\"value\":\"2026-11-01\"},{\"column\":\"Notice\",\"value\":\"60\"},{\"column\":\"Owner\",\"value\":\"Krishna\"}],\"flags\":[\"The document does not state a renewal date, only that the contract renews for 12-month terms, so Renews on was left empty.\",\"The owner is Krishna Iyer in the document, but the people list has only Krishna, so I used that entry.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 342,
+      "tokensOut": 175,
+      "cacheRead": 0,
+      "cacheWrite": 929
+    },
+    "ms": 2468
+  }
+}

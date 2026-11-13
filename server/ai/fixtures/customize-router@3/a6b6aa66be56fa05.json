@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nAdd a Companies sheet",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 19,
+      "tokensOut": 10,
+      "cacheRead": 620,
+      "cacheWrite": 10
+    },
+    "ms": 839
+  }
+}

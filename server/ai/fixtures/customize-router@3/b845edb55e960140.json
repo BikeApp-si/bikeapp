@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: Add a Companies sheet\nBike: (sent a preview)\n\nLatest message:\nTrack the companies our leads work at, with their website and industry",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 61,
+      "tokensOut": 10,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 987
+  }
+}

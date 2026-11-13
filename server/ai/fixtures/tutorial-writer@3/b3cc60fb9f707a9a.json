@@ -1,0 +1,21 @@
+{
+  "message": "{\"access\":{\"capability\":\"Projects\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Projects\",\"one\":\"project\",\"many\":\"projects\",\"sees\":\"all\",\"add\":\"New project\",\"edit\":true,\"delete\":true,\"steps\":[\"Proposed\",\"Active\",\"On hold\",\"Done\",\"Cancelled\"],\"movesFrom\":[\"Proposed\",\"Active\",\"On hold\"],\"movesTo\":[\"Proposed\",\"Active\",\"On hold\",\"Done\",\"Cancelled\"],\"stepRules\":[],\"columns\":[\"Name\",\"Client\",\"Contract\",\"Project manager\",\"Kind\",\"Start\",\"End\",\"Budget\",\"Spent\",\"Remaining\"]},{\"name\":\"Budget entries\",\"one\":\"entry\",\"many\":\"entries\",\"sees\":\"all\",\"add\":\"New entry\",\"edit\":false,\"delete\":false,\"reverse\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Entry\",\"Project\",\"Amount\",\"On\",\"Reverses\",\"Spent after\"]}],\"rules\":[\"When a project goes over its budget, tell the partner.\"]}}",
+  "retry": {
+    "answer": "{\"purpose\":\"Where you track projects for Kestrel Partners, from proposal through to done, and keep an eye on each budget.\",\"steps\":[{\"title\":\"Add a project\",\"text\":\"Click New project to start a new one. Fill in its name, client, contract, project manager, kind, start and budget.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Projects\",\"step\":null}},{\"title\":\"Move a project along\",\"text\":\"Open a project and move it on to its next step as it progresses, such as Active, On hold, Done or Cancelled. You can move a project from Proposed, Active or On hold.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Projects\",\"step\":\"Active\"}},{\"title\":\"Check a project's budget\",\"text\":\"Look at the Budget, Spent and Remaining columns to see how much of each project's budget is left.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Projects\",\"step\":null}},{\"title\":\"Record a budget entry\",\"text\":\"Add an entry against a project to show money spent. Each entry shows the amount, the date and the spend after it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Budget entries\",\"step\":null}}],\"waits\":[\"If a project goes over its budget, the partner is told.\"],\"cannot\":[\"You can't edit or delete budget entries; you can only reverse them.\",\"You can't delete projects.\"]}",
+    "problems": [
+      "“You can't edit or delete budget entries; you can only reverse them.”: this person is an admin and can do this; leave it out of cannot."
+    ]
+  },
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you track projects for Kestrel Partners, from proposal through to done, and keep an eye on each budget.\",\"steps\":[{\"title\":\"Add a project\",\"text\":\"Click New project to start a new one. Fill in its name, client, contract, project manager, kind, start and budget.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Projects\",\"step\":null}},{\"title\":\"Move a project along\",\"text\":\"Open a project and move it on to its next step as it progresses, such as Active, On hold, Done or Cancelled. You can move a project from Proposed, Active or On hold.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Projects\",\"step\":\"Active\"}},{\"title\":\"Check a project's budget\",\"text\":\"Look at the Budget, Spent and Remaining columns to see how much of each project's budget is left.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Projects\",\"step\":null}},{\"title\":\"Record a budget entry\",\"text\":\"Add an entry against a project to show money spent. Each entry shows the amount, the date and the spend after it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Budget entries\",\"step\":null}}],\"waits\":[\"If a project goes over its budget, the partner is told.\"],\"cannot\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 874,
+      "tokensOut": 819,
+      "cacheRead": 0,
+      "cacheWrite": 1620
+    },
+    "ms": 4237
+  }
+}

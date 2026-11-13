@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: Contracts over $50,000 need a legal review by Lena before they’re Active. Also remind owners 90 days before the notice date.\nBike: (sent a preview)\nAdmin: Apply 4 changes\nBike: Applying the changes to Customer contracts. This takes a few seconds.\n\nLatest message:\nIf a contract is still in Draft 14 days after it was added, remind its owner.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 143,
+      "tokensOut": 10,
+      "cacheRead": 0,
+      "cacheWrite": 630
+    },
+    "ms": 945
+  }
+}

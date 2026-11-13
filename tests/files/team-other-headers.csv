@@ -1,0 +1,6 @@
+Name,Email,Role,Reports to,Joined
+Wade Wilson,wade@fernwood.dev,Founder,,2024-01-15
+Priya Nair,priya@fernwood.dev,Engineering lead,wade@fernwood.dev,2024-03-01
+Maya Chen,maya@fernwood.dev,Backend engineer,priya@fernwood.dev,2024-06-10
+Dev Kumar,dev@fernwood.dev,Growth lead,wade@fernwood.dev,2024-04-08
+Lena Ortiz,lena@fernwood.dev,"Accountant, part time",wade@fernwood.dev,2024-07-01

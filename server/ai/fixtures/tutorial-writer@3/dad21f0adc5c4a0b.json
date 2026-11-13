@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Time off\",\"admin\":false,\"view\":\"Your team's requests\",\"sheets\":[{\"name\":\"Requests\",\"one\":\"request\",\"many\":\"requests\",\"sees\":\"team\",\"add\":\"Request time off\",\"edit\":false,\"delete\":false,\"steps\":[\"Submitted\",\"Approved\",\"Declined\",\"Taken\"],\"movesFrom\":[\"Submitted\"],\"movesTo\":[\"Approved\",\"Declined\"],\"stepRules\":[\"Approved: not by the person who submitted the request\",\"Declined: not by the person who submitted the request\"],\"columns\":[\"Who\",\"Type\",\"From\",\"To\",\"Days\",\"Note\",\"Balance after\"]},{\"name\":\"Balances\",\"one\":\"balance\",\"many\":\"balances\",\"sees\":\"own\",\"add\":\"New balance\",\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Who\",\"Year\",\"Days a year\",\"Used\",\"Left\"]},{\"name\":\"Holidays\",\"one\":\"holiday\",\"many\":\"holidays\",\"sees\":\"all\",\"add\":null,\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Date\",\"Holiday\"]}],\"rules\":[\"Requests go to the person's manager.\",\"When a request is approved, tell the person and operations.\",\"When a request is declined, tell the person and operations.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you ask for time off and see how many days you have left.\",\"steps\":[{\"title\":\"Request time off\",\"text\":\"Open your team's requests and add a new request for the days you want off. Your request goes to your manager to approve or decline.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Requests\",\"step\":null}},{\"title\":\"Check your balance\",\"text\":\"Look at your balances to see how many days you have used and how many are left this year.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Balances\",\"step\":null}},{\"title\":\"Check the holidays\",\"text\":\"Look up the company holidays so you can plan your requests around them.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Holidays\",\"step\":null}}],\"waits\":[\"Your manager approves or declines your request.\",\"Your manager can't approve a request they submitted themselves.\",\"When a request is approved or declined, the person and operations are told.\"],\"cannot\":[\"You can't add a new balance.\",\"You can't edit or delete a request once it is sent.\",\"You see only your own balance, not your team's.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 447,
+      "tokensOut": 330,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2095
+  }
+}

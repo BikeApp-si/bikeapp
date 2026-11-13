@@ -1,0 +1,16 @@
+{
+  "message": "Latest message from Wade Wilson:\nHow much did we spend on cloud in 2025?",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"report\",\"lead\":\"I'll work out what Fernwood Labs spent on cloud in 2025 from the Expenses in **Spend**.\",\"brief\":null,\"left_out\":null,\"question\":null,\"capability\":null,\"rule_requests\":[],\"rules_from\":null,\"suggested_connections\":[],\"also_changes\":[],\"experience\":null,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 33,
+      "tokensOut": 123,
+      "cacheRead": 14672,
+      "cacheWrite": 0
+    },
+    "ms": 1791
+  }
+}

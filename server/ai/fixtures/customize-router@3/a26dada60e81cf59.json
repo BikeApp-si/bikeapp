@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nCustomer should be picked from Customers, not typed.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 26,
+      "tokensOut": 10,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 711
+  }
+}

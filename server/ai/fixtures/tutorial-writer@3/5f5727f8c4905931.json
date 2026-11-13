@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Classes and students\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Classes and sections\",\"one\":\"class or section\",\"many\":\"classes and sections\",\"sees\":\"all\",\"add\":null,\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Class\",\"Class teacher\",\"Room\"]},{\"name\":\"Students\",\"one\":\"student\",\"many\":\"students\",\"sees\":\"all\",\"add\":null,\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Admission number\",\"Class\",\"Section\",\"Roll number\",\"Date of birth\",\"Gender\",\"Admitted on\",\"House\",\"Left on\",\"Father's name\",\"Mother's name\",\"Guardian's name\",\"Phone\",\"Other phone\",\"Email\",\"Address\",\"Nationality\",\"Category\",\"APAAR ID\",\"PEN (UDISE+)\",\"Aadhaar number\",\"Birth certificate\",\"Transfer certificate from the last school\",\"Last school\",\"Blood group\",\"Allergies\",\"Medical notes\",\"Emergency contact\",\"Emergency phone\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep the class list and the student records for Greenfield Public School.\",\"steps\":[{\"title\":\"Look up a class or section\",\"text\":\"Start in Classes and sections to see each class and section, its class teacher and its room. You can read these but not change them.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Classes and sections\",\"step\":null}},{\"title\":\"Update a student's details\",\"text\":\"Open Students to find a student and correct or fill in their details, such as phone, address or emergency contact. Each student's full record is there, from admission number to medical notes.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Students\",\"step\":null}},{\"title\":\"Look up a student\",\"text\":\"Use Students to find any student in the school and read their class, section, roll number or guardian details.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Students\",\"step\":null}}],\"waits\":[\"New students and classes are added by someone else, not by you.\"],\"cannot\":[\"You can't add a new student or a new class here.\",\"You can't remove a student or a class from these sheets.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 387,
+      "tokensOut": 330,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2322
+  }
+}

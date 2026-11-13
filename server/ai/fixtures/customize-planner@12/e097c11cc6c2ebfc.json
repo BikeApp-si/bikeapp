@@ -1,0 +1,16 @@
+{
+  "message": "How it reads now:\nOpenings sheet\nRole (text, required), Team (Engineering, Growth, Customer or Operations), Hiring manager (person), Salary band (money range), Opens on (date).\nSteps: Draft → Open → Filled or Closed.\n\nCandidates sheet\nName (text, required), Opening (one row from Openings), Source (Referral, Inbound or Agency), Referred by (person), CV (file), Offer (money), Offer approval (Approved or Declined), Start date (date).\nThe form: Candidate (Name, Opening, Source, Referred by and CV), Offer (Offer, Offer approval and Start date). Asked when creating: Name.\nSteps: Applied → Screen → Interview → Offer → Hired or Rejected.\n\nInterviews sheet\nCandidate (one row from Candidates, required), Interviewer (person), When (date and time), Score (1 to 4), Notes (long text).\n\nWhat happens by itself\nAn offer above the role’s salary band waits on Wade to approve it.\nAn offer within the band waits on the hiring manager to send it.\nOnce Wade approves an offer, it waits on the hiring manager to send it.\nWhen a candidate is Hired, start their onboarding plan with name, start date and manager.\nWhen a candidate is Hired, their opening moves to Filled.\nWhen a candidate moves to Interview, add three interviews and give each interviewer a scorecard task.\nOn the day of an interview, if it has no score yet, it waits on the interviewer for their scorecard.\n\nWho can see and do what\nWade Wilson sees every role, add, edit and move them, and change how it works.\nHiring managers see their own roles and can add, edit and move them.\nPriya Nair, Maya Chen, Omar Ali, Kim Tran and Ana Ruiz see every role.\nPriya Nair, Maya Chen, Omar Ali, Kim Tran and Ana Ruiz see their own candidates and can add them.\nInterviewers see their own interviews and can edit them.\nEveryone else sees nothing.\n\nConnections\nPeople fills Hiring manager.\nPeople fills Referred by.\nPeople fills Interviewer.\nAt Hired, start a plan in Onboarding.\n\nComing soon\nConnections to other software\n\nLatest message from Wade Wilson:\nRemove the Hired step. Offers should end at Offer accepted.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"changes\":[{\"kind\":\"rename\",\"sheet\":\"Candidates\",\"new_sheet\":null,\"column\":null,\"step\":null,\"after\":null,\"rename\":{\"what\":\"step\",\"from\":\"Hired\",\"to\":\"Offer accepted\",\"instead_of_removal\":true},\"movers\":null,\"role\":null,\"person\":null,\"rule\":null,\"view\":null,\"labels\":null,\"hint\":null,\"sort\":null,\"check\":null,\"form\":null,\"show_when\":null,\"access\":null,\"link\":null,\"explain\":\"Hired becomes Offer accepted, the last step for candidates. Candidates already there stay there.\",\"part\":\"Steps: Hired is now Offer accepted\"}],\"clarify\":null,\"reply\":\"Candidates can't lose the Hired step while some are in it, so I renamed it to Offer accepted. It is still the last step, and candidates already there stay there. The rules that start onboarding and fill the opening now run when a candidate reaches Offer accepted.\",\"title\":\"Offer accepted step\",\"type\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 776,
+      "tokensOut": 617,
+      "cacheRead": 11081,
+      "cacheWrite": 4333
+    },
+    "ms": 4710
+  }
+}

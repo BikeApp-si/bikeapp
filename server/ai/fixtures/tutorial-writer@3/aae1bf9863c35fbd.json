@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Time off\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Requests\",\"one\":\"request\",\"many\":\"requests\",\"sees\":\"team\",\"add\":\"Request time off\",\"edit\":false,\"delete\":false,\"steps\":[\"Submitted\",\"Approved\",\"Declined\",\"Taken\"],\"movesFrom\":[\"Submitted\"],\"movesTo\":[\"Approved\",\"Declined\"],\"stepRules\":[\"Approved: not by the person who submitted the request\",\"Declined: not by the person who submitted the request\"],\"columns\":[\"Who\",\"Type\",\"From\",\"To\",\"Days\",\"Note\",\"Balance after\"]},{\"name\":\"Balances\",\"one\":\"balance\",\"many\":\"balances\",\"sees\":\"own\",\"add\":\"New balance\",\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Who\",\"Year\",\"Days a year\",\"Used\",\"Left\"]},{\"name\":\"Holidays\",\"one\":\"holiday\",\"many\":\"holidays\",\"sees\":\"all\",\"add\":null,\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Date\",\"Holiday\"]}],\"rules\":[\"Requests go to the person's manager.\",\"When a request is approved, tell the person and operations.\",\"When a request is declined, tell the person and operations.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you ask for time off, see who is away, and check how many days you have left.\",\"steps\":[{\"title\":\"Request time off\",\"text\":\"Add a request in Requests with the dates and the type of leave. It goes to your manager to approve or decline.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Requests\",\"step\":null}},{\"title\":\"Approve or decline requests\",\"text\":\"Approve requests that come to you from your team. You can't approve or decline your own request.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Requests\",\"step\":\"Approved\"}},{\"title\":\"Check your balance\",\"text\":\"Look in Balances to see the days you have used and the days you have left for the year.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Balances\",\"step\":null}},{\"title\":\"Check the holidays\",\"text\":\"Look in Holidays to see the company holiday dates before you plan your leave.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Holidays\",\"step\":null}}],\"waits\":[\"Your manager approves or declines your request.\",\"When a request is approved, the person and operations are told.\",\"When a request is declined, the person and operations are told.\"],\"cannot\":[\"You can't approve or decline your own request.\",\"Nobody can edit or delete a request or a balance here.\",\"Nobody can add to or delete from Holidays.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 442,
+      "tokensOut": 1211,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 6337
+  }
+}

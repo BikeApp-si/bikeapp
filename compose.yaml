@@ -1,0 +1,105 @@
+# Bike on your own server: one company at one address. Put this file and your .env (from .env.example) in one
+# folder and run `docker compose up -d` (with HTTPS from Caddy: `docker compose --profile https up -d`). Then open
+# your address and follow first run; the setup code it asks for is in Bike's log (`docker compose logs web`). Your
+# data stays in the volumes below, on this machine, and its backups in ./backups beside this file.
+name: bike
+
+x-bike: &bike
+  image: ghcr.io/bikeapp-si/bikeapp:${BIKE_VERSION:?Set BIKE_VERSION in .env}
+  restart: unless-stopped
+  # Root only to give ./backups to Bike's user as it starts (docker/start.sh); Bike itself runs as that user.
+  user: root
+  env_file: .env
+  environment: &bike-env
+    BIKE_MODE: single
+    DATABASE_ADMIN_URL: postgres://bike:${DB_PASSWORD:?Set DB_PASSWORD in .env}@postgres:5432/bike
+    DATABASE_URL: postgres://bike_app:${APP_DB_PASSWORD:?Set APP_DB_PASSWORD in .env}@postgres:5432/bike
+    STORAGE_PROVIDER: disk
+    FILES_DIR: /data/files
+    SCAN_PROVIDER: clamd
+    CLAMD_HOST: clamav
+    CLAMD_PORT: "3310"
+    AI_MODEL_LARGE: claude-sonnet-5-5
+    AI_MODEL_SMALL: claude-haiku-5-5
+  volumes:
+    - files:/data/files
+    - ./backups:/data/backups
+
+services:
+  web:
+    <<: *bike
+    command: ["sh", "docker/start.sh", "web"]
+    ports: ["${BIKE_PORT:-3000}:3000"]
+    depends_on:
+      postgres: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      retries: 30
+      start_period: 60s
+
+  # The daily rules, reminders and emails. Starts once web has readied the database.
+  worker:
+    <<: *bike
+    command: ["sh", "docker/start.sh", "worker"]
+    depends_on:
+      web: { condition: service_healthy }
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bike
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      POSTGRES_DB: bike
+    volumes:
+      - db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "bike"]
+      interval: 2s
+      retries: 30
+
+  # Every upload is checked for viruses. Its first start downloads the virus list (a few minutes); until then
+  # uploads are refused and Settings › Instance says so. Needs about 1.5 GB of memory.
+  clamav:
+    image: clamav/clamav-debian:1.5.1
+    restart: unless-stopped
+    volumes:
+      - clamdb:/var/lib/clamav
+    healthcheck:
+      test: ["CMD", "clamdcheck.sh"]
+      interval: 10s
+      retries: 60
+      start_period: 120s
+
+  # HTTPS for Bike's address, off unless asked for (`--profile https`): Caddy gets a certificate for INSTANCE_URL's
+  # name and renews it. Needs that name pointing at this server, and ports 80 and 443 open to the internet.
+  caddy:
+    image: caddy:2.10.2
+    profiles: [https]
+    restart: unless-stopped
+    ports: ["80:80", "443:443", "443:443/udp"]
+    environment:
+      INSTANCE_URL: ${INSTANCE_URL:?Set INSTANCE_URL in .env}
+    configs:
+      - source: caddyfile
+        target: /etc/caddy/Caddyfile
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      web: { condition: service_healthy }
+
+configs:
+  caddyfile:
+    content: |
+      {$$INSTANCE_URL} {
+      	reverse_proxy web:3000
+      }
+
+volumes:
+  db:
+  files:
+  clamdb:
+  caddy_data:
+  caddy_config:

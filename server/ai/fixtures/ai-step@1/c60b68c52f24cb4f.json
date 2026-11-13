@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Parking, Austin\",\"Who\":\"Rita Gomez\",\"Date\":\"Aug 3, 2026\",\"Amount\":\"$18\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Travel\",\"reason\":\"\\\"Parking, Austin\\\" is a travel cost for a trip to Austin.\",\"confidence\":0.9,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 67,
+      "tokensOut": 57,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1432
+  }
+}

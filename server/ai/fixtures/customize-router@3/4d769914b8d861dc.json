@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: Apply\nBike: Applying the change to Sales leads. This takes a few seconds.\nAdmin: Why can't lead owners see companies?\nBike: Lead owners can't see companies because the Companies sheet has only a Name and a Website, with no Owner or other person question to show which companies belong to whom. Until someone says how it should be seen, Bike shows that sheet to no one in that role. Since you asked for no owner on companies, the simplest fix is to let lead owners see all companies. If you'd rather they see only some, the sheet would need a person question, such as an Owner, to decide which ones.\n\nLatest message:\nCan Bike send a Slack message when a lead is won?",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"explain\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 234,
+      "tokensOut": 11,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 1178
+  }
+}

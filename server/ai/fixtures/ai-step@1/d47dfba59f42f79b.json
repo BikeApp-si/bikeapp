@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Postage\",\"Who\":\"Lena Ortiz\",\"Date\":\"Aug 29, 2026\",\"Amount\":\"$22\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Office\",\"reason\":\"Postage is a mailing cost, which fits best under Office; no receipt is attached to check.\",\"confidence\":0.6,\"flags\":[\"Postage could also be filed as Other depending on how the company tracks mailing costs.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 64,
+      "tokensOut": 85,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1699
+  }
+}

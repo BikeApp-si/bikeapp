@@ -1,0 +1,16 @@
+{
+  "message": "Check how these apps fit together, with these company rules, which apply across the apps named:\n[{\"text\":\"Requests over $1,000 are sent to the team leads.\",\"appliesTo\":[\"Requests · Requests\"]}]\nName an app a company rule's policy fits but doesn't apply to.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"items\":[{\"text\":\"The company rule sends Requests over $1,000 to the team leads, but the Requests app has no team leads. Only Krishna can see and move requests, and the app only says submitted requests wait on 'the approver', so large requests have nobody to go to.\",\"capabilities\":[\"Requests\"]},{\"text\":\"The rule about Requests over $1,000 fits Allowances too, because each allowance entry has an Amount and can point to a request, but the rule does not apply to it. An allowance entry could be added for a large amount without the team leads ever seeing it.\",\"capabilities\":[\"Allowances\",\"Requests\"]}]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 96,
+      "tokensOut": 794,
+      "cacheRead": 0,
+      "cacheWrite": 1249
+    },
+    "ms": 7391
+  }
+}

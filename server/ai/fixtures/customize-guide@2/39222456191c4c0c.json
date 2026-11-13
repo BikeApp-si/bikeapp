@@ -1,0 +1,16 @@
+{
+  "message": "How it reads now:\nLeads sheet\nCompany (text, required), Contact (text), Email (email), Source (Referral, Inbound, Outbound or Event), Expected value a year (money), Owner (person, whoever adds it), Next follow-up (date), Notes (long text).\n\nCompanies sheet\nName (text, required), Website (url), Owner (person, whoever adds it).\n\nSteps\nNew → Contacted → Qualified → Proposal → Won or Lost\n\nWho can see and do what\nWade Wilson and Dev Kumar see every lead, add, edit and move them, and change how it works.\nLead owners see their own leads and companies and can add, edit and move them.\nEveryone else sees nothing.\n\nConnections\nPeople fills Owner.\nPeople fills Owner.\n\nLater\nA Contacts sheet for several people at one company\nA reminder to the owner when a follow-up date arrives\n\nComing soon\nConnections to other software\n\nThe chat so far:\nAdmin: How can I add a company sheet? Tell me the steps.\nBike: 1. Open Customize in Sales leads.\n\n2. Ask here: \"Add a Companies sheet with a Name, a Website and an Owner\". Bike shows the new sheet and what changes for today's rows.\n\n3. Check the plan, then click Apply. Nothing changes until you do.\n\n4. To link leads to companies, ask here: \"Pick the company on each lead from Companies instead of typing it\". Bike matches each typed company to a company row and lists any it can't match before Apply.\n\nSales managers will see the new sheet, since they see every row. Lead owners won't see it until the Owner question on Companies is set, so the suggestion below adds it.\nAdmin: Add Companies and link leads to it\nBike: (sent a preview)\nAdmin: Apply\nBike: Applying the change to Sales leads. This takes a few seconds.\n\nLatest message:\nWhy can't lead owners see companies?",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"answer\":\"Lead owners can see companies, but only the ones whose Owner names them. The Companies sheet has an Owner question, so a company shows up for a lead owner when they are its Owner. Companies owned by someone else, or with no Owner, stay hidden from them. Sales managers see every company. If you want lead owners to see all companies, that's a change to who sees the sheet.\",\"table\":null,\"section\":\"Who can see and do what\",\"suggestions\":[{\"label\":\"Let lead owners see every company\",\"changes\":[{\"kind\":\"set_sheet_access\",\"sheet\":\"Companies\",\"new_sheet\":null,\"column\":null,\"step\":null,\"after\":null,\"rename\":null,\"movers\":null,\"role\":\"Lead owners\",\"person\":null,\"rule\":null,\"view\":null,\"labels\":null,\"hint\":null,\"sort\":null,\"check\":null,\"form\":null,\"show_when\":null,\"access\":{\"sees\":\"all\",\"column\":null,\"via\":null},\"link\":null,\"formula\":null,\"explain\":\"Lead owners see every company, not only the ones they own.\",\"part\":null}]}],\"cant\":false}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 627,
+      "tokensOut": 1284,
+      "cacheRead": 14839,
+      "cacheWrite": 1748
+    },
+    "ms": 6952
+  }
+}

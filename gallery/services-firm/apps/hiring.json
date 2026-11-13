@@ -1,0 +1,652 @@
+{
+  "name": "Hiring",
+  "icon": "user-plus",
+  "description": "Openings, candidates and interviews",
+  "sheets": [
+    {
+      "id": "openings",
+      "name": "Openings",
+      "kind": "list",
+      "row": {
+        "one": "role",
+        "many": "roles"
+      },
+      "addAction": "Open a role",
+      "titleColumn": "role",
+      "columns": [
+        {
+          "id": "role",
+          "name": "Role",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "team",
+          "name": "Team",
+          "type": "choice",
+          "options": [
+            {
+              "id": "delivery",
+              "name": "Delivery"
+            },
+            {
+              "id": "design",
+              "name": "Design"
+            },
+            {
+              "id": "engineering",
+              "name": "Engineering"
+            },
+            {
+              "id": "strategy",
+              "name": "Strategy"
+            },
+            {
+              "id": "sales",
+              "name": "Sales"
+            },
+            {
+              "id": "operations",
+              "name": "Operations"
+            }
+          ]
+        },
+        {
+          "id": "hiring_manager",
+          "name": "Hiring manager",
+          "type": "person"
+        },
+        {
+          "id": "salary_band",
+          "name": "Salary band",
+          "type": "money_range"
+        },
+        {
+          "id": "opens_on",
+          "name": "Opens on",
+          "type": "date"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "draft",
+          "name": "Draft",
+          "start": true
+        },
+        {
+          "id": "open",
+          "name": "Open",
+          "tone": "green"
+        },
+        {
+          "id": "filled",
+          "name": "Filled",
+          "end": "final",
+          "tone": "done"
+        },
+        {
+          "id": "closed",
+          "name": "Closed",
+          "end": "exit",
+          "tone": "grey"
+        }
+      ]
+    },
+    {
+      "id": "candidates",
+      "name": "Candidates",
+      "kind": "list",
+      "row": {
+        "one": "candidate",
+        "many": "candidates"
+      },
+      "addAction": "New candidate",
+      "titleColumn": "name",
+      "form": {
+        "tabs": [
+          {
+            "name": "Candidate",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "name",
+                  "opening",
+                  "email",
+                  "source",
+                  "referred_by",
+                  "cv",
+                  "portfolio"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Offer",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "offer",
+                  "offer_approval",
+                  "start_date"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "columns": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "opening",
+          "name": "Opening",
+          "type": "link",
+          "link": {
+            "sheet": "openings"
+          }
+        },
+        {
+          "id": "email",
+          "name": "Email",
+          "type": "email"
+        },
+        {
+          "id": "source",
+          "name": "Source",
+          "type": "choice",
+          "options": [
+            {
+              "id": "referral",
+              "name": "Referral"
+            },
+            {
+              "id": "inbound",
+              "name": "Inbound"
+            },
+            {
+              "id": "agency",
+              "name": "Agency"
+            }
+          ]
+        },
+        {
+          "id": "referred_by",
+          "name": "Referred by",
+          "type": "person"
+        },
+        {
+          "id": "cv",
+          "name": "CV",
+          "type": "file"
+        },
+        {
+          "id": "portfolio",
+          "name": "Portfolio",
+          "type": "url"
+        },
+        {
+          "id": "offer",
+          "name": "Offer",
+          "type": "money"
+        },
+        {
+          "id": "offer_approval",
+          "name": "Offer approval",
+          "type": "choice",
+          "options": [
+            {
+              "id": "approved",
+              "name": "Approved"
+            },
+            {
+              "id": "declined",
+              "name": "Declined"
+            }
+          ]
+        },
+        {
+          "id": "start_date",
+          "name": "Start date",
+          "type": "date"
+        },
+        {
+          "id": "stage",
+          "name": "Stage",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "applied",
+          "name": "Applied",
+          "start": true
+        },
+        {
+          "id": "screen",
+          "name": "Screen"
+        },
+        {
+          "id": "interview",
+          "name": "Interview",
+          "tone": "violet"
+        },
+        {
+          "id": "offer",
+          "name": "Offer",
+          "tone": "yellow"
+        },
+        {
+          "id": "hired",
+          "name": "Hired",
+          "end": "final",
+          "tone": "done"
+        },
+        {
+          "id": "rejected",
+          "name": "Rejected",
+          "end": "exit",
+          "tone": "grey"
+        }
+      ]
+    },
+    {
+      "id": "interviews",
+      "name": "Interviews",
+      "kind": "list",
+      "row": {
+        "one": "interview",
+        "many": "interviews"
+      },
+      "addAction": "New interview",
+      "titleColumn": "candidate",
+      "columns": [
+        {
+          "id": "candidate",
+          "name": "Candidate",
+          "type": "link",
+          "link": {
+            "sheet": "candidates"
+          },
+          "required": true
+        },
+        {
+          "id": "interviewer",
+          "name": "Interviewer",
+          "type": "person"
+        },
+        {
+          "id": "when",
+          "name": "When",
+          "type": "datetime"
+        },
+        {
+          "id": "score",
+          "name": "Score",
+          "type": "number",
+          "min": 1,
+          "max": 4
+        },
+        {
+          "id": "notes",
+          "name": "Notes",
+          "type": "long_text"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "recruiting",
+      "name": "Recruiting",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:operations",
+          "@slot:partner"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "delete",
+        "move_steps",
+        "customize"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "hiring_managers",
+      "name": "Hiring managers",
+      "members": {
+        "kind": "column",
+        "sheet": "openings",
+        "column": "hiring_manager"
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "sheets": [
+        "openings",
+        "candidates"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "openings": {
+          "column": "hiring_manager"
+        },
+        "candidates": {
+          "via": "opening",
+          "column": "hiring_manager"
+        }
+      }
+    },
+    {
+      "id": "interviewers",
+      "name": "Interviewers",
+      "members": {
+        "kind": "column",
+        "sheet": "interviews",
+        "column": "interviewer"
+      },
+      "can": [
+        "see",
+        "edit"
+      ],
+      "sheets": [
+        "interviews"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "interviews": {
+          "column": "interviewer"
+        }
+      }
+    },
+    {
+      "id": "referrers",
+      "name": "Referrers",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "add"
+      ],
+      "sheets": [
+        "candidates"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "candidates": {
+          "column": "referred_by"
+        }
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "above_band",
+      "text": "An offer above the role's salary band waits on the partner to approve it.",
+      "reading": {
+        "when": "A candidate reaches Offer with an offer above the salary band",
+        "then": "It waits on the partner to approve or decline the offer"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "candidates",
+        "step": "offer"
+      },
+      "condition": {
+        "op": "gt",
+        "args": [
+          {
+            "col": "offer"
+          },
+          {
+            "col": "salary_band",
+            "via": "opening",
+            "part": "to"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "person": "@slot:partner",
+          "label": "Approve the offer",
+          "decision": {
+            "column": "offer_approval",
+            "approve": "approved",
+            "decline": "declined"
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "send_offer",
+      "text": "An offer within the band waits on the hiring manager to send it.",
+      "reading": {
+        "when": "A candidate reaches Offer with an offer within the salary band",
+        "then": "It waits on the opening's hiring manager to send the offer"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "candidates",
+        "step": "offer"
+      },
+      "condition": {
+        "op": "and",
+        "args": [
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "offer"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "or",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "salary_band",
+                    "via": "opening",
+                    "part": "to"
+                  }
+                ]
+              },
+              {
+                "op": "lte",
+                "args": [
+                  {
+                    "col": "offer"
+                  },
+                  {
+                    "col": "salary_band",
+                    "via": "opening",
+                    "part": "to"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "column": "hiring_manager",
+          "via": "opening",
+          "step": "offer",
+          "label": "Send the offer"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "send_approved",
+      "text": "Once the partner approves an offer, it waits on the hiring manager to send it.",
+      "reading": {
+        "when": "The partner approves an offer",
+        "then": "It waits on the opening's hiring manager to send the offer"
+      },
+      "trigger": {
+        "kind": "field_changed",
+        "sheet": "candidates",
+        "field": "offer_approval"
+      },
+      "condition": {
+        "op": "and",
+        "args": [
+          {
+            "op": "eq",
+            "args": [
+              {
+                "col": "offer_approval"
+              },
+              "approved"
+            ]
+          },
+          {
+            "op": "eq",
+            "args": [
+              {
+                "col": "stage"
+              },
+              "offer"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "column": "hiring_manager",
+          "via": "opening",
+          "step": "offer",
+          "label": "Send the offer"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "start_onboarding",
+      "text": "When a candidate is Hired, start their onboarding plan with name, start date and manager.",
+      "reading": {
+        "when": "A candidate is Hired",
+        "then": "Their plan starts in Onboarding with their name, start date and manager"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "candidates",
+        "step": "hired"
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "capability": "@app:onboarding",
+            "sheet": "plans"
+          },
+          "map": {
+            "name": {
+              "col": "name"
+            },
+            "start_date": {
+              "col": "start_date"
+            },
+            "manager": {
+              "col": "hiring_manager",
+              "via": "opening"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "fill_opening",
+      "text": "When a candidate is Hired, their opening moves to Filled.",
+      "reading": {
+        "when": "A candidate is Hired",
+        "then": "Their opening moves to Filled"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "candidates",
+        "step": "hired"
+      },
+      "actions": [
+        {
+          "kind": "update_row_in",
+          "target": {
+            "sheet": "openings"
+          },
+          "via": "opening",
+          "map": {
+            "status": "filled"
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "scorecard",
+      "text": "On the day of an interview, if it has no score yet, it waits on the interviewer for their scorecard.",
+      "reading": {
+        "when": "The day of an interview, while it has no score",
+        "then": "It waits on the interviewer for their scorecard"
+      },
+      "trigger": {
+        "kind": "date_reached",
+        "sheet": "interviews",
+        "date": "when",
+        "offsetDays": 0
+      },
+      "condition": {
+        "op": "empty",
+        "args": [
+          {
+            "col": "score"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "column": "interviewer",
+          "until": "score",
+          "label": "Your scorecard"
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "A case study or test task as a step"
+  ]
+}

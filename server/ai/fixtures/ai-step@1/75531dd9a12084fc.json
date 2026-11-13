@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Uber, Oct 3\",\"Who\":\"Dev Kumar\",\"Date\":\"Oct 3, 2026\",\"Amount\":\"$46\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Travel\",\"reason\":\"The expense is for an Uber ride on Oct 3, which is a travel cost.\",\"confidence\":0.93,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 69,
+      "tokensOut": 57,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1632
+  }
+}

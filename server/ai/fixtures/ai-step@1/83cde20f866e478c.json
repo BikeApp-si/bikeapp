@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Parking\",\"Who\":\"Maya Chen\",\"Date\":\"Oct 30, 2026\",\"Amount\":\"$40\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Travel\",\"reason\":\"The expense is for parking, which fits under Travel.\",\"confidence\":0.85,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 62,
+      "tokensOut": 47,
+      "cacheRead": 0,
+      "cacheWrite": 777
+    },
+    "ms": 2497
+  }
+}

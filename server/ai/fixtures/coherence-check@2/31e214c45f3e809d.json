@@ -1,0 +1,16 @@
+{
+  "message": "Check how these apps fit together.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"items\":[{\"text\":\"In Hiring, an offer above the salary band waits on Wade to approve, but Wade is the only one who can approve. Offers within the band go straight to the hiring manager, and no rule says who sets the Offer approval value for them. Offers that need approval depend on one person, and the rule does not say what happens when the offer is Declined.\",\"capabilities\":[\"Hiring\"]},{\"text\":\"Hiring starts an onboarding plan when someone is Hired, with name, start date and manager. But Onboarding only lets Priya, Wade, Aisha and the plan's manager see and edit plans. Onboarding also has no rule that creates tasks, so a new plan has no tasks, buddy or IT person until someone adds them by hand.\",\"capabilities\":[\"Hiring\",\"Onboarding\"]},{\"text\":\"In Spend, Expenses wait on Lena to approve them, but no rule says who approves Purchases. Anyone who can see their own purchases can edit and move them, so a person could move their own purchase on to Ordered or Received. Only Approved and Rejected are blocked for the requester.\",\"capabilities\":[\"Spend\"]}]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 14,
+      "tokensOut": 376,
+      "cacheRead": 0,
+      "cacheWrite": 3355
+    },
+    "ms": 4229
+  }
+}

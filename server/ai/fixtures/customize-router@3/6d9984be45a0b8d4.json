@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: I need a list of companies, and each lead should be linked to its company\nBike: (sent a preview)\nAdmin: Add companies. Only sales managers should see them.\nBike: (sent a preview)\n\nLatest message:\nEach lead owner should see the companies they added, and nobody else's",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 106,
+      "tokensOut": 10,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 776
+  }
+}

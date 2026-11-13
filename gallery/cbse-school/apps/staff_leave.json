@@ -1,0 +1,445 @@
+{
+  "name": "Staff leave",
+  "icon": "calendar-off",
+  "description": "Leave for teachers and staff, and who takes their periods",
+  "sheets": [
+    {
+      "id": "leave",
+      "name": "Leave",
+      "kind": "list",
+      "row": {
+        "one": "leave request",
+        "many": "leave requests"
+      },
+      "addAction": "Ask for leave",
+      "titleColumn": "who",
+      "sort": {
+        "column": "status",
+        "dir": "asc",
+        "then": {
+          "column": "from",
+          "dir": "desc"
+        }
+      },
+      "columns": [
+        {
+          "id": "who",
+          "name": "Who",
+          "type": "person",
+          "required": true,
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "type",
+          "name": "Type",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "casual",
+              "name": "Casual leave"
+            },
+            {
+              "id": "earned",
+              "name": "Earned leave"
+            },
+            {
+              "id": "medical",
+              "name": "Medical leave"
+            },
+            {
+              "id": "duty",
+              "name": "On duty"
+            }
+          ]
+        },
+        {
+          "id": "from",
+          "name": "From",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "to",
+          "name": "To",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "days",
+          "name": "Days",
+          "type": "computed",
+          "result": "number",
+          "expr": {
+            "op": "add",
+            "args": [
+              {
+                "op": "sub",
+                "args": [
+                  {
+                    "col": "to"
+                  },
+                  {
+                    "col": "from"
+                  }
+                ]
+              },
+              1
+            ]
+          }
+        },
+        {
+          "id": "reason",
+          "name": "Reason",
+          "type": "long_text"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "requested",
+          "name": "Requested",
+          "start": true,
+          "tone": "yellow"
+        },
+        {
+          "id": "approved",
+          "name": "Approved",
+          "end": "final",
+          "tone": "done",
+          "moveIn": "not_submitter",
+          "button": "Approve"
+        },
+        {
+          "id": "declined",
+          "name": "Declined",
+          "end": "exit",
+          "tone": "grey",
+          "moveIn": "not_submitter",
+          "button": "Decline"
+        }
+      ],
+      "checks": [
+        {
+          "id": "dates",
+          "name": "To is on or after From",
+          "condition": {
+            "op": "gte",
+            "args": [
+              {
+                "col": "to"
+              },
+              {
+                "col": "from"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "substitutions",
+      "name": "Substitutions",
+      "kind": "list",
+      "row": {
+        "one": "substitution",
+        "many": "substitutions"
+      },
+      "addAction": "New substitution",
+      "titleColumn": "section",
+      "sort": {
+        "column": "date",
+        "dir": "desc"
+      },
+      "columns": [
+        {
+          "id": "section",
+          "name": "Section",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:students",
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "period",
+          "name": "Period",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "p1",
+              "name": "1"
+            },
+            {
+              "id": "p2",
+              "name": "2"
+            },
+            {
+              "id": "p3",
+              "name": "3"
+            },
+            {
+              "id": "p4",
+              "name": "4"
+            },
+            {
+              "id": "p5",
+              "name": "5"
+            },
+            {
+              "id": "p6",
+              "name": "6"
+            },
+            {
+              "id": "p7",
+              "name": "7"
+            },
+            {
+              "id": "p8",
+              "name": "8"
+            }
+          ]
+        },
+        {
+          "id": "absent",
+          "name": "In place of",
+          "type": "person",
+          "required": true
+        },
+        {
+          "id": "substitute",
+          "name": "Substitute",
+          "type": "person",
+          "required": true
+        },
+        {
+          "id": "leave",
+          "name": "Leave",
+          "type": "link",
+          "link": {
+            "sheet": "leave",
+            "pick": true
+          }
+        },
+        {
+          "id": "note",
+          "name": "Note",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "principal",
+      "name": "Principal",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:principal"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "office",
+      "name": "Office",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:office"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit"
+      ],
+      "sheets": [
+        "substitutions"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "office_leave",
+      "name": "Office (leave)",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:office"
+        ]
+      },
+      "can": [
+        "see"
+      ],
+      "sheets": [
+        "leave"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "everyone",
+      "name": "Everyone",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "add"
+      ],
+      "sheets": [
+        "leave"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "leave": {
+          "column": "who"
+        }
+      },
+      "view": {
+        "sheet": "leave",
+        "line": "Your leave",
+        "columns": [
+          {
+            "column": "from",
+            "name": "Dates",
+            "to": "to"
+          },
+          {
+            "column": "days"
+          },
+          {
+            "column": "type"
+          },
+          {
+            "column": "status"
+          }
+        ],
+        "form": [
+          "type",
+          [
+            "from",
+            "to"
+          ],
+          "reason"
+        ]
+      }
+    },
+    {
+      "id": "substitutes",
+      "name": "Substitutes",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see"
+      ],
+      "sheets": [
+        "substitutions"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "substitutions": {
+          "column": "substitute"
+        }
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "to_principal",
+      "text": "Leave waits on the principal.",
+      "reading": {
+        "when": "Leave is asked for",
+        "then": "It waits on the principal to approve or decline it"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "leave",
+        "step": "requested"
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "person": "@slot:principal",
+          "step": "requested",
+          "label": "Approve or decline"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "told",
+      "text": "When leave is approved, tell the person and the office.",
+      "reading": {
+        "when": "Leave is approved",
+        "then": "The person and the office are told"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "leave",
+        "step": "approved"
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "columns": [
+            "who"
+          ],
+          "people": [
+            "@slot:office"
+          ],
+          "message": "Leave was approved."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "substitute",
+      "text": "Tell a substitute about the period they take.",
+      "reading": {
+        "when": "A substitution is added",
+        "then": "The substitute is told"
+      },
+      "trigger": {
+        "kind": "row_created",
+        "sheet": "substitutions"
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "columns": [
+            "substitute"
+          ],
+          "message": "You're taking a period as a substitute."
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "Leave balances per year",
+    "Leave declined told to the person"
+  ]
+}

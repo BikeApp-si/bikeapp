@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Projects\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Projects\",\"one\":\"project\",\"many\":\"projects\",\"sees\":\"all\",\"add\":\"New project\",\"edit\":true,\"delete\":true,\"steps\":[\"Proposed\",\"Active\",\"On hold\",\"Done\",\"Cancelled\"],\"movesFrom\":[\"Proposed\",\"Active\",\"On hold\"],\"movesTo\":[\"Proposed\",\"Active\",\"On hold\",\"Done\",\"Cancelled\"],\"stepRules\":[],\"columns\":[\"Name\",\"Client\",\"Contract\",\"Project manager\",\"Kind\",\"Start\",\"End\",\"Budget\",\"Spent\",\"Remaining\"]},{\"name\":\"Budget entries\",\"one\":\"entry\",\"many\":\"entries\",\"sees\":\"all\",\"add\":\"New entry\",\"edit\":false,\"delete\":false,\"reverse\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Entry\",\"Project\",\"Amount\",\"On\",\"Reverses\",\"Spent after\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep track of Kestrel Partners projects, their budgets, and what has been spent on them.\",\"steps\":[{\"title\":\"Add a project\",\"text\":\"Open the Projects sheet and use New project to start a new job. Fill in the name, client, contract, project manager, kind, dates and budget.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Projects\",\"step\":null}},{\"title\":\"Update a project\",\"text\":\"Find a project and change its details when they move on. You can also move it to the next stage, such as Active, On hold, Done or Cancelled.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Projects\",\"step\":\"Active\"}},{\"title\":\"Record a budget entry\",\"text\":\"Open Budget entries and use New entry to log money spent on a project. Pick the project and the amount, and the spent and remaining totals will update.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Budget entries\",\"step\":null}},{\"title\":\"Check what is left\",\"text\":\"Look over the Projects sheet to see each project's budget, what has been spent, and what remains.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Projects\",\"step\":null}}],\"waits\":[],\"cannot\":[\"You can't change or delete a budget entry once it is added; you can only reverse it with a new entry.\",\"You can see every project and every budget entry, not just your own.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 330,
+      "tokensOut": 429,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2752
+  }
+}

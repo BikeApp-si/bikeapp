@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Train to Dallas\",\"Who\":\"Leo Grant\",\"Date\":\"Sep 11, 2026\",\"Amount\":\"$58\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Travel\",\"reason\":\"The expense is for a train to Dallas, which is a travel cost.\",\"confidence\":0.95,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 66,
+      "tokensOut": 52,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1981
+  }
+}

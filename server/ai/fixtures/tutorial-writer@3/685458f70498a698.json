@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Customers\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Customers\",\"one\":\"customer\",\"many\":\"customers\",\"sees\":\"all\",\"add\":\"New customer\",\"edit\":true,\"delete\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Email\",\"Phone\",\"Account owner\",\"Live value a year\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where Fernwood Labs keeps its customers, who owns each account, and what each one is worth a year.\",\"steps\":[{\"title\":\"Add a customer\",\"text\":\"Select New customer and fill in the name, email, phone and account owner. The customer then appears in the list.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Customers\",\"step\":null}},{\"title\":\"Update a customer\",\"text\":\"Open a customer in the list and change any of its details, such as the phone number or account owner.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Customers\",\"step\":null}}],\"waits\":[],\"cannot\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 147,
+      "tokensOut": 478,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 3493
+  }
+}

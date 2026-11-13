@@ -1,0 +1,14 @@
+{
+  "name": "Sample office",
+  "version": 1,
+  "description": "A small set for the kernel's tests: categories, requests that wait on an approver, and allowances.",
+  "listed": true,
+  "tagline": "Requests, approvals and allowances for a small office",
+  "expects": "Any currency. The company rule's amount is in your company's currency.",
+  "leavesOut": ["Paying suppliers: Bike doesn't connect to banks yet."],
+  "slots": [
+    { "key": "approver", "name": "Approver", "titles": ["Office manager", "Operations"], "does": "Approves or declines requests." },
+    { "key": "team_leads", "name": "Team leads", "titles": ["Team lead", "Head of design", "Engineering lead", "Growth lead"], "does": "Keep the categories and allowances, and hear about requests over $1,000." }
+  ],
+  "apps": ["categories", "requests", "allowances"]
+}

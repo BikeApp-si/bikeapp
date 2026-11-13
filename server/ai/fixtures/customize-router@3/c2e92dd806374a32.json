@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: Add an Offers sheet\nBike: Hiring already has 6 sheets, which is the most an app can have, so I can't add a seventh. Here are two ways to get offers in. Which do you want?\n\nLatest message:\nAdd an Offers sheet",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"explain\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 96,
+      "tokensOut": 11,
+      "cacheRead": 620,
+      "cacheWrite": 7
+    },
+    "ms": 879
+  }
+}

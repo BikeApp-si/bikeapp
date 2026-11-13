@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Amazon order 114-2290\",\"Who\":\"Jon Bell\",\"Date\":\"Sep 19, 2026\",\"Amount\":\"$89\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Office\",\"reason\":\"Row says “Amazon order 114-2290” with no detail; Amazon orders are often office supplies but could be anything.\",\"confidence\":0.4,\"flags\":[\"Row only says Amazon order; no receipt details, so the category is a guess and could be Software, Cloud, or Other.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 69,
+      "tokensOut": 106,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1909
+  }
+}

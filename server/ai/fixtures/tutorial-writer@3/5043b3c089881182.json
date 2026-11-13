@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Sales leads\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Leads\",\"one\":\"lead\",\"many\":\"leads\",\"sees\":\"all\",\"add\":\"New lead\",\"edit\":true,\"delete\":true,\"steps\":[\"New\",\"Contacted\",\"Qualified\",\"Proposal\",\"Won\",\"Lost\"],\"movesFrom\":[\"New\",\"Contacted\",\"Qualified\",\"Proposal\"],\"movesTo\":[\"New\",\"Contacted\",\"Qualified\",\"Proposal\",\"Won\",\"Lost\"],\"stepRules\":[],\"columns\":[\"Company\",\"Contact\",\"Email\",\"Source\",\"Expected value a year\",\"Owner\",\"Next follow-up\",\"Notes\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep track of sales leads, from first contact through to won or lost.\",\"steps\":[{\"title\":\"New lead\",\"text\":\"Add a lead as soon as you hear about a possible customer. Fill in the company, contact, source and expected value a year so the lead is ready to follow up.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Leads\",\"step\":null}},{\"title\":\"Edit a lead\",\"text\":\"Update a lead's details, owner, next follow-up or notes whenever something changes. Keep the notes current so the next person knows where things stand.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Leads\",\"step\":null}},{\"title\":\"Move a lead along\",\"text\":\"Move a lead to the step it has reached, such as Contacted, Qualified, Proposal, Won or Lost. This keeps the pipeline accurate.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Leads\",\"step\":\"Qualified\"}},{\"title\":\"Look up a lead\",\"text\":\"Find a lead by company or contact when you need its details before a call or a meeting.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Leads\",\"step\":null}}],\"waits\":[],\"cannot\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 228,
+      "tokensOut": 824,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 4208
+  }
+}

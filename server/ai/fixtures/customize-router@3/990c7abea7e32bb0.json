@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nAdd cost centres. They sit under each other, each expense goes to one, and each shows what was spent, including the ones under it.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 48,
+      "tokensOut": 10,
+      "cacheRead": 620,
+      "cacheWrite": 7
+    },
+    "ms": 889
+  }
+}

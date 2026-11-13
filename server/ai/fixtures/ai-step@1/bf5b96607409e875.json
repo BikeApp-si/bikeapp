@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Team lunch\",\"Who\":\"Priya Nair\",\"Date\":\"Sep 25, 2026\",\"Amount\":\"$212\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Meals\",\"reason\":\"Expense is “Team lunch” for $212, so it fits Meals.\",\"confidence\":0.95,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 64,
+      "tokensOut": 54,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1723
+  }
+}

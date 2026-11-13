@@ -1,0 +1,16 @@
+{
+  "message": "Check how these apps fit together, with these company rules, which apply across the apps named:\n[{\"text\":\"Expenses and contracts over $10,000 need Lena's approval.\",\"appliesTo\":[\"Spend · Expenses\",\"Customer contracts · Contracts\"]}]\nName an app a company rule's policy fits but doesn't apply to.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"items\":[{\"text\":\"Customer contracts has no step where Lena approves a contract over $10,000, and Lena can't even see the contracts because only Wade, Krishna and each contract's owner can. The company rule says contracts over $10,000 need her approval, so they can move forward without it.\",\"capabilities\":[\"Customer contracts\"]}]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 113,
+      "tokensOut": 930,
+      "cacheRead": 0,
+      "cacheWrite": 3355
+    },
+    "ms": 8500
+  }
+}

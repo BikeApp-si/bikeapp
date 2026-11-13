@@ -1,0 +1,17 @@
+# Never in the image: secrets, local state, builds, and what only development uses.
+.env
+.env.*
+.git
+node_modules
+.next
+.next-e2e
+tmp
+coverage
+playwright-report
+test-results
+docs
+.claude
+CLAUDE.md
+CLAUDE.local.md
+*.tsbuildinfo
+.DS_Store

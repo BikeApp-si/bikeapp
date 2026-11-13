@@ -1,0 +1,16 @@
+{
+  "message": "Earlier on this step:\n(none)\n\nThe admin writes:\nFernwood Labs, 210 Congress Ave, Austin TX. fernwood.dev. We build developer tools: Fernwood CI for build pipelines and Fernwood Trace for debugging in production. Sold as monthly subscriptions to engineering teams.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"name\":\"Fernwood Labs\",\"address\":{\"street\":\"210 Congress Ave\",\"city\":\"Austin\",\"region\":\"TX\",\"country\":\"US\"},\"what_it_does\":\"Builds developer tools for engineering teams\",\"business_model\":\"Monthly subscription, B2B\",\"products\":[\"Fernwood CI\",\"Fernwood Trace\"],\"website\":\"fernwood.dev\",\"missing\":[],\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 112,
+      "tokensOut": 135,
+      "cacheRead": 0,
+      "cacheWrite": 1181
+    },
+    "ms": 1533
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Clients and contracts\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Clients\",\"one\":\"client\",\"many\":\"clients\",\"sees\":\"all\",\"add\":\"New client\",\"edit\":true,\"delete\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Status\",\"Account owner\",\"Industry\",\"Website\",\"Billing email\",\"Address\",\"Notes\"]},{\"name\":\"Contracts\",\"one\":\"contract\",\"many\":\"contracts\",\"sees\":\"all\",\"add\":\"New contract\",\"edit\":true,\"delete\":true,\"steps\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\",\"Renewed\",\"Ended\"],\"movesFrom\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\"],\"movesTo\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\",\"Renewed\",\"Ended\"],\"stepRules\":[],\"columns\":[\"Client\",\"What it covers\",\"Kind\",\"Value a year\",\"Start\",\"Renews on\",\"Notice\",\"Signed contract\"]},{\"name\":\"Contacts\",\"one\":\"contact\",\"many\":\"contacts\",\"sees\":\"all\",\"add\":\"New contact\",\"edit\":true,\"delete\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Client\",\"Name\",\"Role\",\"Email\",\"Phone\"]}],\"rules\":[\"60 days before a contract's notice date, move it to Renewal due and ask the client's account owner to decide.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep Kestrel Partners' clients, their contracts and the people you deal with at each client.\",\"steps\":[{\"title\":\"Add a new client\",\"text\":\"Start on Clients and add each new client with its name, status, account owner and billing details. You can edit these later.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Clients\",\"step\":null}},{\"title\":\"Record a contract for a client\",\"text\":\"Add the contract on Contracts, picking the client, what it covers, its value a year, start date, renewal date and notice date. Attach the signed copy if you have it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Contracts\",\"step\":null}},{\"title\":\"Move a contract on as it progresses\",\"text\":\"When a contract changes stage, move it to the next step, such as Signed, Active or Renewed. Use the step names the sheet shows.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Contracts\",\"step\":\"Signed\"}},{\"title\":\"Add the people you deal with\",\"text\":\"Add each contact on Contacts with their client, name, role, email and phone, so the right person is easy to find.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Contacts\",\"step\":null}},{\"title\":\"Look up a client's contracts\",\"text\":\"Open Contracts to see what each client has, when it renews and when notice is due. Check the notice date before you contact a client about a renewal.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Contracts\",\"step\":null}}],\"waits\":[\"Sixty days before a contract's notice date, it moves to Renewal due and the client's account owner decides what happens next.\"],\"cannot\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 481,
+      "tokensOut": 517,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2983
+  }
+}

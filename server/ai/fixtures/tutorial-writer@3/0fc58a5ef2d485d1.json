@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Admissions\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Enquiries\",\"one\":\"enquiry\",\"many\":\"enquiries\",\"sees\":\"all\",\"add\":\"New enquiry\",\"edit\":true,\"delete\":false,\"steps\":[\"New\",\"Contacted\",\"Applied\",\"Not interested\"],\"movesFrom\":[\"New\",\"Contacted\"],\"movesTo\":[\"New\",\"Contacted\",\"Applied\",\"Not interested\"],\"stepRules\":[],\"columns\":[\"Child's name\",\"Parent's name\",\"Phone\",\"Email\",\"Class wanted\",\"Heard from\",\"Enquired on\",\"Notes\"]},{\"name\":\"Applications\",\"one\":\"application\",\"many\":\"applications\",\"sees\":\"all\",\"add\":\"New application\",\"edit\":true,\"delete\":false,\"steps\":[\"Applied\",\"Interaction\",\"Offered\",\"Admitted\",\"Declined\",\"Withdrawn\"],\"movesFrom\":[\"Applied\",\"Interaction\",\"Offered\"],\"movesTo\":[\"Applied\",\"Interaction\",\"Offered\",\"Admitted\",\"Declined\",\"Withdrawn\"],\"stepRules\":[],\"columns\":[\"Child's name\",\"Class applied for\",\"Date of birth\",\"Gender\",\"Applied on\",\"Enquiry\",\"Father's name\",\"Mother's name\",\"Guardian's name\",\"Phone\",\"Email\",\"Address\",\"Last school\",\"Birth certificate\",\"Transfer certificate from the last school\",\"Last report card\",\"Aadhaar number\",\"Interaction on\",\"Interaction notes\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep track of families who enquire about admission and the applications that follow.\",\"steps\":[{\"title\":\"Add an enquiry\",\"text\":\"When a family gets in touch about joining the school, add a new enquiry with their details. You can see all enquiries, and you can change them.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Enquiries\",\"step\":null}},{\"title\":\"Follow up on enquiries\",\"text\":\"Open an enquiry to update its notes and phone number. Move it to Contacted once you have spoken to the family, or to Not interested if they decline.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Enquiries\",\"step\":\"Contacted\"}},{\"title\":\"Start an application\",\"text\":\"When a family is ready to apply, add a new application with the child's details and documents. Each application starts at Applied.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Applications\",\"step\":null}},{\"title\":\"Update applications as they progress\",\"text\":\"Move an application along as its status changes, such as to Interaction when you meet the family, or to Offered, Admitted, Declined or Withdrawn. Record the date and notes of each interaction.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Applications\",\"step\":\"Interaction\"}}],\"waits\":[\"The school decides on offers and admissions, and you can see the result on the application.\",\"An enquiry can be moved back to New by anyone who handles enquiries.\"],\"cannot\":[\"You can't delete enquiries or applications.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 474,
+      "tokensOut": 469,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2844
+  }
+}

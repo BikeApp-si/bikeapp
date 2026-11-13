@@ -1,0 +1,467 @@
+{
+  "name": "Clients and contracts",
+  "icon": "handshake",
+  "description": "Clients, their contracts and contacts",
+  "sheets": [
+    {
+      "id": "clients",
+      "name": "Clients",
+      "kind": "list",
+      "row": {
+        "one": "client",
+        "many": "clients"
+      },
+      "addAction": "New client",
+      "titleColumn": "name",
+      "columns": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "choice",
+          "options": [
+            {
+              "id": "prospect",
+              "name": "Prospect"
+            },
+            {
+              "id": "active",
+              "name": "Active"
+            },
+            {
+              "id": "former",
+              "name": "Former"
+            }
+          ]
+        },
+        {
+          "id": "owner",
+          "name": "Account owner",
+          "type": "person",
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "industry",
+          "name": "Industry",
+          "type": "text"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "type": "url"
+        },
+        {
+          "id": "billing_email",
+          "name": "Billing email",
+          "type": "email"
+        },
+        {
+          "id": "address",
+          "name": "Address",
+          "type": "long_text"
+        },
+        {
+          "id": "notes",
+          "name": "Notes",
+          "type": "long_text"
+        }
+      ]
+    },
+    {
+      "id": "contracts",
+      "name": "Contracts",
+      "kind": "list",
+      "row": {
+        "one": "contract",
+        "many": "contracts"
+      },
+      "addAction": "New contract",
+      "titleColumn": "title",
+      "sort": {
+        "column": "renews_on",
+        "dir": "asc"
+      },
+      "form": {
+        "tabs": [
+          {
+            "name": "Basics",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "client",
+                  "title",
+                  "kind",
+                  "value"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Dates",
+            "sections": [
+              {
+                "name": "Term",
+                "columns": [
+                  "start",
+                  "renews_on"
+                ]
+              },
+              {
+                "name": "Notice",
+                "columns": [
+                  "notice"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Documents",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "signed_contract"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "columns": [
+        {
+          "id": "client",
+          "name": "Client",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "clients"
+          }
+        },
+        {
+          "id": "title",
+          "name": "What it covers",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "kind",
+          "name": "Kind",
+          "type": "choice",
+          "options": [
+            {
+              "id": "retainer",
+              "name": "Retainer"
+            },
+            {
+              "id": "fixed",
+              "name": "Fixed fee"
+            },
+            {
+              "id": "time",
+              "name": "Time and materials"
+            }
+          ]
+        },
+        {
+          "id": "value",
+          "name": "Value a year",
+          "type": "money"
+        },
+        {
+          "id": "start",
+          "name": "Start",
+          "type": "date"
+        },
+        {
+          "id": "renews_on",
+          "name": "Renews on",
+          "type": "date",
+          "default": {
+            "kind": "expr",
+            "expr": {
+              "op": "date_add",
+              "args": [
+                {
+                  "col": "start"
+                },
+                1,
+                "years"
+              ]
+            }
+          }
+        },
+        {
+          "id": "notice",
+          "name": "Notice",
+          "type": "days",
+          "default": {
+            "kind": "value",
+            "value": 30
+          }
+        },
+        {
+          "id": "notice_date",
+          "name": "Notice date",
+          "type": "computed",
+          "result": "date",
+          "hintFor": "notice",
+          "expr": {
+            "op": "date_add",
+            "args": [
+              {
+                "col": "renews_on"
+              },
+              {
+                "op": "mul",
+                "args": [
+                  {
+                    "col": "notice"
+                  },
+                  -1
+                ]
+              },
+              "days"
+            ]
+          }
+        },
+        {
+          "id": "signed_contract",
+          "name": "Signed contract",
+          "type": "file"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "draft",
+          "name": "Draft",
+          "start": true,
+          "tone": "grey"
+        },
+        {
+          "id": "signed",
+          "name": "Signed",
+          "tone": "blue"
+        },
+        {
+          "id": "active",
+          "name": "Active",
+          "tone": "green"
+        },
+        {
+          "id": "renewal_due",
+          "name": "Renewal due",
+          "tone": "orange"
+        },
+        {
+          "id": "renewed",
+          "name": "Renewed",
+          "end": "final",
+          "button": "Mark renewed",
+          "tone": "done"
+        },
+        {
+          "id": "ended",
+          "name": "Ended",
+          "end": "exit",
+          "button": "End contract",
+          "tone": "done"
+        }
+      ]
+    },
+    {
+      "id": "contacts",
+      "name": "Contacts",
+      "kind": "list",
+      "row": {
+        "one": "contact",
+        "many": "contacts"
+      },
+      "addAction": "New contact",
+      "titleColumn": "name",
+      "columns": [
+        {
+          "id": "client",
+          "name": "Client",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "clients"
+          }
+        },
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "role",
+          "name": "Role",
+          "type": "text"
+        },
+        {
+          "id": "email",
+          "name": "Email",
+          "type": "email"
+        },
+        {
+          "id": "phone",
+          "name": "Phone",
+          "type": "phone"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "operations",
+      "name": "Operations",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:operations",
+          "@slot:partner"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "delete",
+        "move_steps",
+        "customize"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "project_managers",
+      "name": "Project managers",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:project_managers"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "owners",
+      "name": "Account owners",
+      "members": {
+        "kind": "column",
+        "sheet": "clients",
+        "column": "owner"
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "clients": {
+          "column": "owner"
+        },
+        "contracts": {
+          "via": "client",
+          "column": "owner"
+        },
+        "contacts": {
+          "via": "client",
+          "column": "owner"
+        }
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "renewal_due",
+      "text": "60 days before a contract's notice date, move it to Renewal due and ask the client's account owner to decide.",
+      "reading": {
+        "when": "60 days before a contract's notice date",
+        "then": "It moves to Renewal due and waits on the client's account owner to decide on the renewal"
+      },
+      "trigger": {
+        "kind": "date_reached",
+        "sheet": "contracts",
+        "date": "notice_date",
+        "offsetDays": -60
+      },
+      "condition": {
+        "op": "eq",
+        "args": [
+          {
+            "col": "status"
+          },
+          "active"
+        ]
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "column": "owner",
+          "via": "client",
+          "step": "renewal_due",
+          "label": "Decide on the renewal"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "tell_partner",
+      "text": "30 days before the notice date, if it is still in Renewal due, tell the partner.",
+      "reading": {
+        "when": "30 days before the notice date, while it is in Renewal due",
+        "then": "The partner is told"
+      },
+      "trigger": {
+        "kind": "date_reached",
+        "sheet": "contracts",
+        "date": "notice_date",
+        "offsetDays": -30
+      },
+      "condition": {
+        "op": "eq",
+        "args": [
+          {
+            "col": "status"
+          },
+          "renewal_due"
+        ]
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "people": [
+            "@slot:partner"
+          ],
+          "message": "This contract is still waiting for a renewal decision."
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "Proposals and statements of work",
+    "A client's projects and hours on its record"
+  ]
+}

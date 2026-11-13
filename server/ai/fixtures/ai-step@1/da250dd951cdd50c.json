@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"HDMI adapters\",\"Who\":\"Jon Bell\",\"Date\":\"Aug 14, 2026\",\"Amount\":\"$54\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Office\",\"reason\":\"Expense is for HDMI adapters, which are office equipment rather than software or travel.\",\"confidence\":0.75,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 66,
+      "tokensOut": 57,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1106
+  }
+}

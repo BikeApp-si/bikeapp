@@ -1,0 +1,16 @@
+{
+  "message": "{\"today\":\"2026-10-27\",\"rows_read\":\"31 expenses\",\"table\":{\"columns\":[\"Category\",\"Total\",\"Expenses\"],\"rows\":[[null,3280,18],[\"Cloud\",2645,4],[\"Equipment\",670,1],[\"Travel\",425,1],[\"Software\",219,2],[\"Office\",137,2],[\"Training\",51,1],[\"Meals\",0.8,2]],\"totals\":{\"Total\":7427.8,\"Expenses\":31}},\"previous\":null}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"sentence\":\"**$7,428** spent on 31 expenses this month so far (Oct 1–27), with Cloud the largest named category at $2,645, while $3,280 sits in expenses with no category set.\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 156,
+      "tokensOut": 395,
+      "cacheRead": 0,
+      "cacheWrite": 693
+    },
+    "ms": 3124
+  }
+}

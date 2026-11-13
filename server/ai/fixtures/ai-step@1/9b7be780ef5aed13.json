@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Team lunch\",\"Who\":\"Maya Chen\",\"Date\":\"Oct 30, 2026\",\"Amount\":\"$40\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Meals\",\"reason\":\"The expense is named “Team lunch,” which is a meal cost.\",\"confidence\":0.95,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 64,
+      "tokensOut": 52,
+      "cacheRead": 0,
+      "cacheWrite": 777
+    },
+    "ms": 2583
+  }
+}

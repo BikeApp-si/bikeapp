@@ -1,0 +1,9 @@
+{
+  "identities": [
+    {
+      "name": "bike",
+      "credentials": [{ "accessKey": "bike", "secretKey": "bikebike" }],
+      "actions": ["Admin", "Read", "List", "Tagging", "Write"]
+    }
+  ]
+}

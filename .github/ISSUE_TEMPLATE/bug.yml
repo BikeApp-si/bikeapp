@@ -1,0 +1,28 @@
+name: Something doesn't work
+description: Bike did something wrong, or said something it shouldn't.
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what Bike did, and what you expected. A screenshot helps; leave out anything private.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to see it again
+      placeholder: "1. Open …\n2. Click …"
+  - type: input
+    id: version
+    attributes:
+      label: Bike's version
+      description: Settings › Instance shows it.
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Bike's log, if it helps
+      description: "docker compose logs web --tail 100 (check it holds nothing private)"
+      render: text

@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Sales leads\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Leads\",\"one\":\"lead\",\"many\":\"leads\",\"sees\":\"own\",\"add\":\"New lead\",\"edit\":true,\"delete\":false,\"steps\":[\"New\",\"Contacted\",\"Qualified\",\"Proposal\",\"Won\",\"Lost\"],\"movesFrom\":[\"New\",\"Contacted\",\"Qualified\",\"Proposal\"],\"movesTo\":[\"New\",\"Contacted\",\"Qualified\",\"Proposal\",\"Won\",\"Lost\"],\"stepRules\":[],\"columns\":[\"Company\",\"Contact\",\"Email\",\"Source\",\"Expected value a year\",\"Owner\",\"Next follow-up\",\"Notes\"]},{\"name\":\"Companies\",\"one\":\"company\",\"many\":\"companies\",\"sees\":\"own\",\"add\":\"New company\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Website\",\"Industry\",\"Owner\",\"Notes\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you track the sales leads and companies you are working on, from first contact to won or lost.\",\"steps\":[{\"title\":\"Add a lead\",\"text\":\"When you meet a new prospect, add it as a lead. Fill in the company, contact, email, where it came from and what it could be worth a year.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Leads\",\"step\":null}},{\"title\":\"Move a lead along\",\"text\":\"As you talk to a lead, move it on to Contacted, Qualified or Proposal. Use Won or Lost when the deal is decided.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Leads\",\"step\":\"Contacted\"}},{\"title\":\"Keep your leads up to date\",\"text\":\"Update the next follow-up date and notes so you know when to get back in touch. You see only your own leads.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Leads\",\"step\":null}},{\"title\":\"Add a company\",\"text\":\"Add a company you deal with, with its website, industry and notes. You see only the companies you own.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Companies\",\"step\":null}}],\"waits\":[],\"cannot\":[\"You can't delete leads or companies.\",\"You see only your own leads and companies.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 327,
+      "tokensOut": 391,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2482
+  }
+}

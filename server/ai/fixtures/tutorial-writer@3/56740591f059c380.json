@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Customer contracts\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Contracts\",\"one\":\"contract\",\"many\":\"contracts\",\"sees\":\"all\",\"add\":\"New contract\",\"edit\":true,\"delete\":true,\"steps\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\",\"Renewed\",\"Ended\"],\"movesFrom\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\"],\"movesTo\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\",\"Renewed\",\"Ended\"],\"stepRules\":[],\"columns\":[\"Customer\",\"Value a year\",\"Start\",\"Renews on\",\"Notice\",\"Notice date\",\"Owner\",\"Signed contract\"]}],\"rules\":[\"60 days before a contract's notice date, if it is Active, move it to Renewal due and email its owner to ask them to decide on the renewal.\",\"30 days before the notice date, if the contract is still in Renewal due, email Wade, Krishna and the owner.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where Fernwood Labs keeps every customer contract, from first draft through renewal or ending.\",\"steps\":[{\"title\":\"Add a new contract\",\"text\":\"Start from New contract to record a customer contract as a draft. Fill in the customer, value a year, start date, renewal date, notice and owner, and attach the signed contract when you have it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Contracts\",\"step\":null}},{\"title\":\"Update a contract\",\"text\":\"Open a contract to correct its details or add the signed copy. Changes show on the same row.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Contracts\",\"step\":null}},{\"title\":\"Move a contract on\",\"text\":\"Move a contract to the next step as it progresses, such as from Draft to Signed, or from Active to Renewed or Ended.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Contracts\",\"step\":\"Signed\"}},{\"title\":\"Check a contract's notice date\",\"text\":\"Look up a contract to see its notice date and renewal date before you contact the customer.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Contracts\",\"step\":null}}],\"waits\":[\"The owner of a contract is emailed when its notice date is 60 days away and it is Active, asking them to decide on the renewal.\",\"Wade, Krishna and the owner are emailed 30 days before the notice date if the contract is still in Renewal due.\"],\"cannot\":[\"You can't remove a contract, as nobody can delete from this sheet here.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 317,
+      "tokensOut": 482,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 3161
+  }
+}

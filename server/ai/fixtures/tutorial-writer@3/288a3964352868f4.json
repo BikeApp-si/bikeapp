@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Spend\",\"admin\":false,\"view\":\"Your own expenses\",\"sheets\":[{\"name\":\"Expenses\",\"one\":\"expense\",\"many\":\"expenses\",\"sees\":\"own\",\"add\":\"Add an expense\",\"edit\":true,\"delete\":false,\"steps\":[\"Needs a receipt\",\"Submitted\",\"Approved\",\"Paid\",\"Rejected\"],\"movesFrom\":[\"Needs a receipt\"],\"movesTo\":[\"Submitted\",\"Rejected\"],\"stepRules\":[\"Out of Needs a receipt: only by the person who submitted the expense\",\"Approved: not by the person who submitted the expense\",\"Rejected: not by the person who submitted the expense\"],\"columns\":[\"What for\",\"Who\",\"Date\",\"Amount\",\"Category\",\"Project\",\"Billable to the client\",\"Paid with\",\"Receipt\",\"Paid on\",\"Note\"]},{\"name\":\"Purchases\",\"one\":\"purchase\",\"many\":\"purchases\",\"sees\":\"own\",\"add\":\"Request a purchase\",\"edit\":true,\"delete\":false,\"steps\":[\"Submitted\",\"Approved\",\"Ordered\",\"Received\",\"Rejected\"],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[\"Approved: not by the person who submitted the purchase\",\"Rejected: not by the person who submitted the purchase\"],\"columns\":[\"What\",\"Requested by\",\"Date\",\"Supplier\",\"Amount\",\"Project\",\"Quote\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you claim back what you paid for work, and ask for purchases you need before buying them.\",\"steps\":[{\"title\":\"Add an expense\",\"text\":\"Start from your own expenses and add the money you spent for work. If a receipt is still missing, the expense waits at Needs a receipt until you attach it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Expenses\",\"step\":null}},{\"title\":\"Send an expense for approval\",\"text\":\"Once the receipt is in, move the expense on to Submitted so it can be checked. Only you can move it out of Needs a receipt.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Expenses\",\"step\":\"Submitted\"}},{\"title\":\"Edit an expense\",\"text\":\"You can correct the details of your own expenses, such as the amount, date or category.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Expenses\",\"step\":null}},{\"title\":\"Request a purchase\",\"text\":\"Before you buy something, add a purchase request with what it is, the supplier, the amount and the project it belongs to.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Purchases\",\"step\":null}},{\"title\":\"Check where a purchase stands\",\"text\":\"Look at your purchases to see whether it is approved, ordered, received or rejected.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Purchases\",\"step\":null}}],\"waits\":[\"Someone else approves or rejects your expenses before they are paid.\",\"Someone else approves or rejects your purchase requests before they are ordered.\",\"Your expense is paid once it has been approved.\"],\"cannot\":[\"You can't approve your own expenses or purchases.\",\"You see only your own expenses and purchases.\",\"You can't delete an expense or a purchase.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 451,
+      "tokensOut": 547,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 3323
+  }
+}

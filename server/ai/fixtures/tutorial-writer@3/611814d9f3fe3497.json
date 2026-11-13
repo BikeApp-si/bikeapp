@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Time off\",\"admin\":false,\"view\":\"Your team’s requests\",\"sheets\":[{\"name\":\"Requests\",\"one\":\"request\",\"many\":\"requests\",\"sees\":\"team\",\"add\":\"Request time off\",\"edit\":false,\"delete\":false,\"steps\":[\"Submitted\",\"Approved\",\"Declined\",\"Taken\"],\"movesFrom\":[\"Submitted\"],\"movesTo\":[\"Approved\",\"Declined\"],\"stepRules\":[\"Approved: not by the person who submitted the request\",\"Declined: not by the person who submitted the request\"],\"columns\":[\"Who\",\"Type\",\"From\",\"To\",\"Days\",\"Note\",\"Balance after\"]},{\"name\":\"Balances\",\"one\":\"balance\",\"many\":\"balances\",\"sees\":\"own\",\"add\":\"Add balance\",\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Who\",\"Year\",\"Days a year\",\"Used\",\"Left\"]},{\"name\":\"Holidays\",\"one\":\"holiday\",\"many\":\"holidays\",\"sees\":\"all\",\"add\":null,\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Date\",\"Holiday\"]},{\"name\":\"Leave entries\",\"one\":\"entry\",\"many\":\"entries\",\"sees\":\"own\",\"add\":null,\"edit\":false,\"delete\":false,\"reverse\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Who\",\"Days\",\"Note\",\"Balance after\",\"Reverses\"]}],\"rules\":[\"Requests go to the person’s manager.\",\"When a request is approved, tell the person and Lena.\",\"When a request is declined, tell the person and Lena.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you request time off and approve or decline your team's time off requests.\",\"steps\":[{\"title\":\"Request time off\",\"text\":\"Start from your team's requests. Add a request for your own time off with the type, dates and a note. It goes to your manager.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Requests\",\"step\":null}},{\"title\":\"Approve or decline team requests\",\"text\":\"Open the team's requests and approve the ones that are ready. You can decline a request instead. You can't approve or decline your own.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Requests\",\"step\":\"Approved\"}},{\"title\":\"Check your balance\",\"text\":\"Look at your balances to see how many days you have left this year.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Balances\",\"step\":null}},{\"title\":\"Check the holidays\",\"text\":\"Look up the company holidays so you can plan your time off around them.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Holidays\",\"step\":null}}],\"waits\":[\"Your request waits for your manager to approve or decline it.\",\"When a request is approved, the person and Lena are told.\",\"When a request is declined, the person and Lena are told.\"],\"cannot\":[\"You can't approve or decline your own request.\",\"You can't edit or delete requests, balances or leave entries.\",\"You can see only your team's requests, your own balances and your own leave entries.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 561,
+      "tokensOut": 1143,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 5971
+  }
+}

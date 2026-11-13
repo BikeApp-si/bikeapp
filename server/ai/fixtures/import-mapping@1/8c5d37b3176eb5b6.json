@@ -1,0 +1,16 @@
+{
+  "message": "File \"team-other-headers.csv\", header and up to 20 sample rows:\n\"Name\",\"Email\",\"Role\",\"Reports to\",\"Joined\"\n\"Wade Wilson\",\"wade@fernwood.dev\",\"Founder\",\"\",\"2024-01-15\"\n\"Priya Nair\",\"priya@fernwood.dev\",\"Engineering lead\",\"wade@fernwood.dev\",\"2024-03-01\"\n\"Maya Chen\",\"maya@fernwood.dev\",\"Backend engineer\",\"priya@fernwood.dev\",\"2024-06-10\"\n\"Dev Kumar\",\"dev@fernwood.dev\",\"Growth lead\",\"wade@fernwood.dev\",\"2024-04-08\"\n\"Lena Ortiz\",\"lena@fernwood.dev\",\"Accountant, part time\",\"wade@fernwood.dev\",\"2024-07-01\"",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"mapping\":[{\"from\":\"Name\",\"to\":\"Full name\",\"format\":null,\"values\":[]},{\"from\":\"Email\",\"to\":\"Work email\",\"format\":null,\"values\":[]},{\"from\":\"Role\",\"to\":\"Job title\",\"format\":null,\"values\":[]},{\"from\":\"Reports to\",\"to\":\"Manager email\",\"format\":null,\"values\":[]},{\"from\":\"Joined\",\"to\":\"Start date\",\"format\":\"YYYY-MM-DD\",\"values\":[]}],\"unmapped\":[],\"problems\":[\"The Team column has no matching column in the file, so it is left empty and must be filled in another way.\",\"Joined dates are in ISO year-month-day form (e.g. 2024-01-15), so the order is unambiguous; the sample confirms it because 15 can only be a day.\",\"Reports to is blank for Wade Wilson, who appears to be the founder with no manager; leave Manager email empty for that row.\",\"Role values are free text (e.g. 'Accountant, part time'), not a fixed set of choices, so no value mapping was made.\",\"Only a 5-row sample was provided, so the full file should be checked for other date formats or blank emails.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 264,
+      "tokensOut": 701,
+      "cacheRead": 0,
+      "cacheWrite": 895
+    },
+    "ms": 4548
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "How it reads now:\nContracts sheet\nCustomer (text, required), Value a year (money, required), Start (date), Renews on (date, Start + 1 year), Notice (days, 30), Owner (person, whoever adds it), Signed contract (file).\nThe form: Basics (Customer, Value a year and Owner), Dates (Start, Renews on and Notice), Documents (Signed contract). Asked when creating: Customer and Value a year.\n\nRenewals sheet\nContract (one row from Contracts, required), Due (date), New value a year (money), Decision (Renew or End), Notes (long text).\n\nContacts sheet\nContract (one row from Contracts, required), Name (text, required), Role (text), Email (email), Phone (phone).\n\nSteps\nDraft → Signed → Active → Renewal due → Renewed or Ended\n\nWhat happens by itself\n60 days before a contract’s notice date, move it to Renewal due and remind its owner.\n30 days before the notice date, if it is still in Renewal due, tell Wade and the owner.\nWhen a signed PDF is added, an AI step reads it and fills the row for the owner to confirm; then it moves to Signed.\n\nWho can see and do what\nWade Wilson and Krishna see every contract, add, edit and move them, and change how it works.\nContract owners see their own contracts and can edit and move them.\nEveryone else sees nothing.\n\nConnections\nPeople fills Owner.\n\nComing soon\nConnections to other software\n\nThis chat so far:\nWade Wilson: Customer should be picked from Customers, not typed.\nBike: (sent a preview)\n\nLatest message from Wade Wilson:\nCustomer should be picked from Customers, not typed.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"change\",\"reply\":\"Customer on Contracts will be picked from the Customers list. Bike matches each typed customer to a row in Customers by name. It shows you any it can't match before you apply, and if any can't be matched, nothing changes. The typed names stay beside it as \\\"Customer, as typed\\\".\",\"title\":\"Pick customer from list\",\"changes\":[{\"kind\":\"link_column\",\"sheet\":\"Contracts\",\"new_sheet\":null,\"column\":null,\"step\":null,\"after\":null,\"rename\":null,\"movers\":null,\"role\":null,\"person\":null,\"rule\":null,\"view\":null,\"labels\":null,\"hint\":null,\"sort\":null,\"check\":null,\"form\":null,\"show_when\":null,\"access\":null,\"link\":{\"column\":\"Customer\",\"to_capability\":\"Customers\",\"to_sheet\":\"Customers\"},\"explain\":\"Customer on Contracts becomes a pick from the Customers sheet instead of typed text.\",\"part\":\"Customer picked from Customers\"}],\"clarify\":null}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 558,
+      "tokensOut": 453,
+      "cacheRead": 14487,
+      "cacheWrite": 0
+    },
+    "ms": 3779
+  }
+}

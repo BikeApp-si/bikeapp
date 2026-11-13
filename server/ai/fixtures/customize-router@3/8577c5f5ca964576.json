@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nRemove the Hired step. Offers should end at Offer accepted.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 32,
+      "tokensOut": 10,
+      "cacheRead": 620,
+      "cacheWrite": 7
+    },
+    "ms": 776
+  }
+}

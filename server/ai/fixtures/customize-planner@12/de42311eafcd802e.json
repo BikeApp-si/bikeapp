@@ -1,0 +1,16 @@
+{
+  "message": "How it reads now:\nContracts sheet\nCustomer (text, required), Value a year (money, required), Start (date), Renews on (date, Start + 1 year), Notice (days, 30), Owner (person, whoever adds it), Signed contract (file).\nThe form: Basics (Customer, Value a year and Owner), Dates (Start, Renews on and Notice), Documents (Signed contract). Asked when creating: Customer and Value a year.\n\nRenewals sheet\nContract (one row from Contracts, required), Due (date), New value a year (money), Decision (Renew or End), Notes (long text).\n\nContacts sheet\nContract (one row from Contracts, required), Name (text, required), Role (text), Email (email), Phone (phone).\n\nSteps\nDraft → Signed → Legal review, for contracts over $50,000 → Active → Renewal due → Renewed or Ended\n\nWhat happens by itself\n90 days before a contract’s notice date, move it to Renewal due and remind its owner.\n30 days before the notice date, if it is still in Renewal due, tell Wade and the owner.\nWhen a signed PDF is added, an AI step reads it and fills the row for the owner to confirm; then it moves to Signed.\nWhen a contract enters Legal review, Lena approves or declines it; the contract waits on her.\n\nWho can see and do what\nWade Wilson, Krishna and Lena Ortiz see every contract, add, edit and move them, and change how it works.\nContract owners see their own contracts and can edit and move them.\nEveryone else sees nothing.\n\nConnections\nPeople fills Owner.\n\nComing soon\nConnections to other software\n\nThis chat so far:\nWade Wilson: Contracts over $50,000 need a legal review by Lena before they’re Active. Also remind owners 90 days before the notice date.\nBike: (sent a preview)\nWade Wilson: Apply 4 changes\nBike: Applying the changes to Customer contracts. This takes a few seconds.\n\nLatest message from Wade Wilson:\nIf a contract is still in Draft 14 days after it was added, remind its owner.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"change\",\"reply\":\"I'll add a rule: 14 days after a contract is added, if it is still in Draft, its owner gets a reminder. Nothing else changes.\",\"title\":\"Draft reminder\",\"changes\":[{\"kind\":\"rule\",\"sheet\":\"Contracts\",\"new_sheet\":null,\"column\":null,\"step\":null,\"after\":null,\"rename\":null,\"movers\":null,\"role\":null,\"person\":null,\"rule\":{\"sentence\":\"14 days after a contract was added, if it is still in Draft, remind its owner.\",\"replaces\":null},\"view\":null,\"labels\":null,\"hint\":null,\"sort\":null,\"check\":null,\"form\":null,\"show_when\":null,\"access\":null,\"link\":null,\"explain\":\"Reminds the owner when a contract has sat in Draft for 14 days after it was added.\",\"part\":\"Reminder for contracts still in Draft after 14 days\"}],\"clarify\":null}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 693,
+      "tokensOut": 399,
+      "cacheRead": 11081,
+      "cacheWrite": 3463
+    },
+    "ms": 3465
+  }
+}

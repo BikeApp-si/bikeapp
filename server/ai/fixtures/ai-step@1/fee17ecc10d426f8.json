@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"AWS, September\",\"Who\":\"Kim Tran\",\"Date\":\"Sep 30, 2026\",\"Amount\":\"$1,240\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Cloud\",\"reason\":\"“AWS, September” is Amazon’s cloud hosting, which matches the Cloud choice.\",\"confidence\":0.9,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 66,
+      "tokensOut": 64,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 2649
+  }
+}

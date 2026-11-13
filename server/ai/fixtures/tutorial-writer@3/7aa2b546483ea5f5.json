@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Hiring\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Candidates\",\"one\":\"candidate\",\"many\":\"candidates\",\"sees\":\"own\",\"add\":\"New candidate\",\"edit\":false,\"delete\":false,\"steps\":[\"Applied\",\"Screen\",\"Interview\",\"Offer\",\"Hired\",\"Rejected\"],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Opening\",\"Email\",\"Source\",\"Referred by\",\"CV\",\"Portfolio\",\"Offer\",\"Offer approval\",\"Start date\"]}],\"rules\":[\"An offer within the band waits on the hiring manager to send it.\",\"Once the partner approves an offer, it waits on the hiring manager to send it.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you add the candidates you are interviewing and follow each one through to a hire or a rejection.\",\"steps\":[{\"title\":\"New candidate\",\"text\":\"Add each person you are considering, with their name, opening, email and where they came from. Each new candidate starts at Applied.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Candidates\",\"step\":null}},{\"title\":\"Follow your candidates\",\"text\":\"You see only your own candidates. Check where each one stands, from Applied through Screen, Interview and Offer to Hired or Rejected.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Candidates\",\"step\":null}}],\"waits\":[\"An offer within the band waits on the hiring manager to send it.\",\"Once the partner approves an offer, it waits on the hiring manager to send it.\"],\"cannot\":[\"You can't edit a candidate once you have added them.\",\"You can't move a candidate on to another step yourself.\",\"You can't see candidates added by other people.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 242,
+      "tokensOut": 975,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 5166
+  }
+}

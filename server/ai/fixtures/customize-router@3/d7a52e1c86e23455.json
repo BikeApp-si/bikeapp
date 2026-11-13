@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: Add a Companies sheet with just a name and a website. No owner.\nBike: (sent a preview)\nAdmin: Apply\nBike: Applying the change to Sales leads. This takes a few seconds.\n\nLatest message:\nWhy can't lead owners see companies?",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"explain\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 102,
+      "tokensOut": 11,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 763
+  }
+}

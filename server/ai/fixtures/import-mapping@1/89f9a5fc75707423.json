@@ -1,0 +1,16 @@
+{
+  "message": "File \"vendors.csv\", header and up to 20 sample rows:\n\"Vendor\",\"Category\",\"Owner Email\",\"Seats\",\"Annual Cost\",\"Renewal Date\"\n\"Figma\",\"Software\",\"priya@fernwood.dev\",\"6\",\"900\",\"2026-11-05\"\n\"Slack\",\"Software\",\"jon@fernwood.dev\",\"14\",\"1260\",\"2026-11-14\"\n\"Google Workspace\",\"Software\",\"jon@fernwood.dev\",\"14\",\"2016\",\"2026-11-23\"\n\"GitHub\",\"Software\",\"priya@fernwood.dev\",\"6\",\"1512\",\"2026-12-02\"\n\"AWS\",\"Cloud\",\"kim@fernwood.dev\",\"1\",\"14880\",\"2026-12-11\"\n\"Vercel\",\"Cloud\",\"kim@fernwood.dev\",\"1\",\"2400\",\"2026-12-20\"\n\"Linear\",\"Software\",\"priya@fernwood.dev\",\"8\",\"768\",\"2026-12-29\"\n\"Notion\",\"Software\",\"jon@fernwood.dev\",\"14\",\"1680\",\"2027-01-07\"\n\"1Password\",\"Software\",\"jon@fernwood.dev\",\"14\",\"1344\",\"2027-01-16\"\n\"HubSpot\",\"Software\",\"dev@fernwood.dev\",\"4\",\"9600\",\"2027-01-25\"\n\"Gusto\",\"Software\",\"lena@fernwood.dev\",\"1\",\"1800\",\"2027-02-03\"\n\"QuickBooks\",\"Software\",\"lena@fernwood.dev\",\"1\",\"1080\",\"2027-02-12\"\n\"Zoom\",\"Software\",\"jon@fernwood.dev\",\"6\",\"900\",\"2027-02-21\"\n\"Loom\",\"Software\",\"nina@fernwood.dev\",\"4\",\"480\",\"2027-03-02\"\n\"Canva\",\"Software\",\"nina@fernwood.dev\",\"3\",\"360\",\"2027-03-11\"\n\"Datadog\",\"Cloud\",\"kim@fernwood.dev\",\"1\",\"6000\",\"2027-03-20\"\n\"Sentry\",\"Cloud\",\"kim@fernwood.dev\",\"1\",\"960\",\"2027-03-29\"\n\"Postman\",\"Software\",\"maya@fernwood.dev\",\"4\",\"576\",\"2027-04-07\"\n\"DocuSign\",\"Software\",\"krishna@fernwood.dev\",\"2\",\"720\",\"2027-04-16\"\n\"Calendly\",\"Software\",\"dev@fernwood.dev\",\"4\",\"384\",\"2027-04-25\"",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"mapping\":[{\"from\":\"Vendor\",\"to\":\"Vendor\",\"format\":null,\"values\":[]},{\"from\":\"Category\",\"to\":\"Category\",\"format\":null,\"values\":[]},{\"from\":\"Owner Email\",\"to\":\"Owner\",\"format\":null,\"values\":[]},{\"from\":\"Seats\",\"to\":\"Seats\",\"format\":null,\"values\":[]},{\"from\":\"Annual Cost\",\"to\":\"Annual cost\",\"format\":null,\"values\":[]},{\"from\":\"Renewal Date\",\"to\":\"Renewal date\",\"format\":\"YYYY-MM-DD\",\"values\":[]}],\"unmapped\":[],\"problems\":[\"Owner Email holds email addresses; the Owner column is a person field, so each address must be matched to a Bike person before import.\",\"Annual Cost values have no currency shown; confirm the currency before importing into the money column.\",\"The Renewal Date format is year-month-day in every sample row, so it is unambiguous and no day-first or month-first check is needed; confirm later rows follow the same pattern.\",\"The file has no Renewal approval or Status column, so those target columns are left empty and will need values set in Bike.\",\"The Tools sheet's Renewal approval and Status columns are not mapped; no file data supports them.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 716,
+      "tokensOut": 394,
+      "cacheRead": 776,
+      "cacheWrite": 201
+    },
+    "ms": 2589
+  }
+}

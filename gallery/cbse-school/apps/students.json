@@ -1,0 +1,780 @@
+{
+  "name": "Classes and students",
+  "icon": "graduation-cap",
+  "description": "Classes and sections, students and transfer certificates",
+  "sheets": [
+    {
+      "id": "classes",
+      "name": "Classes and sections",
+      "kind": "tree",
+      "tree": {
+        "parent": "parent"
+      },
+      "row": {
+        "one": "class or section",
+        "many": "classes and sections"
+      },
+      "addAction": "New class or section",
+      "titleColumn": "name",
+      "columns": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "parent",
+          "name": "Class",
+          "type": "link",
+          "link": {
+            "sheet": "classes"
+          }
+        },
+        {
+          "id": "class_teacher",
+          "name": "Class teacher",
+          "type": "person"
+        },
+        {
+          "id": "room",
+          "name": "Room",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "students",
+      "name": "Students",
+      "kind": "list",
+      "row": {
+        "one": "student",
+        "many": "students"
+      },
+      "addAction": "New student",
+      "titleColumn": "name",
+      "sort": {
+        "column": "name",
+        "dir": "asc"
+      },
+      "columns": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "admission_no",
+          "name": "Admission number",
+          "type": "text"
+        },
+        {
+          "id": "class",
+          "name": "Class",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "section",
+          "name": "Section",
+          "type": "link",
+          "link": {
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "roll_no",
+          "name": "Roll number",
+          "type": "number",
+          "min": 1
+        },
+        {
+          "id": "dob",
+          "name": "Date of birth",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "gender",
+          "name": "Gender",
+          "type": "choice",
+          "options": [
+            {
+              "id": "girl",
+              "name": "Girl"
+            },
+            {
+              "id": "boy",
+              "name": "Boy"
+            },
+            {
+              "id": "other",
+              "name": "Other"
+            }
+          ]
+        },
+        {
+          "id": "admitted_on",
+          "name": "Admitted on",
+          "type": "date",
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "house",
+          "name": "House",
+          "type": "choice",
+          "options": [
+            {
+              "id": "red",
+              "name": "Red"
+            },
+            {
+              "id": "blue",
+              "name": "Blue"
+            },
+            {
+              "id": "green",
+              "name": "Green"
+            },
+            {
+              "id": "yellow",
+              "name": "Yellow"
+            }
+          ]
+        },
+        {
+          "id": "left_on",
+          "name": "Left on",
+          "type": "date"
+        },
+        {
+          "id": "father",
+          "name": "Father's name",
+          "type": "text"
+        },
+        {
+          "id": "mother",
+          "name": "Mother's name",
+          "type": "text"
+        },
+        {
+          "id": "guardian",
+          "name": "Guardian's name",
+          "type": "text"
+        },
+        {
+          "id": "phone",
+          "name": "Phone",
+          "type": "phone",
+          "required": true
+        },
+        {
+          "id": "other_phone",
+          "name": "Other phone",
+          "type": "phone"
+        },
+        {
+          "id": "email",
+          "name": "Email",
+          "type": "email"
+        },
+        {
+          "id": "address",
+          "name": "Address",
+          "type": "long_text"
+        },
+        {
+          "id": "nationality",
+          "name": "Nationality",
+          "type": "text",
+          "default": {
+            "kind": "value",
+            "value": "Indian"
+          }
+        },
+        {
+          "id": "category",
+          "name": "Category",
+          "type": "choice",
+          "options": [
+            {
+              "id": "general",
+              "name": "General"
+            },
+            {
+              "id": "sc",
+              "name": "SC"
+            },
+            {
+              "id": "st",
+              "name": "ST"
+            },
+            {
+              "id": "obc",
+              "name": "OBC"
+            },
+            {
+              "id": "ews",
+              "name": "EWS"
+            }
+          ]
+        },
+        {
+          "id": "apaar_id",
+          "name": "APAAR ID",
+          "type": "text"
+        },
+        {
+          "id": "pen",
+          "name": "PEN (UDISE+)",
+          "type": "text"
+        },
+        {
+          "id": "aadhaar",
+          "name": "Aadhaar number",
+          "type": "text"
+        },
+        {
+          "id": "birth_certificate",
+          "name": "Birth certificate",
+          "type": "file"
+        },
+        {
+          "id": "last_tc",
+          "name": "Transfer certificate from the last school",
+          "type": "file"
+        },
+        {
+          "id": "last_school",
+          "name": "Last school",
+          "type": "text"
+        },
+        {
+          "id": "blood_group",
+          "name": "Blood group",
+          "type": "choice",
+          "options": [
+            {
+              "id": "a_pos",
+              "name": "A+"
+            },
+            {
+              "id": "a_neg",
+              "name": "A−"
+            },
+            {
+              "id": "b_pos",
+              "name": "B+"
+            },
+            {
+              "id": "b_neg",
+              "name": "B−"
+            },
+            {
+              "id": "ab_pos",
+              "name": "AB+"
+            },
+            {
+              "id": "ab_neg",
+              "name": "AB−"
+            },
+            {
+              "id": "o_pos",
+              "name": "O+"
+            },
+            {
+              "id": "o_neg",
+              "name": "O−"
+            }
+          ]
+        },
+        {
+          "id": "allergies",
+          "name": "Allergies",
+          "type": "long_text"
+        },
+        {
+          "id": "medical_notes",
+          "name": "Medical notes",
+          "type": "long_text"
+        },
+        {
+          "id": "emergency_contact",
+          "name": "Emergency contact",
+          "type": "text"
+        },
+        {
+          "id": "emergency_phone",
+          "name": "Emergency phone",
+          "type": "phone"
+        }
+      ],
+      "checks": [
+        {
+          "id": "section_in_class",
+          "name": "The section is in the class",
+          "condition": {
+            "op": "or",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "section"
+                  }
+                ]
+              },
+              {
+                "op": "eq",
+                "args": [
+                  {
+                    "col": "parent",
+                    "via": "section"
+                  },
+                  {
+                    "col": "class"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "form": {
+        "tabs": [
+          {
+            "name": "Basics",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "name",
+                  "admission_no",
+                  "class",
+                  "section",
+                  "roll_no",
+                  "dob",
+                  "gender",
+                  "admitted_on",
+                  "house",
+                  "left_on"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Family",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "father",
+                  "mother",
+                  "guardian",
+                  "phone",
+                  "other_phone",
+                  "email",
+                  "address"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Documents",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "nationality",
+                  "category",
+                  "apaar_id",
+                  "pen",
+                  "aadhaar",
+                  "birth_certificate",
+                  "last_tc",
+                  "last_school"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Health",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "blood_group",
+                  "allergies",
+                  "medical_notes",
+                  "emergency_contact",
+                  "emergency_phone"
+                ]
+              }
+            ]
+          }
+        ],
+        "quick": [
+          "name",
+          "class",
+          "section",
+          "dob",
+          "phone"
+        ]
+      }
+    },
+    {
+      "id": "tcs",
+      "name": "Transfer certificates",
+      "kind": "list",
+      "row": {
+        "one": "transfer certificate",
+        "many": "transfer certificates"
+      },
+      "addAction": "Request a transfer certificate",
+      "titleColumn": "student",
+      "columns": [
+        {
+          "id": "student",
+          "name": "Student",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "students"
+          }
+        },
+        {
+          "id": "class_last",
+          "name": "Class last studied",
+          "type": "link",
+          "link": {
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "leaving_on",
+          "name": "Date of leaving",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "reason",
+          "name": "Reason for leaving",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "moving",
+              "name": "Family moving"
+            },
+            {
+              "id": "changing",
+              "name": "Changing school"
+            },
+            {
+              "id": "completed",
+              "name": "Completed school"
+            },
+            {
+              "id": "other",
+              "name": "Other"
+            }
+          ]
+        },
+        {
+          "id": "promotion",
+          "name": "Qualified for promotion",
+          "type": "choice",
+          "options": [
+            {
+              "id": "yes",
+              "name": "Yes"
+            },
+            {
+              "id": "no",
+              "name": "No"
+            },
+            {
+              "id": "na",
+              "name": "Not yet decided"
+            }
+          ]
+        },
+        {
+          "id": "dues_paid",
+          "name": "All dues paid",
+          "type": "choice",
+          "options": [
+            {
+              "id": "yes",
+              "name": "Yes"
+            },
+            {
+              "id": "no",
+              "name": "No"
+            }
+          ]
+        },
+        {
+          "id": "working_days",
+          "name": "Working days this year",
+          "type": "number",
+          "min": 0
+        },
+        {
+          "id": "days_present",
+          "name": "Days present",
+          "type": "number",
+          "min": 0
+        },
+        {
+          "id": "conduct",
+          "name": "General conduct",
+          "type": "choice",
+          "options": [
+            {
+              "id": "excellent",
+              "name": "Excellent"
+            },
+            {
+              "id": "very_good",
+              "name": "Very good"
+            },
+            {
+              "id": "good",
+              "name": "Good"
+            },
+            {
+              "id": "satisfactory",
+              "name": "Satisfactory"
+            }
+          ]
+        },
+        {
+          "id": "tc_no",
+          "name": "Certificate number",
+          "type": "text"
+        },
+        {
+          "id": "issued_on",
+          "name": "Issued on",
+          "type": "date"
+        },
+        {
+          "id": "remarks",
+          "name": "Remarks",
+          "type": "long_text"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "requested",
+          "name": "Requested",
+          "start": true,
+          "tone": "yellow"
+        },
+        {
+          "id": "issued",
+          "name": "Issued",
+          "end": "final",
+          "tone": "done",
+          "button": "Issue"
+        },
+        {
+          "id": "cancelled",
+          "name": "Cancelled",
+          "end": "exit",
+          "tone": "grey",
+          "button": "Cancel"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "principal",
+      "name": "Principal",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:principal"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "office",
+      "name": "Office",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:office"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "staff",
+      "name": "Accountant and teachers",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:accountant",
+          "@slot:teachers"
+        ]
+      },
+      "can": [
+        "see"
+      ],
+      "sheets": [
+        "classes",
+        "students"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "class_teachers",
+      "name": "Class teachers",
+      "members": {
+        "kind": "column",
+        "sheet": "classes",
+        "column": "class_teacher"
+      },
+      "can": [
+        "see",
+        "edit"
+      ],
+      "sheets": [
+        "students"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "students": {
+          "column": "class_teacher",
+          "via": "section"
+        }
+      }
+    },
+    {
+      "id": "everyone",
+      "name": "Everyone",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see"
+      ],
+      "sheets": [
+        "classes"
+      ],
+      "scope": "all"
+    }
+  ],
+  "rules": [
+    {
+      "id": "new_student",
+      "text": "When a student is added without a section, tell the office to give one, with an admission number.",
+      "reading": {
+        "when": "A student is added without a section",
+        "then": "The office is told"
+      },
+      "trigger": {
+        "kind": "row_created",
+        "sheet": "students"
+      },
+      "condition": {
+        "op": "empty",
+        "args": [
+          {
+            "col": "section"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "people": [
+            "@slot:office"
+          ],
+          "message": "A new student needs a section and an admission number."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "tc_to_principal",
+      "text": "A transfer certificate waits on the principal to issue it.",
+      "reading": {
+        "when": "A transfer certificate is requested",
+        "then": "It waits on the principal to issue or cancel it"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "tcs",
+        "step": "requested"
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "person": "@slot:principal",
+          "step": "requested",
+          "label": "Issue or cancel"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "tc_issued",
+      "text": "When a transfer certificate is issued, the student's Left on is its date of leaving.",
+      "reading": {
+        "when": "A transfer certificate is issued",
+        "then": "The student's Left on is filled with its date of leaving"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "tcs",
+        "step": "issued"
+      },
+      "actions": [
+        {
+          "kind": "update_row_in",
+          "target": {
+            "sheet": "students"
+          },
+          "via": "student",
+          "map": {
+            "left_on": {
+              "col": "leaving_on"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": []
+}

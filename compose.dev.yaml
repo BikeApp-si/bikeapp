@@ -1,0 +1,65 @@
+# Local services for Bike 0.1: Postgres 16, Mailpit (email), SeaweedFS (S3-compatible files), ClamAV (uploads).
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: bike
+      POSTGRES_PASSWORD: bike
+      POSTGRES_DB: bike
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "bike"]
+      interval: 2s
+      retries: 30
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports: ["1025:1025", "8025:8025"]
+
+  # Dev only. The app talks plain S3, so production can use any S3-compatible service.
+  seaweedfs:
+    image: chrislusf/seaweedfs:4.48
+    # Small volumes for dev: the default (30 GB each, several per bucket) finds no room on a laptop disk.
+    command: server -dir=/data -master.volumeSizeLimitMB=256 -volume.max=50 -s3 -s3.port=8333 -s3.config=/etc/seaweedfs/s3.json
+    ports: ["8333:8333"]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8333/healthz"]
+      interval: 2s
+      retries: 30
+    volumes:
+      - seaweeddata:/data
+      - ./docker/seaweedfs/s3.json:/etc/seaweedfs/s3.json:ro
+
+  # Creates the dev bucket once SeaweedFS is up (safe to run again), through the plain S3 API.
+  storage-init:
+    image: amazon/aws-cli:2.37.12
+    depends_on:
+      seaweedfs: { condition: service_healthy }
+    environment:
+      AWS_ACCESS_KEY_ID: bike
+      AWS_SECRET_ACCESS_KEY: bikebike
+      AWS_DEFAULT_REGION: us-east-1
+    entrypoint: ["sh", "-c", "aws --endpoint-url http://seaweedfs:8333 s3api head-bucket --bucket bike-dev 2>/dev/null || aws --endpoint-url http://seaweedfs:8333 s3 mb s3://bike-dev"]
+    restart: "no"
+
+  # Every upload is scanned (server/files/scan.ts). The first start downloads the virus database (a few
+  # minutes); it is kept in a volume and refreshed by the container. Needs about 1.5 GB of memory.
+  clamav:
+    # The Debian build: the default image has no arm64 build (Apple silicon).
+    image: clamav/clamav-debian:1.5.1
+    ports: ["3310:3310"]
+    volumes:
+      - clamdb:/var/lib/clamav
+    healthcheck:
+      test: ["CMD", "clamdcheck.sh"]
+      interval: 10s
+      retries: 60
+      start_period: 120s
+
+volumes:
+  pgdata:
+  seaweeddata:
+  clamdb:

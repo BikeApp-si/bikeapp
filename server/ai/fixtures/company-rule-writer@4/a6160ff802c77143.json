@@ -1,0 +1,16 @@
+{
+  "message": "Company rules now:\n[\n {\n  \"id\": \"expenses_and_contracts_over_10_000_n\",\n  \"text\": \"Expenses and contracts over $20,000 need Lena's approval.\",\n  \"applies_to\": [\n   \"Spend · Expenses\",\n   \"Customer contracts · Contracts\"\n  ]\n }\n]\n\nConversation so far:\n[\n {\n  \"from\": \"person\",\n  \"text\": \"Expenses and contracts over $10,000 need Lena's approval\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"(sent a preview)\"\n },\n {\n  \"from\": \"person\",\n  \"text\": \"Apply\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"Applying the company rule. This takes a few seconds.\"\n },\n {\n  \"from\": \"person\",\n  \"text\": \"Make that $20,000 instead of $10,000\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"(sent a preview)\"\n },\n {\n  \"from\": \"person\",\n  \"text\": \"Apply\"\n },\n {\n  \"from\": \"bike\",\n  \"text\": \"Applying the company rule. This takes a few seconds.\"\n }\n]\n\nRequest:\nBig spending should be watched",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"clarify\",\"rule_id\":null,\"reply\":\"What should happen with big spending, and who should watch it? Lena already approves expenses and contracts over $20,000.\",\"text\":null,\"when\":null,\"then\":null,\"parts\":[],\"could_not\":[],\"clarify\":{\"options\":[\"Email Wade about expenses, purchases and contracts over $20,000\",\"Email Lena about expenses, purchases and contracts over $10,000\",\"Make Wade approve anything over $20,000, as well as Lena\",\"Something else (tell me the amount and who)\"]}}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 398,
+      "tokensOut": 580,
+      "cacheRead": 10022,
+      "cacheWrite": 0
+    },
+    "ms": 5057
+  }
+}

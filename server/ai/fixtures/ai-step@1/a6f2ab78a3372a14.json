@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Coffee for interviews\",\"Who\":\"Aisha Khan\",\"Date\":\"Sep 2, 2026\",\"Amount\":\"$38\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Meals\",\"reason\":\"Expense is “Coffee for interviews” for $38, which is a food and drink cost.\",\"confidence\":0.85,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 68,
+      "tokensOut": 59,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1735
+  }
+}

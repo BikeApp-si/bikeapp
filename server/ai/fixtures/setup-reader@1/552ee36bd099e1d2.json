@@ -1,0 +1,16 @@
+{
+  "message": "Known people:\n{\"name\":\"Wade Wilson\",\"email\":\"wade@fernwood.dev\",\"title\":null,\"manager\":null,\"team\":null}\n\nEarlier on this step:\n(none)\n\nThe admin writes:\nI'm the founder. Priya Nair leads engineering and Dev Kumar leads growth. Priya reports to Dev while we hire.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"people\":[{\"name\":\"Wade Wilson\",\"email\":\"wade@fernwood.dev\",\"title\":\"Founder\",\"manager\":null,\"team\":null},{\"name\":\"Dev Kumar\",\"email\":null,\"title\":null,\"manager\":\"wade@fernwood.dev\",\"team\":\"Growth\"},{\"name\":\"Priya Nair\",\"email\":null,\"title\":null,\"manager\":\"Dev Kumar\",\"team\":\"Engineering\"}],\"teams\":[\"Engineering\",\"Growth\"],\"problems\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 117,
+      "tokensOut": 604,
+      "cacheRead": 0,
+      "cacheWrite": 1029
+    },
+    "ms": 4531
+  }
+}

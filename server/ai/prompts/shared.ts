@@ -1,0 +1,48 @@
+// Text the prompts share: the building blocks the kernel accepts and how expressions are written.
+import { LIMITS } from "@/server/kernel/schema/validate";
+import { formatDay, formatMoney, type Formats } from "@/lib/format";
+
+export const BUILDING_BLOCKS = `Building blocks the kernel accepts (nothing else):
+- Column types: text, long_text, number, money, money_range, percent, date, datetime, days, person, email, phone, url, file, choice (with options), link (to a sheet in this or another app), step (one per sheet with steps), computed (a formula, read only). A computed column can read a column one link away, or add up the rows of any sheet, here or in another app, that link to its row, counting only rows at some steps if you like (a budget's Spent: the Amount of its Paid bills). It is kept up to date whenever one of those rows changes.
+- Sheet kinds: list; document with lines (a "lines" sheet names its document sheet); allocation; tree (rows that sit under each other: cost centres, categories, classes and their sections; a tree names its tree_parent, a link column to the same sheet, never required, empty for the rows at the top; at most ${LIMITS.treeDepth} levels; Bike refuses a row under itself or under a row below it, and deleting a row with rows under it). A tree's total that includes the rows under it adds up its own sheet through tree_parent (Total spent: Spent plus the Total spent of the rows under it); ledger (entries only added, for balances: leave taken and given, stock moves in and out, fees due and paid; a ledger names ledger_account, a required person column or a link to a row of another sheet here (the item), and ledger_amount, a required number, days or money column, signed: below 0 takes from the balance; ledger_min, the lowest the balance may go, 0 for stock, or null; Bike adds a Balance after column and a Reverses link itself, refuses any change or delete of an entry, corrects one with an opposite entry, once, and refuses an entry that would take the balance below ledger_min, whoever or whatever adds it; a ledger has no steps and no checks). The row a ledger counts toward shows its balance with balanceOf; dated (values kept by the date each starts: a price list, salaries, spending limits, fee structures by year; a dated sheet names dated_key, a required choice, link, person or text column saying what each value is for, or null for one series, and dated_from, a required date column; Bike adds an Until column itself, the day before the next one for the same key starts, keeps one row per key and day, and keeps a row as it is once it is in force: a change is a new row from the date it changes; a dated sheet has no steps). A row elsewhere reads the value in force on one of its dates, or today, with inForce.
+- Steps: a short list from the item's real life cycle, one start step; end steps are "final" (reached only by moving forward: Renewed, Paid, Hired) or "exit" (left for from anywhere: Ended, Rejected, Declined). A step can be added after an app's last step: it becomes the new last step, and rows already there stay where they are. Each step says who may move a row out of it and into it: anyone, submitter (only the person the row is for), or not_submitter (anyone but them, so nobody approves their own request).
+- Roles: who (people by work email, everyone named in a person column, or everyone), what they can do (see, add, edit, delete, move_steps, customize) and on which rows (all, own: rows a person column names them in, possibly one link away, or team: theirs and their reports').
+- Rule triggers: row_created, enters_step, field_changed, date_reached (a date column plus or minus a number of days), repeats (rows that repeat: on a schedule, with no row to start from, it adds rows to its own sheet every week on a weekday, every month on a day, or every year on a date, from an optional start date until an optional end date; office rent, a subscription, the weekly safety check). A repeating rule's only actions are create_row_in into its own sheet, with no condition; its field map gives every value outright (a value, a person, today for the day it is due, or a date counted from today), never a column of a row, and it fills every required column and whoever-adds-it person column, since nobody adds the row.
+- Rule actions: create_row_in (start a row in a sheet here or in another app, filling columns), update_row_in (update the row a link column points to; setting its step column moves it), move_to_step, notify (email people or a person column), ask_person (the row waits on one person, at a step, until a column is filled, or until they approve or decline into a choice column), ai_step (an AI proposes a value that a person confirms; it never decides).
+- Limits per app: ${LIMITS.sheets} sheets, ${LIMITS.columns} columns a sheet, ${LIMITS.steps} steps (end steps not counted), ${LIMITS.rules} rules. Anything beyond goes into later.`;
+
+export const EXPRESSIONS = `Expressions (defaults, formulas, step conditions, rule conditions, values in a rule's field map) are JSON written with names, as a string:
+- a column: {"col":"Start"}; a column on the row a link column points to: {"col":"Total","via":"Purchase"}
+- a money range's bottom or top: {"col":"Salary band","part":"from"} or {"col":"Salary band","part":"to"} (with "via" too, one link away); a range itself can't be compared, only its from or to
+- today: {"ref":"today"}
+- an operation: {"op":"…","args":[…]} with op one of and, or, not, eq, ne, gt, gte, lt, lte, in, between, empty, add, sub, mul, div, days_until, date_add (date, number, "days"|"months"|"years"), workdays, if (condition, then, otherwise)
+- a total over rows that point at this row: {"sumOf":{"capability":"Supplier bills","sheet":"Bills","column":"Amount","by":"Budget","steps":["Paid"]}} (capability, the app, and by left out for a document's own lines; capability left out for this app; steps left out for every row); in a tree, the rows under this one: {"op":"add","args":[{"col":"Spent"},{"sumOf":{"sheet":"Cost centres","column":"Total spent","by":"Under"}}]}
+- a ledger's balance, on the row it counts toward: {"balanceOf":{"sheet":"Moves"}} on an item, when the ledger's account is a link to it; or matched by a column of this row: {"balanceOf":{"sheet":"Leave entries","of":"Who"}} on a person's balance (Left: {"op":"add","args":[{"op":"sub","args":[{"col":"Days a year"},{"col":"Used"}]},{"balanceOf":{"sheet":"Leave entries","of":"Who"}}]})
+- the value in force on a date, from a sheet kept by date in this app: {"inForce":{"sheet":"Spending limits","is":"Category","on":"Date","value":"Limit"}} (is: this row's column matched to the sheet's dated_key, left out for one series; on: this row's date column, left out for today). Empty when nothing was in force then, so a check allows that: {"op":"or","args":[{"op":"empty","args":[<the inForce>]},{"op":"lte","args":[{"col":"Amount"},<the inForce>]}]}
+- literals: money in dollars (50000), days and numbers as numbers, dates as "2026-11-02", choices and steps by their names ("Enterprise", "Renewal due"), people by work email.
+Examples: Renews on defaults to {"op":"date_add","args":[{"col":"Start"},1,"years"]}; a notice date is {"op":"date_add","args":[{"col":"Renews on"},{"op":"mul","args":[{"col":"Notice"},-1]},"days"]}; "over $50,000" is {"op":"gt","args":[{"col":"Value a year"},50000]}.`;
+
+export const PLAIN_WORDS = `Write every sentence a person reads in plain words: short, no jargon, no code, no ids, no JSON. Name people by first name in sentences, by full name in tables. Use the company's own words for things.`;
+
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+// How this company writes money, dates and its year (M26), for the prompts that read or write them. Empty for a
+// company with Bike's defaults (dollars, "Nov 14, 2026", a year from January), so their requests stay as recorded.
+// money: amounts in its currency; year: "this year" and quarters from its financial year; dates: documents write
+// the day first; write: how a sentence writes an amount and a day.
+export function companyWays(f: Formats | undefined, parts: readonly ("money" | "year" | "dates" | "write")[]): string {
+  if (!f) return "";
+  const lines: string[] = [];
+  const name = new Intl.DisplayNames("en", { type: "currency" }).of(f.currency) ?? f.currency;
+  if (parts.includes("money") && f.currency !== "USD") lines.push(`This company's money is in ${name} (${f.currency}), not dollars: wherever these instructions say dollars, read ${name}. Amounts stay plain numbers (50000).`);
+  if (parts.includes("year") && f.yearStart !== 1) {
+    const m = (i: number) => MONTH_NAMES[(f.yearStart - 1 + i) % 12]!;
+    const quarters = [0, 3, 6, 9].map((i, q) => `Q${q + 1} ${m(i)}–${m(i + 2)}`).join(", ");
+    lines.push(`Its financial year starts in ${m(0)}: "this year" and "this financial year" run from ${m(0)} 1 to the end of ${m(11)} of the financial year that holds today, and its quarters are ${quarters}. "This quarter" is the one of those that holds today. Months stay calendar months.`);
+  }
+  if (parts.includes("dates") && f.dates === "dmy") lines.push("Its documents write dates day first: 14/11/2026 is November 14, 2026.");
+  if (parts.includes("write") && (f.currency !== "USD" || f.grouping !== "standard" || f.dates !== "mdy")) {
+    lines.push(`Write money as this company does, "${formatMoney(9_530_000, f)}" and "${formatMoney(12_345_600_00, f)}", and days as "${formatDay("2026-10-27", f)}".`);
+  }
+  return lines.join("\n");
+}

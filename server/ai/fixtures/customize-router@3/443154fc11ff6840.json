@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: Customer should be picked from Customers, not typed.\nBike: (sent a preview)\n\nLatest message:\nCustomer should be picked from Customers, not typed.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 67,
+      "tokensOut": 10,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 852
+  }
+}

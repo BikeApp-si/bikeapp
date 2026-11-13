@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Staff leave\",\"admin\":false,\"view\":\"Your leave\",\"sheets\":[{\"name\":\"Leave\",\"one\":\"leave request\",\"many\":\"leave requests\",\"sees\":\"own\",\"add\":\"Ask for leave\",\"edit\":false,\"delete\":false,\"steps\":[\"Requested\",\"Approved\",\"Declined\"],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[\"Approved: not by the person who submitted the leave request\",\"Declined: not by the person who submitted the leave request\"],\"columns\":[\"Who\",\"Type\",\"From\",\"To\",\"Days\",\"Reason\"]},{\"name\":\"Substitutions\",\"one\":\"substitution\",\"many\":\"substitutions\",\"sees\":\"own\",\"add\":null,\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Section\",\"Date\",\"Period\",\"In place of\",\"Substitute\",\"Leave\",\"Note\"]}],\"rules\":[\"When leave is approved, tell the person and the office.\",\"Tell a substitute about the period they take.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you ask for leave and keep track of your own leave requests at Greenfield Public School.\",\"steps\":[{\"title\":\"Ask for leave\",\"text\":\"Open Your leave and choose Ask for leave. Fill in the type, the from and to dates, the days and your reason, then save it as a leave request.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Leave\",\"step\":null}},{\"title\":\"Check your leave requests\",\"text\":\"Look at your own leave requests to see which are Requested, Approved or Declined. You see only your own leave requests.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Leave\",\"step\":null}},{\"title\":\"Check your substitutions\",\"text\":\"Look at the substitutions for your classes when you are away, with the date, period and who is covering for you. You see only your own substitutions.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Substitutions\",\"step\":null}}],\"waits\":[\"Someone else approves or declines your leave request; you can't approve your own.\",\"When leave is approved, the person and the office are told.\",\"A substitute is told about the period they take.\"],\"cannot\":[\"You can't add a substitution here.\",\"You can't edit or delete a leave request once it is sent.\",\"You can't see other people's leave requests.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 340,
+      "tokensOut": 396,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2311
+  }
+}

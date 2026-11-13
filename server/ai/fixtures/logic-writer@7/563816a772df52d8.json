@@ -1,0 +1,16 @@
+{
+  "message": "Capabilities:\n[\n {\n  \"name\": \"Tools and budgets\",\n  \"sheets\": [\n   {\n    \"name\": \"Tools\",\n    \"kind\": \"list\",\n    \"columns\": [\n     \"Vendor (text; required)\",\n     \"Category (text)\",\n     \"Owner (person)\",\n     \"Seats (number)\",\n     \"Annual cost (money)\",\n     \"Renewal date (date)\",\n     \"Seats taken (computed; worked out: the total of Seats in Seat assignments)\",\n     \"Seats free (computed; worked out: Seats − Seats taken)\",\n     \"Status (step)\"\n    ],\n    \"steps\": [\n     \"Active (start)\",\n     \"Renewal due\",\n     \"Renewed (last)\",\n     \"Cancelled (exit)\"\n    ]\n   },\n   {\n    \"name\": \"Seat assignments\",\n    \"kind\": \"list\",\n    \"columns\": [\n     \"Note (text)\",\n     \"New starter (person; required)\",\n     \"Tool (link; required; links to Tools)\",\n     \"Seats (number; required)\",\n     \"Added on (date)\"\n    ]\n   },\n   {\n    \"name\": \"Team budgets\",\n    \"kind\": \"list\",\n    \"columns\": [\n     \"Team (text; required)\",\n     \"Quarter (text; required)\",\n     \"Budget (money; required)\"\n    ]\n   }\n  ],\n  \"roles\": [\n   \"Managers: every row\",\n   \"Tools keeper: every row\",\n   \"Tool owners: their own rows\"\n  ],\n  \"rules\": []\n }\n]\n\nSentences:\n1. 30 days before a tool's renewal date, if it is still Active, move it to Renewal due and email its owner a reminder to renew or cancel it.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"rules\":[{\"capability\":\"Tools and budgets\",\"sheet\":\"Tools\",\"text\":\"30 days before a tool's renewal date, if it is still Active, move it to Renewal due and email its owner a reminder to renew or cancel it.\",\"when\":\"30 days before a tool's renewal date, while it is still Active\",\"then\":\"It moves to Renewal due and its owner gets an email reminder to renew or cancel it\",\"trigger\":{\"kind\":\"date_reached\",\"step\":null,\"field\":null,\"date\":\"Renewal date\",\"offset_days\":-30},\"condition\":\"{\\\"op\\\":\\\"eq\\\",\\\"args\\\":[{\\\"col\\\":\\\"Status\\\"},\\\"Active\\\"]}\",\"actions\":[{\"kind\":\"move_to_step\",\"step\":\"Renewal due\",\"target\":null,\"via\":null,\"map\":[],\"people\":[],\"columns\":[],\"message\":null,\"person\":null,\"column\":null,\"manager_of\":null,\"until\":null,\"label\":null,\"decision\":null,\"question\":null,\"answer_column\":null},{\"kind\":\"notify\",\"step\":null,\"target\":null,\"via\":null,\"map\":[],\"people\":[],\"columns\":[\"Owner\"],\"message\":\"This tool's renewal date is 30 days away. Please renew it or cancel it.\",\"person\":null,\"column\":null,\"manager_of\":null,\"until\":null,\"label\":null,\"decision\":null,\"question\":null,\"answer_column\":null}]}],\"could_not\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 552,
+      "tokensOut": 456,
+      "cacheRead": 0,
+      "cacheWrite": 7320
+    },
+    "ms": 3080
+  }
+}

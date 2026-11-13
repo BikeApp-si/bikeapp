@@ -1,0 +1,250 @@
+{
+  "name": "Onboarding",
+  "icon": "user-check",
+  "description": "A first-week plan for every new starter",
+  "sheets": [
+    {
+      "id": "plans",
+      "name": "Plans",
+      "kind": "list",
+      "row": {
+        "one": "plan",
+        "many": "plans"
+      },
+      "addAction": "Plan a starter's first week",
+      "titleColumn": "name",
+      "columns": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "start_date",
+          "name": "Start date",
+          "type": "date"
+        },
+        {
+          "id": "manager",
+          "name": "Manager",
+          "type": "person"
+        },
+        {
+          "id": "buddy",
+          "name": "Buddy",
+          "type": "person"
+        },
+        {
+          "id": "it",
+          "name": "Laptop and accounts",
+          "type": "person"
+        }
+      ]
+    },
+    {
+      "id": "tasks",
+      "name": "Tasks",
+      "kind": "list",
+      "row": {
+        "one": "task",
+        "many": "tasks"
+      },
+      "addAction": "New task",
+      "titleColumn": "task",
+      "columns": [
+        {
+          "id": "plan",
+          "name": "Plan",
+          "type": "link",
+          "link": {
+            "sheet": "plans"
+          },
+          "required": true
+        },
+        {
+          "id": "task",
+          "name": "Task",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "owner",
+          "name": "Owner",
+          "type": "person"
+        },
+        {
+          "id": "due",
+          "name": "Due",
+          "type": "date"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "to_do",
+          "name": "To do",
+          "start": true
+        },
+        {
+          "id": "doing",
+          "name": "Doing"
+        },
+        {
+          "id": "done",
+          "name": "Done",
+          "end": "final"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "leads",
+      "name": "Operations",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:operations"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "delete",
+        "move_steps",
+        "customize"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "managers",
+      "name": "Managers",
+      "members": {
+        "kind": "column",
+        "sheet": "plans",
+        "column": "manager"
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "plans": {
+          "column": "manager"
+        },
+        "tasks": {
+          "via": "plan",
+          "column": "manager"
+        }
+      }
+    },
+    {
+      "id": "buddies",
+      "name": "Buddies",
+      "members": {
+        "kind": "column",
+        "sheet": "plans",
+        "column": "buddy"
+      },
+      "can": [
+        "see",
+        "move_steps"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "plans": {
+          "column": "buddy"
+        },
+        "tasks": {
+          "via": "plan",
+          "column": "buddy"
+        }
+      }
+    },
+    {
+      "id": "task_owners",
+      "name": "Task owners",
+      "members": {
+        "kind": "column",
+        "sheet": "tasks",
+        "column": "owner"
+      },
+      "can": [
+        "see",
+        "move_steps"
+      ],
+      "sheets": [
+        "tasks"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "tasks": {
+          "column": "owner"
+        }
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "first_tasks",
+      "text": "A new plan gets two tasks: the manager's welcome and the starter's laptop and accounts.",
+      "reading": {
+        "when": "A plan is added",
+        "then": "Two tasks are added: a welcome for the manager, and the laptop and accounts"
+      },
+      "trigger": {
+        "kind": "row_created",
+        "sheet": "plans"
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "sheet": "tasks"
+          },
+          "map": {
+            "plan": {
+              "ref": "row"
+            },
+            "task": "Welcome and first-week plan",
+            "owner": {
+              "col": "manager"
+            },
+            "due": {
+              "col": "start_date"
+            }
+          }
+        },
+        {
+          "kind": "create_row_in",
+          "target": {
+            "sheet": "tasks"
+          },
+          "map": {
+            "plan": {
+              "ref": "row"
+            },
+            "task": "Laptop and accounts ready",
+            "owner": {
+              "col": "it"
+            },
+            "due": {
+              "col": "start_date"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": []
+}

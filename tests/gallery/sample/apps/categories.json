@@ -1,0 +1,26 @@
+{
+  "name": "Categories",
+  "icon": "folder-tree",
+  "description": "Categories that sit under each other",
+  "sheets": [
+    {
+      "id": "categories",
+      "name": "Categories",
+      "kind": "tree",
+      "tree": { "parent": "under" },
+      "row": { "one": "category", "many": "categories" },
+      "addAction": "Add a category",
+      "titleColumn": "name",
+      "columns": [
+        { "id": "name", "name": "Category", "type": "text", "required": true },
+        { "id": "under", "name": "Under", "type": "link", "link": { "sheet": "categories" } }
+      ]
+    }
+  ],
+  "roles": [
+    { "id": "leads", "name": "Team leads", "members": { "kind": "people", "people": ["@slot:team_leads"] }, "can": ["see", "add", "edit", "delete"], "scope": "all" },
+    { "id": "everyone", "name": "Everyone", "members": { "kind": "everyone" }, "can": ["see"], "scope": "all" }
+  ],
+  "rules": [],
+  "later": []
+}

@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Income and expenses\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Entries\",\"one\":\"entry\",\"many\":\"entries\",\"sees\":\"all\",\"add\":\"Add entry\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Description\",\"Type\",\"Category\",\"Amount\",\"Date\",\"Paid to or received from\",\"Recorded by\",\"Receipt\",\"Notes\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where Fernwood Labs records its income and expenses, so every payment in and out is kept in one place.\",\"steps\":[{\"title\":\"Add an entry\",\"text\":\"Use Add entry to record a payment in or out. Fill in the description, type, category, amount, date and who it was paid to or received from.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Entries\",\"step\":null}},{\"title\":\"Check an entry\",\"text\":\"Look through the entries to find a payment or check the details. Use the receipt and notes columns to see what each one was for.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Entries\",\"step\":null}},{\"title\":\"Correct an entry\",\"text\":\"Edit an entry when a detail is wrong, such as the amount, date or category. Keep the notes up to date so others understand the change.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Entries\",\"step\":null}}],\"waits\":[],\"cannot\":[\"You can't delete an entry once it is recorded.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 169,
+      "tokensOut": 312,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2302
+  }
+}

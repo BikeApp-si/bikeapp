@@ -1,0 +1,412 @@
+{
+  "name": "Timesheets",
+  "icon": "clock",
+  "description": "Hours on projects, and each person's rate",
+  "sheets": [
+    {
+      "id": "time",
+      "name": "Time",
+      "kind": "list",
+      "row": {
+        "one": "time entry",
+        "many": "time entries"
+      },
+      "addAction": "Log time",
+      "titleColumn": "project",
+      "sort": {
+        "column": "status",
+        "dir": "asc",
+        "then": {
+          "column": "date",
+          "dir": "desc"
+        }
+      },
+      "columns": [
+        {
+          "id": "person",
+          "name": "Who",
+          "type": "person",
+          "required": true,
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "project",
+          "name": "Project",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:projects",
+            "sheet": "projects",
+            "pick": true
+          }
+        },
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "required": true,
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "hours",
+          "name": "Hours",
+          "type": "number",
+          "required": true,
+          "min": 0,
+          "max": 24
+        },
+        {
+          "id": "work",
+          "name": "Work done",
+          "type": "text"
+        },
+        {
+          "id": "billable",
+          "name": "Billable",
+          "type": "choice",
+          "options": [
+            {
+              "id": "yes",
+              "name": "Billable"
+            },
+            {
+              "id": "no",
+              "name": "Not billable"
+            }
+          ]
+        },
+        {
+          "id": "rate",
+          "name": "Rate",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "inForce": {
+              "sheet": "rates",
+              "is": "person",
+              "on": "date",
+              "value": "rate"
+            }
+          }
+        },
+        {
+          "id": "value",
+          "name": "Value",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "op": "mul",
+            "args": [
+              {
+                "col": "hours"
+              },
+              {
+                "col": "rate"
+              }
+            ]
+          }
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "draft",
+          "name": "Draft",
+          "start": true,
+          "tone": "grey"
+        },
+        {
+          "id": "submitted",
+          "name": "Submitted",
+          "tone": "yellow",
+          "button": "Submit"
+        },
+        {
+          "id": "approved",
+          "name": "Approved",
+          "end": "final",
+          "moveIn": "not_submitter",
+          "tone": "done",
+          "button": "Approve"
+        },
+        {
+          "id": "rejected",
+          "name": "Rejected",
+          "end": "exit",
+          "moveIn": "not_submitter",
+          "tone": "grey",
+          "button": "Reject"
+        }
+      ],
+      "checks": [
+        {
+          "id": "has_rate",
+          "name": "The person has a rate on this date",
+          "condition": {
+            "op": "not",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "rate"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rates",
+      "name": "Rates",
+      "kind": "dated",
+      "dated": {
+        "key": "person",
+        "from": "from",
+        "until": "until"
+      },
+      "row": {
+        "one": "rate",
+        "many": "rates"
+      },
+      "addAction": "New rate",
+      "titleColumn": "person",
+      "columns": [
+        {
+          "id": "person",
+          "name": "Who",
+          "type": "person",
+          "required": true
+        },
+        {
+          "id": "from",
+          "name": "From",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "until",
+          "name": "Until",
+          "type": "date"
+        },
+        {
+          "id": "rate",
+          "name": "Rate an hour",
+          "type": "money",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "finance",
+      "name": "Partner and finance",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:partner",
+          "@slot:finance"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "delete",
+        "move_steps",
+        "customize"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "project_managers",
+      "name": "Project managers",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:project_managers"
+        ]
+      },
+      "can": [
+        "see"
+      ],
+      "sheets": [
+        "time"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "everyone",
+      "name": "Everyone",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "moveFrom": [
+        "draft"
+      ],
+      "sheets": [
+        "time"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "time": {
+          "column": "person"
+        }
+      },
+      "view": {
+        "sheet": "time",
+        "line": "Your time",
+        "columns": [
+          {
+            "column": "date"
+          },
+          {
+            "column": "project"
+          },
+          {
+            "column": "hours"
+          },
+          {
+            "column": "work"
+          },
+          {
+            "column": "status"
+          }
+        ],
+        "form": [
+          "project",
+          [
+            "date",
+            "hours"
+          ],
+          "work",
+          "billable"
+        ]
+      }
+    },
+    {
+      "id": "managers",
+      "name": "Managers",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "move_steps"
+      ],
+      "moveFrom": [
+        "submitted"
+      ],
+      "sheets": [
+        "time"
+      ],
+      "scope": "team",
+      "scopeColumns": {
+        "time": {
+          "column": "person"
+        }
+      },
+      "view": {
+        "sheet": "time",
+        "line": "Your team's time",
+        "columns": [
+          {
+            "column": "person"
+          },
+          {
+            "column": "date"
+          },
+          {
+            "column": "project"
+          },
+          {
+            "column": "hours"
+          },
+          {
+            "column": "status"
+          }
+        ]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "to_manager",
+      "text": "Submitted time waits on the person's manager.",
+      "reading": {
+        "when": "Time is submitted",
+        "then": "It waits on the person's manager to approve or reject it"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "time",
+        "step": "submitted"
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "managerOf": "person",
+          "step": "submitted",
+          "label": "Approve or reject"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "to_budget",
+      "text": "Approved time is added to what its project has spent, at the person's rate on the day.",
+      "reading": {
+        "when": "Time is approved",
+        "then": "Its hours at the person's rate on that day are added to what the project has spent"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "time",
+        "step": "approved"
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "capability": "@app:projects",
+            "sheet": "entries"
+          },
+          "map": {
+            "entry": "Time",
+            "project": {
+              "col": "project"
+            },
+            "amount": {
+              "col": "value"
+            },
+            "on": {
+              "col": "date"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "A week's time on one screen",
+    "Billable hours by client each month"
+  ]
+}

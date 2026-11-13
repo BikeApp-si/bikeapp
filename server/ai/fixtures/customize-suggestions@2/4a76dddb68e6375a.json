@@ -1,0 +1,16 @@
+{
+  "message": "The capability:\n{\n \"name\": \"Income and expenses\",\n \"sheets\": [\n  {\n   \"name\": \"Entries\",\n   \"kind\": \"list\",\n   \"columns\": [\n    \"Description (text; required)\",\n    \"Type (choice; required; choices: Income, Expense)\",\n    \"Category (choice; choices: Sales, Services, Other income, Salaries, Software, Travel, Office, Marketing, Taxes, Other)\",\n    \"Amount (money; required)\",\n    \"Date (date; required)\",\n    \"Paid to or received from (text)\",\n    \"Recorded by (person)\",\n    \"Receipt (file)\",\n    \"Notes (long_text)\"\n   ],\n   \"row\": \"entry / entries\",\n   \"add_action\": null,\n   \"sort\": null,\n   \"checks\": [],\n   \"steps_detail\": []\n  },\n  {\n   \"name\": \"Contacts\",\n   \"kind\": \"list\",\n   \"columns\": [\n    \"Name (text; required)\",\n    \"Kind (choice; choices: Customer, Supplier, Other)\",\n    \"Email (email)\",\n    \"Phone (phone)\",\n    \"Notes (long_text)\",\n    \"Owner (person)\"\n   ],\n   \"row\": \"contact / contacts\",\n   \"add_action\": \"Add contact\",\n   \"sort\": null,\n   \"checks\": [],\n   \"steps_detail\": []\n  }\n ],\n \"roles\": [\n  {\n   \"name\": \"Finance\",\n   \"members\": [\n    \"Wade Wilson\"\n   ],\n   \"can\": [\n    \"see\",\n    \"add\",\n    \"edit\",\n    \"customize\"\n   ],\n   \"rows\": \"every row\"\n  },\n  {\n   \"name\": \"Recorders\",\n   \"members\": \"whoever Recorded by names\",\n   \"can\": [\n    \"see\",\n    \"add\",\n    \"edit\"\n   ],\n   \"rows\": \"their own rows\"\n  }\n ],\n \"rules\": []\n}\n\nHow it works now:\nEntries sheet\nDescription (text, required), Type (Income or Expense, required), Category (Sales, Services, Other income, Salaries, Software, Travel, Office, Marketing, Taxes or Other), Amount (money, required), Date (date, required, today), Paid to or received from (text), Recorded by (person, whoever adds it), Receipt (file), Notes (long text).\n\nContacts sheet\nName (text, required), Kind (Customer, Supplier or Other), Email (email), Phone (phone), Notes (long text), Owner (person, whoever adds it).\n\nWho can see and do what\nWade Wilson sees every entry, add and edit them, and change how it works.\nRecorders see their own entries and contacts and can add and edit them.\nEveryone else sees nothing.\n\nConnections\nPeople fills Recorded by.\nPeople fills Owner.\n\nComing soon\nConnections to other software",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"suggestions\":[{\"text\":\"Add Dev Kumar to Finance\",\"kind\":\"add_person_to_role\",\"names\":[\"Dev Kumar\",\"Finance\"]},{\"text\":\"Add a Tax ID column to Contacts\",\"kind\":\"add_column\",\"names\":[\"Contacts\"]},{\"text\":\"Add a Project column to Entries\",\"kind\":\"add_column\",\"names\":[\"Entries\"]}]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 911,
+      "tokensOut": 764,
+      "cacheRead": 0,
+      "cacheWrite": 1275
+    },
+    "ms": 5829
+  }
+}

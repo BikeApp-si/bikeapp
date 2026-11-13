@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Attendance\",\"admin\":false,\"view\":\"Absences in your section\",\"sheets\":[{\"name\":\"Absences\",\"one\":\"absence\",\"many\":\"absences\",\"sees\":\"own\",\"add\":\"Mark an absence\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Student\",\"Section\",\"Date\",\"Reason\",\"Leave note\",\"Parents called on\",\"Note\",\"Marked by\"]}],\"rules\":[\"An absence with no known reason waits on the class teacher to call the parents.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you record which students are absent from class and why.\",\"steps\":[{\"title\":\"Mark an absence\",\"text\":\"Add a new absence for a student on a given date. Fill in the Student, Date and Reason. Add a Leave note if you have one.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Absences\",\"step\":null}},{\"title\":\"Update an absence\",\"text\":\"Open an absence you marked and correct it if something changes. You can change the Reason, Leave note or Note.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Absences\",\"step\":null}}],\"waits\":[\"An absence with no known reason waits on the class teacher to call the parents.\"],\"cannot\":[\"You can't delete an absence.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 189,
+      "tokensOut": 762,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 3939
+  }
+}

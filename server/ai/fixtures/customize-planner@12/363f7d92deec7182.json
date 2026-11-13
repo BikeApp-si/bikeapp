@@ -1,0 +1,16 @@
+{
+  "message": "How it reads now:\nContracts sheet\nCustomer (text, required), Value a year (money, required), Start (date), Renews on (date, Start + 1 year), Notice (days, 30), Owner (person, whoever adds it), Signed contract (file).\nThe form: Basics (Customer, Value a year and Owner), Dates (Start, Renews on and Notice), Documents (Signed contract). Asked when creating: Customer, Value a year and Start.\n\nRenewals sheet\nContract (one row from Contracts, required), Due (date), New value a year (money), Decision (Renew or End), Notes (long text).\n\nContacts sheet\nContract (one row from Contracts, required), Name (text, required), Role (text), Email (email), Phone (phone).\n\nSteps\nDraft → Signed → Active → Renewal due → Renewed or Ended\n\nWhat happens by itself\n60 days before a contract’s notice date, move it to Renewal due and remind its owner.\n30 days before the notice date, if it is still in Renewal due, tell Wade and the owner.\nWhen a signed PDF is added, an AI step reads it and fills the row for the owner to confirm; then it moves to Signed.\n\nWho can see and do what\nWade Wilson and Krishna see every contract, add, edit and move them, and change how it works.\nContract owners see their own contracts and can edit and move them.\nEveryone else sees nothing.\n\nConnections\nPeople fills Owner.\n\nComing soon\nConnections to other software\n\nThis chat so far:\nWade Wilson: Split the contract form into Basics, Dates and Documents.\nBike: (sent a preview)\nWade Wilson: Apply\nBike: Applying the change to Customer contracts. This takes a few seconds.\nWade Wilson: Also ask for the start date when a contract is added.\nBike: (sent a preview)\nWade Wilson: Apply\nBike: Applying the change to Customer contracts. This takes a few seconds.\n\nLatest message from Wade Wilson:\nOnly ask for the customer and the value when a contract is added.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"change\",\"reply\":\"When a contract is added, Bike will now ask only for the customer and the value a year. Start stays on the Dates tab, so you can fill it in later.\",\"title\":\"Shorter new contract form\",\"changes\":[{\"kind\":\"set_form\",\"sheet\":\"Contracts\",\"new_sheet\":null,\"column\":null,\"step\":null,\"after\":null,\"rename\":null,\"movers\":null,\"role\":null,\"person\":null,\"rule\":null,\"view\":null,\"labels\":null,\"hint\":null,\"sort\":null,\"check\":null,\"form\":{\"tabs\":[{\"name\":\"Basics\",\"sections\":[{\"name\":null,\"columns\":[\"Customer\",\"Value a year\",\"Owner\"]}]},{\"name\":\"Dates\",\"sections\":[{\"name\":null,\"columns\":[\"Start\",\"Renews on\",\"Notice\"]}]},{\"name\":\"Documents\",\"sections\":[{\"name\":null,\"columns\":[\"Signed contract\"]}]}],\"quick\":[\"Customer\",\"Value a year\"]},\"show_when\":null,\"access\":null,\"link\":null,\"explain\":\"Asks only for the customer and the value a year when a contract is added; Start is no longer asked then.\",\"part\":\"Form: ask only Customer and Value a year when adding\"}],\"clarify\":null}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 680,
+      "tokensOut": 503,
+      "cacheRead": 11081,
+      "cacheWrite": 3328
+    },
+    "ms": 4071
+  }
+}

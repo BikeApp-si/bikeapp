@@ -1,0 +1,52 @@
+# Checks on every push: typecheck, lint, every dependency's licence, Vitest against Postgres 16 with Bike's roles,
+# and the browser flows of a Bike with one company (pnpm e2e:single). Recorded AI answers only: no key, no secrets.
+# The real-ClamAV test (server/files/scan.clamd.test.ts) runs locally with compose.dev.yaml; uploads use the
+# stand-in scanner here. Last, the install's compose file reads and Bike's image builds.
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      TEST_DATABASE_URL: postgres://bike_app:bike_app@localhost:5432/bike_test
+      TEST_DATABASE_ADMIN_URL: postgres://bike:bike@localhost:5432/bike_test
+      DATABASE_URL: postgres://bike_app:bike_app@localhost:5432/bike
+      DATABASE_ADMIN_URL: postgres://bike:bike@localhost:5432/bike
+      SESSION_SECRET: ci-only-not-a-secret
+      S3_ACCESS_KEY_ID: bike
+      S3_SECRET_ACCESS_KEY: bikebike
+      SCAN_PROVIDER: memory
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Postgres, email and file storage (compose.dev.yaml)
+        run: |
+          docker compose -f compose.dev.yaml up -d --wait postgres mailpit seaweedfs
+          docker compose -f compose.dev.yaml run --rm storage-init
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm licences:check
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec vitest run --exclude server/files/scan.clamd.test.ts
+      - run: pnpm e2e:single
+        env:
+          TMPDIR: ${{ runner.temp }}
+      - name: The install's compose file and Bike's image
+        run: |
+          cp .env.example .env
+          DB_PASSWORD=ci APP_DB_PASSWORD=ci docker compose config -q
+          docker build --build-arg BIKE_VERSION=ci -t bike:ci .

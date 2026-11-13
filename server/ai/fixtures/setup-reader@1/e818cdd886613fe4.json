@@ -1,0 +1,16 @@
+{
+  "message": "Known people:\n{\"name\":\"Wade Wilson\",\"email\":\"wade@fernwood.dev\",\"title\":null,\"manager\":null,\"team\":null}\n\nEarlier on this step:\n(none)\n\nThe admin writes:\nI'm the founder. Priya Nair leads engineering, with Maya Chen and Omar Ali. Dev Kumar leads growth. Lena Ortiz is our part-time accountant, lena@fernwood.dev.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"people\":[{\"name\":\"Wade Wilson\",\"email\":\"wade@fernwood.dev\",\"title\":\"Founder\",\"manager\":null,\"team\":null},{\"name\":\"Priya Nair\",\"email\":null,\"title\":\"Engineering lead\",\"manager\":\"Wade Wilson\",\"team\":\"Engineering\"},{\"name\":\"Maya Chen\",\"email\":null,\"title\":null,\"manager\":\"Priya Nair\",\"team\":\"Engineering\"},{\"name\":\"Omar Ali\",\"email\":null,\"title\":null,\"manager\":\"Priya Nair\",\"team\":\"Engineering\"},{\"name\":\"Dev Kumar\",\"email\":null,\"title\":\"Growth lead\",\"manager\":\"Wade Wilson\",\"team\":\"Growth\"},{\"name\":\"Lena Ortiz\",\"email\":\"lena@fernwood.dev\",\"title\":\"Part-time accountant\",\"manager\":\"Wade Wilson\",\"team\":null}],\"teams\":[\"Engineering\",\"Growth\"],\"problems\":[\"Which team is Lena Ortiz in, or does she sit outside the teams?\",\"Who do Maya Chen and Omar Ali report to: is it Priya Nair as engineering lead?\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 146,
+      "tokensOut": 369,
+      "cacheRead": 1029,
+      "cacheWrite": 0
+    },
+    "ms": 2889
+  }
+}

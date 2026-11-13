@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Datadog, extra hosts\",\"Who\":\"Kim Tran\",\"Date\":\"Aug 18, 2026\",\"Amount\":\"$310\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Cloud\",\"reason\":\"“Datadog, extra hosts” is a monitoring service billed for servers, which fits Cloud.\",\"confidence\":0.8,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 69,
+      "tokensOut": 65,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1553
+  }
+}

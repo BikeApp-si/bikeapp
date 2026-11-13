@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Spend\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Purchases\",\"one\":\"purchase\",\"many\":\"purchases\",\"sees\":\"all\",\"add\":\"Request a purchase\",\"edit\":true,\"delete\":true,\"steps\":[\"Submitted\",\"Approved\",\"Ordered\",\"Received\",\"Rejected\"],\"movesFrom\":[\"Submitted\",\"Approved\",\"Ordered\"],\"movesTo\":[\"Submitted\",\"Approved\",\"Ordered\",\"Received\",\"Rejected\"],\"stepRules\":[\"Approved: not by the person who submitted the purchase\",\"Rejected: not by the person who submitted the purchase\"],\"columns\":[\"What\",\"Team\",\"Requested by\",\"Date\",\"Supplier\",\"Total\"]},{\"name\":\"Expenses\",\"one\":\"expense\",\"many\":\"expenses\",\"sees\":\"all\",\"add\":\"Add an expense\",\"edit\":true,\"delete\":true,\"steps\":[\"Needs a receipt\",\"Submitted\",\"Approved\",\"Paid\",\"Rejected\"],\"movesFrom\":[\"Needs a receipt\",\"Submitted\",\"Approved\"],\"movesTo\":[\"Needs a receipt\",\"Submitted\",\"Approved\",\"Paid\",\"Rejected\"],\"stepRules\":[\"Out of Needs a receipt: only by the person who submitted the expense\",\"Approved: not by the person who submitted the expense\",\"Rejected: not by the person who submitted the expense\"],\"columns\":[\"What for\",\"Who\",\"Date\",\"Amount\",\"Category\",\"Paid with\",\"Receipt\",\"Paid on\",\"Note\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you request purchases and add expenses for Fernwood Labs, and move them along until they are approved, paid or received.\",\"steps\":[{\"title\":\"Request a purchase\",\"text\":\"Add a new purchase with what it is, the team, the supplier and the total. It starts as Submitted and waits for approval.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Purchases\",\"step\":null}},{\"title\":\"Add an expense\",\"text\":\"Add an expense with what it was for, the amount, the category and how it was paid. Attach the receipt when you have it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Expenses\",\"step\":null}},{\"title\":\"Approve purchases and expenses\",\"text\":\"Check purchases and expenses that are waiting on you and move them to Approved. You can't approve a purchase or expense you submitted yourself.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Purchases\",\"step\":\"Approved\"}},{\"title\":\"Mark expenses paid\",\"text\":\"Once an approved expense has been paid, move it to Paid so the payment is recorded.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Expenses\",\"step\":\"Paid\"}},{\"title\":\"Record purchases received\",\"text\":\"When an ordered purchase arrives, move it to Received so the team knows it is in.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Purchases\",\"step\":\"Received\"}}],\"waits\":[\"Someone else has to approve your purchase or expense before it moves on.\",\"Approved expenses wait to be paid.\",\"Purchases wait to be ordered and then received.\"],\"cannot\":[\"You can't approve or reject a purchase or expense you submitted yourself.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 492,
+      "tokensOut": 1151,
+      "cacheRead": 0,
+      "cacheWrite": 1620
+    },
+    "ms": 5879
+  }
+}

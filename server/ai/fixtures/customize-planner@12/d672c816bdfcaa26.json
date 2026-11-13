@@ -1,0 +1,16 @@
+{
+  "message": "How it reads now:\nContracts sheet\nCustomer (text, required), Value a year (money, required), Start (date), Renews on (date), Notice (days), Owner (person, whoever adds it), Budget owner (person), Billing email (email), Customer contact (text).\nThe form: Basics (Customer, Value a year, Owner, Budget owner, Billing email and Customer contact), Dates (Start, Renews on and Notice). Asked when creating: Customer and Value a year.\n\nSteps\nDraft → Legal review, for contracts over $50,000 → Signed → Active → Renewal due → Renewed or Ended\n\nWhat happens by itself\n60 days before a contract's notice date, if it is still Active, move it to Renewal due and email its owner to ask them to act on the renewal.\n30 days before a contract's notice date, if it is still in Renewal due, email Wade and the owner to tell them nobody has acted.\nWhen a contract enters Renewal due, start a request in Renewal requests in Spend, named after the customer, with the customer, the yearly value, the renewal date and the contract's budget owner.\n\nWho can see and do what\nWade Wilson and Krishna see every contract, add, edit and move them, and change how it works.\nContract owners see their own contracts and can edit and move them.\nEveryone else sees nothing.\n\nConnections\nPeople fills Owner.\nPeople fills Budget owner.\nAt Renewal due, start a renewal request in Spend.\n\nComing soon\nConnections to other software\n\nLatest message from Wade Wilson:\nRemind owners 90 days before the notice date instead of 60.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"change\",\"reply\":\"Owners will now be reminded 90 days before the notice date instead of 60. The contract still moves to Renewal due at that point. The 30-day \\\"nobody has acted\\\" email stays as it is.\",\"title\":\"Earlier renewal reminders\",\"changes\":[{\"kind\":\"rule\",\"sheet\":\"Contracts\",\"new_sheet\":null,\"column\":null,\"step\":null,\"after\":null,\"rename\":null,\"movers\":null,\"role\":null,\"person\":null,\"rule\":{\"sentence\":\"90 days before a contract's notice date, if it is still Active, move it to Renewal due and email its owner to ask them to act on the renewal.\",\"replaces\":\"60 days before a contract's notice date, if it is still Active, move it to Renewal due and email its owner to ask them to act on the renewal.\"},\"view\":null,\"labels\":null,\"hint\":null,\"sort\":null,\"check\":null,\"form\":null,\"show_when\":null,\"access\":null,\"link\":null,\"explain\":\"Moves the reminder from 60 to 90 days before the notice date, replacing the old rule.\",\"part\":\"Reminder at 90 days before the notice date\"}],\"clarify\":null}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 522,
+      "tokensOut": 581,
+      "cacheRead": 11081,
+      "cacheWrite": 3814
+    },
+    "ms": 3821
+  }
+}

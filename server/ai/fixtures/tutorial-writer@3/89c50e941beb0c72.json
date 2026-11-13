@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Customers\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Customers\",\"one\":\"customer\",\"many\":\"customers\",\"sees\":\"all\",\"add\":\"New customer\",\"edit\":true,\"delete\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Website\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep the list of Fernwood Labs customers, with their names and websites.\",\"steps\":[{\"title\":\"Add a customer\",\"text\":\"Open the Customers list and choose New customer. Enter the customer's name and website, then save it.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Customers\",\"step\":null}},{\"title\":\"Update a customer\",\"text\":\"Open a customer in the Customers list to correct its name or website. Save your changes when you are done.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Customers\",\"step\":null}}],\"waits\":[],\"cannot\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 132,
+      "tokensOut": 437,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2787
+  }
+}

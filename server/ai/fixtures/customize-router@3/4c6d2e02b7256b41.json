@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nHow can this be better?",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"advise\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 16,
+      "tokensOut": 11,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 1155
+  }
+}

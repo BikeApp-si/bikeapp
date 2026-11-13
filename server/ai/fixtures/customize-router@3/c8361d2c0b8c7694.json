@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nAsk for a receipt only when the amount is over $75.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 28,
+      "tokensOut": 10,
+      "cacheRead": 620,
+      "cacheWrite": 7
+    },
+    "ms": 1347
+  }
+}

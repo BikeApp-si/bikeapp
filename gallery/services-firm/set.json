@@ -1,0 +1,79 @@
+{
+  "name": "Professional services firm",
+  "version": 1,
+  "description": "Clients and contracts, projects with budgets, timesheets at each person's rate, expenses and purchases, hiring, onboarding and time off, for an agency or a consultancy.",
+  "listed": true,
+  "beta": true,
+  "usedBy": "firms",
+  "tagline": "ERP for agencies and consultancies",
+  "expects": "For firms of 10 to 50 people who bill clients for their time, in any currency.",
+  "leavesOut": [
+    "Clients don't sign in: Bike is for the firm's own people.",
+    "Invoices and the books: they wait for Bike's accounts, in a later version.",
+    "Scheduling people onto projects: Bike doesn't keep calendars yet.",
+    "Payroll, and connections to accounting or other systems."
+  ],
+  "slots": [
+    {
+      "key": "partner",
+      "name": "Partner",
+      "one": true,
+      "titles": [
+        "Managing partner",
+        "Partner",
+        "Managing director",
+        "Founder",
+        "CEO"
+      ],
+      "does": "Approves purchases and offers above the band, and is told when a project goes over its budget."
+    },
+    {
+      "key": "operations",
+      "name": "Operations",
+      "one": true,
+      "titles": [
+        "Operations manager",
+        "Head of operations",
+        "Office manager",
+        "COO",
+        "People and operations"
+      ],
+      "does": "Keeps clients and contracts, hiring, onboarding and time off."
+    },
+    {
+      "key": "finance",
+      "name": "Finance",
+      "one": true,
+      "titles": [
+        "Finance manager",
+        "Head of finance",
+        "Accountant",
+        "Controller",
+        "Bookkeeper"
+      ],
+      "does": "Approves expenses and keeps rates and project budgets."
+    },
+    {
+      "key": "project_managers",
+      "name": "Project managers",
+      "titles": [
+        "Project manager",
+        "Account manager",
+        "Engagement manager",
+        "Delivery manager",
+        "Producer",
+        "Account director"
+      ],
+      "does": "Run projects: they add clients and projects and see the time and spend on them."
+    }
+  ],
+  "apps": [
+    "clients",
+    "projects",
+    "timesheets",
+    "spend",
+    "onboarding",
+    "hiring",
+    "time_off"
+  ]
+}

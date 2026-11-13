@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Classes and students\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Classes and sections\",\"one\":\"class or section\",\"many\":\"classes and sections\",\"sees\":\"all\",\"add\":null,\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Class\",\"Class teacher\",\"Room\"]},{\"name\":\"Students\",\"one\":\"student\",\"many\":\"students\",\"sees\":\"all\",\"add\":null,\"edit\":false,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Admission number\",\"Class\",\"Section\",\"Roll number\",\"Date of birth\",\"Gender\",\"Admitted on\",\"House\",\"Left on\",\"Father's name\",\"Mother's name\",\"Guardian's name\",\"Phone\",\"Other phone\",\"Email\",\"Address\",\"Nationality\",\"Category\",\"APAAR ID\",\"PEN (UDISE+)\",\"Aadhaar number\",\"Birth certificate\",\"Transfer certificate from the last school\",\"Last school\",\"Blood group\",\"Allergies\",\"Medical notes\",\"Emergency contact\",\"Emergency phone\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you look up classes, sections and students at Greenfield Public School.\",\"steps\":[{\"title\":\"Look up a class or section\",\"text\":\"Open Classes and sections to see each class and section, its class teacher and its room. You can find any class from here.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Classes and sections\",\"step\":null}},{\"title\":\"Look up a student\",\"text\":\"Open Students to find a student by name. You can see their class, section, roll number and contact details there.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Students\",\"step\":null}}],\"waits\":[],\"cannot\":[\"You can't add, change or move any class, section or student.\",\"You can see every student's record, but you can't change anything in it.\",\"You can't remove a class, section or student from the list.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 387,
+      "tokensOut": 634,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 3808
+  }
+}

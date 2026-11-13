@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Client dinner, Kova\",\"Who\":\"Rita Gomez\",\"Date\":\"Sep 17, 2026\",\"Amount\":\"$164\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Meals\",\"reason\":\"Expense is “Client dinner, Kova”, a meal with a client.\",\"confidence\":0.93,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 69,
+      "tokensOut": 54,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1493
+  }
+}

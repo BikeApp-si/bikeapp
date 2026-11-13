@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Supplier bills\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Bills\",\"one\":\"bill\",\"many\":\"bills\",\"sees\":\"all\",\"add\":\"New bill\",\"edit\":true,\"delete\":true,\"steps\":[\"Entered\",\"Matched\",\"Approved\",\"Paid\",\"Rejected\"],\"movesFrom\":[\"Entered\",\"Matched\",\"Approved\"],\"movesTo\":[\"Entered\",\"Matched\",\"Approved\",\"Paid\",\"Rejected\"],\"stepRules\":[],\"columns\":[\"Bill number\",\"Supplier\",\"Purchase\",\"Budget\",\"Bill date\",\"Bill file\",\"Total\",\"Lines off\",\"Match review\",\"Match note\",\"Approval\",\"Paid on\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where Fernwood Labs records supplier bills, checks them against purchases and budgets, and moves them through approval to payment.\",\"steps\":[{\"title\":\"Enter a new bill\",\"text\":\"Use New bill on the Bills sheet to record a supplier bill, with its bill number, supplier, bill date, total and the bill file. The bill starts at Entered.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Bills\",\"step\":null}},{\"title\":\"Check the bill against its purchase\",\"text\":\"Open a bill and look at its match review and match note to see how it lines up with the purchase and budget. Edit the bill if a detail needs fixing.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Bills\",\"step\":null}},{\"title\":\"Move a bill along\",\"text\":\"When a bill is ready, move it on to Matched, Approved, Paid or Rejected. You can move a bill from Entered, Matched or Approved.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Bills\",\"step\":\"Matched\"}},{\"title\":\"Look up a bill\",\"text\":\"Find any bill on the Bills sheet to see its supplier, lines off, approval and when it was paid.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Bills\",\"step\":null}}],\"waits\":[],\"cannot\":[\"Nobody can change a bill once it is marked Paid.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 237,
+      "tokensOut": 437,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2549
+  }
+}

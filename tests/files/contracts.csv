@@ -1,0 +1,13 @@
+Client,ARR,Start date,Renewal,Account owner,Stage,Notes,Region,Contract ID
+Northwind,"$38,400",11/15/2025,11/14/2026,Krishna,Renewal due,Asked about a 2-year term,US Central,CT-1001
+Acme Health,"$28,800",11/29/2025,11/28/2026,Krishna,Active,,US East,CT-1002
+Pinecone Labs,"$19,200",12/04/2025,12/03/2026,Rita Gomez,Active,Pays quarterly,US West,CT-1003
+Orbit Health,"$14,400",01/10/2026,01/09/2027,Rita Gomez,Active,,US East,CT-1004
+Brightline,"$57,600",02/03/2025,02/02/2027,J. Bell,Active,Enterprise,US Central,CT-1005
+Kova,"$10,800",03/10/2026,03/09/2027,Rita Gomez,Active,,EU,CT-1006
+Lumen Retail,"$24,000",04/01/2026,03/31/2027,Krishna,Active,,US West,CT-1007
+Harbor Logistics,"$31,200",06/15/2026,06/14/2027,Krishna,Active,,US South,CT-1008
+Sable Analytics,"$18,000",10/01/2026,,Rita Gomez,Signed,Renewal date to confirm,US East,CT-1009
+Fieldstone,"$18,000",08/03/2026,08/02/2027,Rita Gomez,Active,,US Central,CT-1010
+Cedar Freight,"$24,000",10/15/2026,10/14/2027,Krishna,Active,,US South,CT-1011
+Quill Media,"$12,000",,,Rita Gomez,Draft,Waiting for signature,US East,CT-1012

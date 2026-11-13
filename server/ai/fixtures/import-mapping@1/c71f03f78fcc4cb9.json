@@ -1,0 +1,16 @@
+{
+  "message": "File \"vendors.csv\", header and up to 20 sample rows:\n\"Vendor\",\"Category\",\"Owner Email\",\"Seats\",\"Annual Cost\",\"Renewal Date\"\n\"Figma\",\"Software\",\"priya@fernwood.dev\",\"6\",\"900\",\"2026-11-05\"\n\"Slack\",\"Software\",\"jon@fernwood.dev\",\"14\",\"1260\",\"2026-11-14\"\n\"Google Workspace\",\"Software\",\"jon@fernwood.dev\",\"14\",\"2016\",\"2026-11-23\"\n\"GitHub\",\"Software\",\"priya@fernwood.dev\",\"6\",\"1512\",\"2026-12-02\"\n\"AWS\",\"Cloud\",\"kim@fernwood.dev\",\"1\",\"14880\",\"2026-12-11\"\n\"Vercel\",\"Cloud\",\"kim@fernwood.dev\",\"1\",\"2400\",\"2026-12-20\"\n\"Linear\",\"Software\",\"priya@fernwood.dev\",\"8\",\"768\",\"2026-12-29\"\n\"Notion\",\"Software\",\"jon@fernwood.dev\",\"14\",\"1680\",\"2027-01-07\"\n\"1Password\",\"Software\",\"jon@fernwood.dev\",\"14\",\"1344\",\"2027-01-16\"\n\"HubSpot\",\"Software\",\"dev@fernwood.dev\",\"4\",\"9600\",\"2027-01-25\"\n\"Gusto\",\"Software\",\"lena@fernwood.dev\",\"1\",\"1800\",\"2027-02-03\"\n\"QuickBooks\",\"Software\",\"lena@fernwood.dev\",\"1\",\"1080\",\"2027-02-12\"\n\"Zoom\",\"Software\",\"jon@fernwood.dev\",\"6\",\"900\",\"2027-02-21\"\n\"Loom\",\"Software\",\"nina@fernwood.dev\",\"4\",\"480\",\"2027-03-02\"\n\"Canva\",\"Software\",\"nina@fernwood.dev\",\"3\",\"360\",\"2027-03-11\"\n\"Datadog\",\"Cloud\",\"kim@fernwood.dev\",\"1\",\"6000\",\"2027-03-20\"\n\"Sentry\",\"Cloud\",\"kim@fernwood.dev\",\"1\",\"960\",\"2027-03-29\"\n\"Postman\",\"Software\",\"maya@fernwood.dev\",\"4\",\"576\",\"2027-04-07\"\n\"DocuSign\",\"Software\",\"krishna@fernwood.dev\",\"2\",\"720\",\"2027-04-16\"\n\"Calendly\",\"Software\",\"dev@fernwood.dev\",\"4\",\"384\",\"2027-04-25\"",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"mapping\":[{\"from\":\"Owner Email\",\"to\":\"New starter\",\"format\":null,\"values\":[]},{\"from\":\"Seats\",\"to\":\"Seats\",\"format\":null,\"values\":[]}],\"unmapped\":[\"Vendor\",\"Category\",\"Annual Cost\",\"Renewal Date\"],\"problems\":[\"Owner Email holds vendor owners' email addresses, not new starters; it is mapped to New starter only as a best fit, so check that this is what you want.\",\"Seats is a count of licences, which may not match the sheet's seat assignments meaning; please confirm.\",\"Renewal Date looks like a date, but it does not fit Added on (which records when a seat was added), so it was left unmapped.\",\"Dates in Renewal Date are in year-month-day order and cannot be ambiguous, but no date column was mapped.\",\"The sample covers only 20 rows, so the full file may contain other values or columns not visible here.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 716,
+      "tokensOut": 293,
+      "cacheRead": 0,
+      "cacheWrite": 874
+    },
+    "ms": 2343
+  }
+}

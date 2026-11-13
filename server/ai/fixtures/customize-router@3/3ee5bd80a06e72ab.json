@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: How can I add a company sheet? Tell me the steps.\nBike: 1. Open Customize in Sales leads.\n\n2. Ask here: \"Add a Companies sheet with a Name, a Website and an Owner\". Bike shows the new sheet and what changes for today's rows.\n\n3. Check the plan, then click Apply. Nothing changes until you do.\n\n4. To link leads to companies, ask here: \"Pick the company on each lead from Companies instead of typing it\". Bike matches each typed company to a company row and lists any it can't match before Apply.\n\nSales managers will see the new sheet, since they see every row. Lead owners won't see it until the Owner question on Companies is set, so the suggestion below adds it.\nAdmin: Add a Companies sheet\nBike: (sent a preview)\n\nLatest message:\nAdd a Companies sheet with just a name and a website. No owner.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 300,
+      "tokensOut": 10,
+      "cacheRead": 0,
+      "cacheWrite": 630
+    },
+    "ms": 2088
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "{\"today\":\"2026-10-27\",\"request\":\"Rita's active contracts\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"filters\":[{\"column\":\"Owner\",\"op\":\"in\",\"values\":[\"Rita Gomez\"],\"text\":null,\"from\":null,\"to\":null},{\"column\":\"Status\",\"op\":\"in\",\"values\":[\"Active\"],\"text\":null,\"from\":null,\"to\":null}],\"could_not\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 29,
+      "tokensOut": 252,
+      "cacheRead": 1750,
+      "cacheWrite": 0
+    },
+    "ms": 1868
+  }
+}

@@ -1,0 +1,688 @@
+{
+  "name": "Spend",
+  "icon": "wallet",
+  "description": "Expenses and purchases, for the firm or a project",
+  "sheets": [
+    {
+      "id": "expenses",
+      "name": "Expenses",
+      "kind": "list",
+      "row": {
+        "one": "expense",
+        "many": "expenses"
+      },
+      "addAction": "Add an expense",
+      "sort": {
+        "column": "status",
+        "dir": "asc",
+        "then": {
+          "column": "date",
+          "dir": "desc"
+        }
+      },
+      "titleColumn": "what",
+      "form": {
+        "tabs": [
+          {
+            "name": "Basics",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "what",
+                  "who",
+                  "date",
+                  "amount",
+                  "category",
+                  "project",
+                  "billable",
+                  "note"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Payment",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "paid_with",
+                  "receipt",
+                  "paid_on"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "columns": [
+        {
+          "id": "what",
+          "name": "What for",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "who",
+          "name": "Who",
+          "type": "person",
+          "required": true,
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "required": true,
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "amount",
+          "name": "Amount",
+          "type": "money",
+          "required": true
+        },
+        {
+          "id": "category",
+          "name": "Category",
+          "type": "choice",
+          "options": [
+            {
+              "id": "travel",
+              "name": "Travel"
+            },
+            {
+              "id": "meals",
+              "name": "Meals"
+            },
+            {
+              "id": "lodging",
+              "name": "Lodging"
+            },
+            {
+              "id": "software",
+              "name": "Software"
+            },
+            {
+              "id": "materials",
+              "name": "Materials"
+            },
+            {
+              "id": "office",
+              "name": "Office"
+            },
+            {
+              "id": "other",
+              "name": "Other"
+            }
+          ]
+        },
+        {
+          "id": "project",
+          "name": "Project",
+          "type": "link",
+          "link": {
+            "capability": "@app:projects",
+            "sheet": "projects",
+            "pick": true
+          }
+        },
+        {
+          "id": "billable",
+          "name": "Billable to the client",
+          "type": "choice",
+          "options": [
+            {
+              "id": "yes",
+              "name": "Yes"
+            },
+            {
+              "id": "no",
+              "name": "No"
+            }
+          ],
+          "showWhen": {
+            "op": "not",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "project"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "paid_with",
+          "name": "Paid with",
+          "type": "choice",
+          "options": [
+            {
+              "id": "own_card",
+              "name": "My own card"
+            },
+            {
+              "id": "company_card",
+              "name": "Company card"
+            }
+          ]
+        },
+        {
+          "id": "receipt",
+          "name": "Receipt",
+          "type": "file"
+        },
+        {
+          "id": "paid_on",
+          "name": "Paid on",
+          "type": "date"
+        },
+        {
+          "id": "note",
+          "name": "Note",
+          "type": "text"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "needs_receipt",
+          "name": "Needs a receipt",
+          "start": true,
+          "moveOut": "submitter",
+          "tone": "yellow"
+        },
+        {
+          "id": "submitted",
+          "name": "Submitted",
+          "tone": "yellow"
+        },
+        {
+          "id": "approved",
+          "name": "Approved",
+          "moveIn": "not_submitter",
+          "tone": "green",
+          "button": "Approve"
+        },
+        {
+          "id": "paid",
+          "name": "Paid",
+          "end": "final",
+          "tone": "done",
+          "button": "Mark paid"
+        },
+        {
+          "id": "rejected",
+          "name": "Rejected",
+          "end": "exit",
+          "moveIn": "not_submitter",
+          "tone": "grey",
+          "button": "Reject"
+        }
+      ]
+    },
+    {
+      "id": "purchases",
+      "name": "Purchases",
+      "kind": "list",
+      "row": {
+        "one": "purchase",
+        "many": "purchases"
+      },
+      "addAction": "Request a purchase",
+      "titleColumn": "what",
+      "columns": [
+        {
+          "id": "what",
+          "name": "What",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "requested_by",
+          "name": "Requested by",
+          "type": "person",
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "supplier",
+          "name": "Supplier",
+          "type": "text"
+        },
+        {
+          "id": "amount",
+          "name": "Amount",
+          "type": "money",
+          "required": true
+        },
+        {
+          "id": "project",
+          "name": "Project",
+          "type": "link",
+          "link": {
+            "capability": "@app:projects",
+            "sheet": "projects",
+            "pick": true
+          }
+        },
+        {
+          "id": "quote",
+          "name": "Quote",
+          "type": "file"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "submitted",
+          "name": "Submitted",
+          "start": true,
+          "tone": "yellow"
+        },
+        {
+          "id": "approved",
+          "name": "Approved",
+          "moveIn": "not_submitter",
+          "tone": "green",
+          "button": "Approve"
+        },
+        {
+          "id": "ordered",
+          "name": "Ordered",
+          "tone": "blue",
+          "button": "Mark ordered"
+        },
+        {
+          "id": "received",
+          "name": "Received",
+          "end": "final",
+          "tone": "done",
+          "button": "Mark received"
+        },
+        {
+          "id": "rejected",
+          "name": "Rejected",
+          "end": "exit",
+          "moveIn": "not_submitter",
+          "tone": "grey",
+          "button": "Reject"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "finance",
+      "name": "Finance",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:finance"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "delete",
+        "move_steps",
+        "customize"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "partner",
+      "name": "Partner",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:partner"
+        ]
+      },
+      "can": [
+        "see",
+        "move_steps"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "project_managers",
+      "name": "Project managers",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:project_managers"
+        ]
+      },
+      "can": [
+        "see"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "requesters",
+      "name": "Everyone",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "moveFrom": [
+        "needs_receipt"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "purchases": {
+          "column": "requested_by"
+        },
+        "expenses": {
+          "column": "who"
+        }
+      },
+      "view": {
+        "sheet": "expenses",
+        "line": "Your own expenses",
+        "columns": [
+          {
+            "column": "what"
+          },
+          {
+            "column": "date",
+            "name": "When",
+            "hint": "note"
+          },
+          {
+            "column": "amount"
+          },
+          {
+            "column": "status",
+            "hint": "paid_on"
+          }
+        ],
+        "form": [
+          "receipt",
+          "what",
+          [
+            "date",
+            "amount"
+          ],
+          [
+            "category",
+            "paid_with"
+          ],
+          "project",
+          "billable"
+        ]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "added_with_receipt",
+      "text": "An expense added with its receipt is Submitted.",
+      "reading": {
+        "when": "An expense is added with its receipt",
+        "then": "It moves to Submitted"
+      },
+      "trigger": {
+        "kind": "row_created",
+        "sheet": "expenses"
+      },
+      "condition": {
+        "op": "and",
+        "args": [
+          {
+            "op": "eq",
+            "args": [
+              {
+                "col": "status"
+              },
+              "needs_receipt"
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "receipt"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "move_to_step",
+          "step": "submitted"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "receipt_attached",
+      "text": "When a receipt is attached to an expense that needs one, it is Submitted.",
+      "reading": {
+        "when": "A receipt is attached to an expense that needs one",
+        "then": "It moves to Submitted"
+      },
+      "trigger": {
+        "kind": "field_changed",
+        "sheet": "expenses",
+        "field": "receipt"
+      },
+      "condition": {
+        "op": "and",
+        "args": [
+          {
+            "op": "eq",
+            "args": [
+              {
+                "col": "status"
+              },
+              "needs_receipt"
+            ]
+          },
+          {
+            "op": "not",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "receipt"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "move_to_step",
+          "step": "submitted"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "expense_to_finance",
+      "text": "Submitted expenses wait on finance to approve them.",
+      "reading": {
+        "when": "An expense is Submitted",
+        "then": "It waits on finance to approve or reject it"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "expenses",
+        "step": "submitted"
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "person": "@slot:finance",
+          "step": "submitted",
+          "label": "Approve or reject"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "expense_to_budget",
+      "text": "An approved expense for a project is added to what the project has spent.",
+      "reading": {
+        "when": "An expense for a project is approved",
+        "then": "Its amount is added to what the project has spent"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "expenses",
+        "step": "approved"
+      },
+      "condition": {
+        "op": "not",
+        "args": [
+          {
+            "op": "empty",
+            "args": [
+              {
+                "col": "project"
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "capability": "@app:projects",
+            "sheet": "entries"
+          },
+          "map": {
+            "entry": "Expense",
+            "project": {
+              "col": "project"
+            },
+            "amount": {
+              "col": "amount"
+            },
+            "on": {
+              "col": "date"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "purchase_to_partner",
+      "text": "A purchase request waits on the partner.",
+      "reading": {
+        "when": "A purchase is requested",
+        "then": "It waits on the partner to approve or reject it"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "purchases",
+        "step": "submitted"
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "person": "@slot:partner",
+          "step": "submitted",
+          "label": "Approve or reject"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "purchase_to_budget",
+      "text": "An approved purchase for a project is added to what the project has spent.",
+      "reading": {
+        "when": "A purchase for a project is approved",
+        "then": "Its amount is added to what the project has spent"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "purchases",
+        "step": "approved"
+      },
+      "condition": {
+        "op": "not",
+        "args": [
+          {
+            "op": "empty",
+            "args": [
+              {
+                "col": "project"
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "capability": "@app:projects",
+            "sheet": "entries"
+          },
+          "map": {
+            "entry": "Purchase",
+            "project": {
+              "col": "project"
+            },
+            "amount": {
+              "col": "amount"
+            },
+            "on": {
+              "col": "date"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "Mileage at a rate by date",
+    "Expenses billed on to clients"
+  ]
+}

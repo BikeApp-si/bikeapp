@@ -1,0 +1,16 @@
+{
+  "message": "Latest message from Wade Wilson:\nShow spend by team this quarter against each team’s budget.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"type\":\"report\",\"lead\":\"I'll pull this quarter's spend by team and set it against each team's budget.\",\"brief\":null,\"left_out\":null,\"question\":null,\"capability\":null,\"rule_requests\":[],\"rules_from\":null,\"suggested_connections\":[],\"also_changes\":[],\"experience\":null,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 36,
+      "tokensOut": 109,
+      "cacheRead": 10107,
+      "cacheWrite": 4565
+    },
+    "ms": 2468
+  }
+}

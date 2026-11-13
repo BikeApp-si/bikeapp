@@ -1,0 +1,16 @@
+{
+  "message": "File \"leave.csv\", header and up to 20 sample rows:\n\"Employee Email\",\"Leave Type\",\"From\",\"To\",\"Days\",\"Status\",\"Note\"\n\"omar@fernwood.dev\",\"Vacation\",\"2025-01-06\",\"2025-01-10\",\"5\",\"Taken\",\"\"\n\"kim@fernwood.dev\",\"Vacation\",\"2025-01-09\",\"2025-01-10\",\"2\",\"Taken\",\"\"\n\"nina@fernwood.dev\",\"Vacation\",\"2025-01-12\",\"2025-01-14\",\"3\",\"Declined\",\"\"\n\"lena@fernwood.dev\",\"Vacation\",\"2025-01-15\",\"2025-01-16\",\"2\",\"Taken\",\"\"\n\"rita@fernwood.dev\",\"Vacation\",\"2025-01-19\",\"2025-01-20\",\"2\",\"Taken\",\"\"\n\"priya@fernwood.dev\",\"Sick\",\"2025-01-22\",\"2025-01-22\",\"1\",\"Declined\",\"\"\n\"rita@fernwood.dev\",\"Vacation\",\"2025-01-25\",\"2025-01-26\",\"2\",\"Taken\",\"\"\n\"leo@fernwood.dev\",\"Sick\",\"2025-01-28\",\"2025-02-01\",\"5\",\"Declined\",\"\"\n\"rita@fernwood.dev\",\"Sick\",\"2025-02-01\",\"2025-02-04\",\"4\",\"Taken\",\"\"\n\"kim@fernwood.dev\",\"Vacation\",\"2025-02-04\",\"2025-02-06\",\"3\",\"Taken\",\"\"\n\"jon@fernwood.dev\",\"Vacation\",\"2025-02-07\",\"2025-02-08\",\"2\",\"Taken\",\"\"\n\"priya@fernwood.dev\",\"Personal\",\"2025-02-10\",\"2025-02-10\",\"1\",\"Taken\",\"\"\n\"jon@fernwood.dev\",\"Vacation\",\"2025-02-14\",\"2025-02-15\",\"2\",\"Taken\",\"\"\n\"lena@fernwood.dev\",\"Sick\",\"2025-02-17\",\"2025-02-19\",\"3\",\"Taken\",\"\"\n\"priya@fernwood.dev\",\"Sick\",\"2025-02-20\",\"2025-02-23\",\"4\",\"Taken\",\"\"\n\"leo@fernwood.dev\",\"Vacation\",\"2025-02-24\",\"2025-02-24\",\"1\",\"Declined\",\"\"\n\"dev@fernwood.dev\",\"Vacation\",\"2025-02-27\",\"2025-02-28\",\"2\",\"Taken\",\"\"\n\"omar@fernwood.dev\",\"Vacation\",\"2025-03-02\",\"2025-03-02\",\"1\",\"Taken\",\"\"\n\"priya@fernwood.dev\",\"Sick\",\"2025-03-05\",\"2025-03-05\",\"1\",\"Taken\",\"\"\n\"kim@fernwood.dev\",\"Personal\",\"2025-03-09\",\"2025-03-13\",\"5\",\"Declined\",\"\"",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"mapping\":[{\"from\":\"Employee Email\",\"to\":\"Person\",\"format\":null,\"values\":[]}],\"unmapped\":[\"Leave Type\",\"From\",\"To\",\"Days\",\"Status\",\"Note\"],\"problems\":[\"Employee Email is mapped to Person because it identifies each employee; the Name column has no matching source column in the file.\",\"The Days column records days per leave request, not an annual allowance, so it was not mapped to Allowance. Check whether a separate allowance figure is needed.\",\"The file has no column for leave balances, so the Balances sheet would only receive the person links unless allowances are supplied from another source.\",\"Leave Type and Status look like choice columns, but they were left unmapped because the target sheet has no matching column.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 823,
+      "tokensOut": 565,
+      "cacheRead": 776,
+      "cacheWrite": 76
+    },
+    "ms": 3752
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Timesheets\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Time\",\"one\":\"time entry\",\"many\":\"time entries\",\"sees\":\"all\",\"add\":\"Log time\",\"edit\":true,\"delete\":true,\"steps\":[\"Draft\",\"Submitted\",\"Approved\",\"Rejected\"],\"movesFrom\":[\"Draft\",\"Submitted\"],\"movesTo\":[\"Draft\",\"Submitted\",\"Approved\",\"Rejected\"],\"stepRules\":[\"Approved: not by the person who submitted the time entry\",\"Rejected: not by the person who submitted the time entry\"],\"columns\":[\"Who\",\"Project\",\"Date\",\"Hours\",\"Work done\",\"Billable\",\"Rate\",\"Value\"]},{\"name\":\"Rates\",\"one\":\"rate\",\"many\":\"rates\",\"sees\":\"all\",\"add\":\"New rate\",\"edit\":true,\"delete\":true,\"dated\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Who\",\"From\",\"Until\",\"Rate an hour\"]}],\"rules\":[\"Submitted time waits on the person's manager.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you log your hours on projects and send them on for approval at Kestrel Partners.\",\"steps\":[{\"title\":\"Log your time\",\"text\":\"Add a time entry for each project you worked on. Fill in the project, date, hours and what you did. Keep it as a draft until it is ready.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Time\",\"step\":null}},{\"title\":\"Submit your time\",\"text\":\"When a draft is ready, move it on to Submitted so your manager can check it. You can edit a time entry while it is still a draft or submitted.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Time\",\"step\":\"Submitted\"}},{\"title\":\"Approve time that waits on you\",\"text\":\"Where you are the one to check someone else's submitted time, approve it or reject it. You can't approve or reject time you submitted yourself.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Time\",\"step\":\"Approved\"}},{\"title\":\"Check the rate for a date\",\"text\":\"Look up the hourly rate that applied on a given date. Rates change over time, so check the dates on each line.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Rates\",\"step\":null}}],\"waits\":[\"Submitted time waits on the person's manager.\",\"Your manager approves your time; you can't approve your own.\",\"Rates are set in advance and apply from their start date.\"],\"cannot\":[\"You can't approve or reject time you submitted yourself.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 355,
+      "tokensOut": 453,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2729
+  }
+}

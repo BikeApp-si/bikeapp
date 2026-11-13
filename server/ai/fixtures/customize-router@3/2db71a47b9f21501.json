@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nKeep spending limits for each category, each with the date it starts. An expense can't be over its category's limit in force on its date.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 47,
+      "tokensOut": 10,
+      "cacheRead": 627,
+      "cacheWrite": 0
+    },
+    "ms": 739
+  }
+}

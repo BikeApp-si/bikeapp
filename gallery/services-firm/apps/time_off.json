@@ -1,0 +1,509 @@
+{
+  "name": "Time off",
+  "icon": "calendar-days",
+  "description": "Requests, balances and holidays",
+  "sheets": [
+    {
+      "id": "requests",
+      "name": "Requests",
+      "kind": "list",
+      "row": {
+        "one": "request",
+        "many": "requests"
+      },
+      "addAction": "Request time off",
+      "sort": {
+        "column": "status",
+        "dir": "asc",
+        "then": {
+          "column": "from",
+          "dir": "desc"
+        }
+      },
+      "titleColumn": "who",
+      "columns": [
+        {
+          "id": "who",
+          "name": "Who",
+          "type": "person",
+          "required": true,
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "type",
+          "name": "Type",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "vacation",
+              "name": "Vacation"
+            },
+            {
+              "id": "sick",
+              "name": "Sick"
+            },
+            {
+              "id": "personal",
+              "name": "Personal"
+            },
+            {
+              "id": "unpaid",
+              "name": "Unpaid"
+            }
+          ]
+        },
+        {
+          "id": "from",
+          "name": "From",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "to",
+          "name": "To",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "days",
+          "name": "Days",
+          "type": "computed",
+          "result": "number",
+          "expr": {
+            "op": "add",
+            "args": [
+              {
+                "op": "sub",
+                "args": [
+                  {
+                    "col": "to"
+                  },
+                  {
+                    "col": "from"
+                  }
+                ]
+              },
+              1
+            ]
+          }
+        },
+        {
+          "id": "note",
+          "name": "Note",
+          "type": "long_text"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        },
+        {
+          "id": "balance_after",
+          "name": "Balance after",
+          "type": "computed",
+          "result": "days",
+          "expr": {
+            "op": "sub",
+            "args": [
+              {
+                "lookup": {
+                  "sheet": "balances",
+                  "where": "who",
+                  "is": "who",
+                  "value": "left"
+                }
+              },
+              {
+                "col": "days"
+              }
+            ]
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "submitted",
+          "name": "Submitted",
+          "start": true,
+          "tone": "yellow"
+        },
+        {
+          "id": "approved",
+          "name": "Approved",
+          "moveIn": "not_submitter",
+          "tone": "green",
+          "button": "Approve"
+        },
+        {
+          "id": "declined",
+          "name": "Declined",
+          "end": "exit",
+          "moveIn": "not_submitter",
+          "tone": "grey",
+          "button": "Decline"
+        },
+        {
+          "id": "taken",
+          "name": "Taken",
+          "end": "final",
+          "tone": "done"
+        }
+      ],
+      "checks": [
+        {
+          "id": "balance",
+          "name": "Within your balance",
+          "condition": {
+            "op": "or",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "lookup": {
+                      "sheet": "balances",
+                      "where": "who",
+                      "is": "who",
+                      "value": "left"
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "ne",
+                "args": [
+                  {
+                    "col": "type"
+                  },
+                  "vacation"
+                ]
+              },
+              {
+                "op": "lte",
+                "args": [
+                  {
+                    "col": "days"
+                  },
+                  {
+                    "lookup": {
+                      "sheet": "balances",
+                      "where": "who",
+                      "is": "who",
+                      "value": "left"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "order",
+          "name": "To is on or after From",
+          "condition": {
+            "op": "gte",
+            "args": [
+              {
+                "col": "to"
+              },
+              {
+                "col": "from"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "balances",
+      "name": "Balances",
+      "kind": "list",
+      "row": {
+        "one": "balance",
+        "many": "balances"
+      },
+      "addAction": "New balance",
+      "titleColumn": "who",
+      "columns": [
+        {
+          "id": "who",
+          "name": "Who",
+          "type": "person",
+          "required": true
+        },
+        {
+          "id": "year",
+          "name": "Year",
+          "type": "number"
+        },
+        {
+          "id": "allowance",
+          "name": "Days a year",
+          "type": "days"
+        },
+        {
+          "id": "used",
+          "name": "Used",
+          "type": "days"
+        },
+        {
+          "id": "left",
+          "name": "Left",
+          "type": "computed",
+          "result": "days",
+          "expr": {
+            "op": "sub",
+            "args": [
+              {
+                "col": "allowance"
+              },
+              {
+                "col": "used"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "holidays",
+      "name": "Holidays",
+      "kind": "list",
+      "row": {
+        "one": "holiday",
+        "many": "holidays"
+      },
+      "addAction": "New holiday",
+      "titleColumn": "name",
+      "columns": [
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "name",
+          "name": "Holiday",
+          "type": "text",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "admins",
+      "name": "Operations",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:operations"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "delete",
+        "move_steps",
+        "customize"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "everyone",
+      "name": "Everyone",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "add"
+      ],
+      "sheets": [
+        "requests",
+        "balances"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "requests": {
+          "column": "who"
+        },
+        "balances": {
+          "column": "who"
+        }
+      },
+      "view": {
+        "sheet": "requests",
+        "line": "Your requests and balance",
+        "columns": [
+          {
+            "column": "from",
+            "name": "Dates",
+            "to": "to"
+          },
+          {
+            "column": "days"
+          },
+          {
+            "column": "type"
+          },
+          {
+            "column": "status"
+          }
+        ],
+        "form": [
+          "type",
+          [
+            "from",
+            "to"
+          ],
+          "note"
+        ]
+      }
+    },
+    {
+      "id": "calendar",
+      "name": "Everyone (holidays)",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see"
+      ],
+      "sheets": [
+        "holidays"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "managers",
+      "name": "Managers",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "move_steps"
+      ],
+      "moveFrom": [
+        "submitted"
+      ],
+      "sheets": [
+        "requests"
+      ],
+      "scope": "team",
+      "scopeColumns": {
+        "requests": {
+          "column": "who"
+        }
+      },
+      "view": {
+        "sheet": "requests",
+        "line": "Your team's requests",
+        "columns": [
+          {
+            "column": "who"
+          },
+          {
+            "column": "from",
+            "name": "Dates",
+            "to": "to"
+          },
+          {
+            "column": "days"
+          },
+          {
+            "column": "type"
+          },
+          {
+            "column": "status"
+          }
+        ]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "to_manager",
+      "text": "Requests go to the person's manager.",
+      "reading": {
+        "when": "A request is sent",
+        "then": "It waits on the person's manager to approve or decline it"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "requests",
+        "step": "submitted"
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "managerOf": "who",
+          "step": "submitted",
+          "label": "Approve or decline"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "told_approved",
+      "text": "When a request is approved, tell the person and operations.",
+      "reading": {
+        "when": "A request is approved",
+        "then": "The person and operations are emailed"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "requests",
+        "step": "approved"
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "columns": [
+            "who"
+          ],
+          "people": [
+            "@slot:operations"
+          ],
+          "message": "Your time off request was approved."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "told_declined",
+      "text": "When a request is declined, tell the person and operations.",
+      "reading": {
+        "when": "A request is declined",
+        "then": "The person and operations are emailed"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "requests",
+        "step": "declined"
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "columns": [
+            "who"
+          ],
+          "people": [
+            "@slot:operations"
+          ],
+          "message": "Your time off request was declined."
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "Balances that grow each month"
+  ]
+}

@@ -1,0 +1,429 @@
+{
+  "name": "Projects",
+  "icon": "folder-kanban",
+  "description": "Projects for clients, with their budgets",
+  "sheets": [
+    {
+      "id": "projects",
+      "name": "Projects",
+      "kind": "list",
+      "row": {
+        "one": "project",
+        "many": "projects"
+      },
+      "addAction": "New project",
+      "titleColumn": "name",
+      "sort": {
+        "column": "status",
+        "dir": "asc",
+        "then": {
+          "column": "start",
+          "dir": "desc"
+        }
+      },
+      "form": {
+        "tabs": [
+          {
+            "name": "Project",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "name",
+                  "client",
+                  "contract",
+                  "manager",
+                  "kind",
+                  "start",
+                  "end"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Budget",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "budget"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "columns": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "client",
+          "name": "Client",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:clients",
+            "sheet": "clients",
+            "pick": true
+          }
+        },
+        {
+          "id": "contract",
+          "name": "Contract",
+          "type": "link",
+          "link": {
+            "capability": "@app:clients",
+            "sheet": "contracts",
+            "pick": true
+          }
+        },
+        {
+          "id": "manager",
+          "name": "Project manager",
+          "type": "person",
+          "required": true,
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "kind",
+          "name": "Kind",
+          "type": "choice",
+          "options": [
+            {
+              "id": "retainer",
+              "name": "Retainer"
+            },
+            {
+              "id": "fixed",
+              "name": "Fixed fee"
+            },
+            {
+              "id": "time",
+              "name": "Time and materials"
+            }
+          ]
+        },
+        {
+          "id": "start",
+          "name": "Start",
+          "type": "date",
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "end",
+          "name": "End",
+          "type": "date"
+        },
+        {
+          "id": "budget",
+          "name": "Budget",
+          "type": "money",
+          "default": {
+            "kind": "value",
+            "value": 0
+          }
+        },
+        {
+          "id": "spent",
+          "name": "Spent",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "balanceOf": {
+              "sheet": "entries"
+            }
+          }
+        },
+        {
+          "id": "remaining",
+          "name": "Remaining",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "op": "sub",
+            "args": [
+              {
+                "col": "budget"
+              },
+              {
+                "col": "spent"
+              }
+            ]
+          }
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "proposed",
+          "name": "Proposed",
+          "start": true,
+          "tone": "grey"
+        },
+        {
+          "id": "active",
+          "name": "Active",
+          "tone": "green"
+        },
+        {
+          "id": "on_hold",
+          "name": "On hold",
+          "tone": "orange"
+        },
+        {
+          "id": "done",
+          "name": "Done",
+          "end": "final",
+          "tone": "done",
+          "button": "Mark done"
+        },
+        {
+          "id": "cancelled",
+          "name": "Cancelled",
+          "end": "exit",
+          "tone": "grey",
+          "button": "Cancel"
+        }
+      ],
+      "checks": [
+        {
+          "id": "ends_after",
+          "name": "The end is after the start",
+          "condition": {
+            "op": "or",
+            "args": [
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "end"
+                  }
+                ]
+              },
+              {
+                "op": "empty",
+                "args": [
+                  {
+                    "col": "start"
+                  }
+                ]
+              },
+              {
+                "op": "gte",
+                "args": [
+                  {
+                    "col": "end"
+                  },
+                  {
+                    "col": "start"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "entries",
+      "name": "Budget entries",
+      "kind": "ledger",
+      "ledger": {
+        "account": "project",
+        "amount": "amount",
+        "balance": "spent_after",
+        "reverses": "reverses"
+      },
+      "row": {
+        "one": "entry",
+        "many": "entries"
+      },
+      "addAction": "New entry",
+      "titleColumn": "entry",
+      "columns": [
+        {
+          "id": "entry",
+          "name": "Entry",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "project",
+          "name": "Project",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "projects"
+          }
+        },
+        {
+          "id": "amount",
+          "name": "Amount",
+          "type": "money",
+          "required": true
+        },
+        {
+          "id": "on",
+          "name": "On",
+          "type": "date",
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "reverses",
+          "name": "Reverses",
+          "type": "link",
+          "link": {
+            "sheet": "entries"
+          }
+        },
+        {
+          "id": "spent_after",
+          "name": "Spent after",
+          "type": "money"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "leads",
+      "name": "Partner and finance",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:partner",
+          "@slot:finance"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "delete",
+        "move_steps",
+        "customize"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "project_managers",
+      "name": "Project managers",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:project_managers"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "everyone",
+      "name": "Everyone",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see"
+      ],
+      "sheets": [
+        "projects"
+      ],
+      "scope": "all"
+    }
+  ],
+  "rules": [
+    {
+      "id": "over_budget",
+      "text": "When a project goes over its budget, tell the partner.",
+      "reading": {
+        "when": "An entry takes a project's spending over its budget",
+        "then": "The partner is told"
+      },
+      "trigger": {
+        "kind": "row_created",
+        "sheet": "entries"
+      },
+      "condition": {
+        "op": "and",
+        "args": [
+          {
+            "op": "gt",
+            "args": [
+              {
+                "col": "budget",
+                "via": "project"
+              },
+              0
+            ]
+          },
+          {
+            "op": "gt",
+            "args": [
+              {
+                "col": "spent_after"
+              },
+              {
+                "col": "budget",
+                "via": "project"
+              }
+            ]
+          },
+          {
+            "op": "lte",
+            "args": [
+              {
+                "op": "sub",
+                "args": [
+                  {
+                    "col": "spent_after"
+                  },
+                  {
+                    "col": "amount"
+                  }
+                ]
+              },
+              {
+                "col": "budget",
+                "via": "project"
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "people": [
+            "@slot:partner"
+          ],
+          "message": "A project has gone over its budget."
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "Milestones and deliverables",
+    "Invoices from approved time"
+  ]
+}

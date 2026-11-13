@@ -1,0 +1,1032 @@
+{
+  "name": "Fees",
+  "icon": "indian-rupee",
+  "description": "Fee structures, each student's fee card, payments and concessions",
+  "sheets": [
+    {
+      "id": "structures",
+      "name": "Fee structures",
+      "kind": "dated",
+      "dated": {
+        "key": "class",
+        "from": "from",
+        "until": "until"
+      },
+      "row": {
+        "one": "fee structure",
+        "many": "fee structures"
+      },
+      "addAction": "New fee structure",
+      "titleColumn": "class",
+      "columns": [
+        {
+          "id": "class",
+          "name": "Class",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:students",
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "from",
+          "name": "From",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "until",
+          "name": "Until",
+          "type": "date"
+        },
+        {
+          "id": "tuition",
+          "name": "Tuition for the year",
+          "type": "money",
+          "required": true
+        },
+        {
+          "id": "annual",
+          "name": "Annual charges",
+          "type": "money",
+          "default": {
+            "kind": "value",
+            "value": 0
+          }
+        },
+        {
+          "id": "development",
+          "name": "Development fee",
+          "type": "money",
+          "default": {
+            "kind": "value",
+            "value": 0
+          }
+        },
+        {
+          "id": "activities",
+          "name": "Activities and computers",
+          "type": "money",
+          "default": {
+            "kind": "value",
+            "value": 0
+          }
+        },
+        {
+          "id": "total",
+          "name": "Fee for the year",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "op": "add",
+            "args": [
+              {
+                "col": "tuition"
+              },
+              {
+                "op": "add",
+                "args": [
+                  {
+                    "col": "annual"
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "col": "development"
+                      },
+                      {
+                        "col": "activities"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "due_1",
+          "name": "First instalment due",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "due_2",
+          "name": "Second instalment due",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "due_3",
+          "name": "Third instalment due",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "due_4",
+          "name": "Fourth instalment due",
+          "type": "date",
+          "required": true
+        }
+      ],
+      "form": {
+        "tabs": [
+          {
+            "name": "Fees",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "class",
+                  "from",
+                  "tuition",
+                  "annual",
+                  "development",
+                  "activities"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Instalments",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "due_1",
+                  "due_2",
+                  "due_3",
+                  "due_4"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cards",
+      "name": "Fee cards",
+      "kind": "list",
+      "row": {
+        "one": "fee card",
+        "many": "fee cards"
+      },
+      "addAction": "New fee card",
+      "titleColumn": "student",
+      "columns": [
+        {
+          "id": "student",
+          "name": "Student",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:students",
+            "sheet": "students"
+          }
+        },
+        {
+          "id": "class",
+          "name": "Class",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:students",
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "year_from",
+          "name": "Year from",
+          "type": "date",
+          "required": true,
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "year_fee",
+          "name": "Fee for the year",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "inForce": {
+              "sheet": "structures",
+              "is": "class",
+              "on": "year_from",
+              "value": "total"
+            }
+          }
+        },
+        {
+          "id": "owing",
+          "name": "Owing",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "balanceOf": {
+              "sheet": "entries"
+            }
+          }
+        },
+        {
+          "id": "due_now",
+          "name": "Due by now",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "op": "div",
+            "args": [
+              {
+                "op": "mul",
+                "args": [
+                  {
+                    "col": "year_fee"
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "if",
+                        "args": [
+                          {
+                            "op": "lte",
+                            "args": [
+                              {
+                                "inForce": {
+                                  "sheet": "structures",
+                                  "is": "class",
+                                  "on": "year_from",
+                                  "value": "due_1"
+                                }
+                              },
+                              {
+                                "ref": "today"
+                              }
+                            ]
+                          },
+                          1,
+                          0
+                        ]
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "if",
+                            "args": [
+                              {
+                                "op": "lte",
+                                "args": [
+                                  {
+                                    "inForce": {
+                                      "sheet": "structures",
+                                      "is": "class",
+                                      "on": "year_from",
+                                      "value": "due_2"
+                                    }
+                                  },
+                                  {
+                                    "ref": "today"
+                                  }
+                                ]
+                              },
+                              1,
+                              0
+                            ]
+                          },
+                          {
+                            "op": "add",
+                            "args": [
+                              {
+                                "op": "if",
+                                "args": [
+                                  {
+                                    "op": "lte",
+                                    "args": [
+                                      {
+                                        "inForce": {
+                                          "sheet": "structures",
+                                          "is": "class",
+                                          "on": "year_from",
+                                          "value": "due_3"
+                                        }
+                                      },
+                                      {
+                                        "ref": "today"
+                                      }
+                                    ]
+                                  },
+                                  1,
+                                  0
+                                ]
+                              },
+                              {
+                                "op": "if",
+                                "args": [
+                                  {
+                                    "op": "lte",
+                                    "args": [
+                                      {
+                                        "inForce": {
+                                          "sheet": "structures",
+                                          "is": "class",
+                                          "on": "year_from",
+                                          "value": "due_4"
+                                        }
+                                      },
+                                      {
+                                        "ref": "today"
+                                      }
+                                    ]
+                                  },
+                                  1,
+                                  0
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              4
+            ]
+          }
+        },
+        {
+          "id": "overdue",
+          "name": "Overdue",
+          "type": "computed",
+          "result": "money",
+          "expr": {
+            "op": "sub",
+            "args": [
+              {
+                "col": "owing"
+              },
+              {
+                "op": "sub",
+                "args": [
+                  {
+                    "col": "year_fee"
+                  },
+                  {
+                    "col": "due_now"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "last_due",
+          "name": "Last due date",
+          "type": "computed",
+          "result": "date",
+          "expr": {
+            "op": "if",
+            "args": [
+              {
+                "op": "lte",
+                "args": [
+                  {
+                    "inForce": {
+                      "sheet": "structures",
+                      "is": "class",
+                      "on": "year_from",
+                      "value": "due_4"
+                    }
+                  },
+                  {
+                    "ref": "today"
+                  }
+                ]
+              },
+              {
+                "inForce": {
+                  "sheet": "structures",
+                  "is": "class",
+                  "on": "year_from",
+                  "value": "due_4"
+                }
+              },
+              {
+                "op": "if",
+                "args": [
+                  {
+                    "op": "lte",
+                    "args": [
+                      {
+                        "inForce": {
+                          "sheet": "structures",
+                          "is": "class",
+                          "on": "year_from",
+                          "value": "due_3"
+                        }
+                      },
+                      {
+                        "ref": "today"
+                      }
+                    ]
+                  },
+                  {
+                    "inForce": {
+                      "sheet": "structures",
+                      "is": "class",
+                      "on": "year_from",
+                      "value": "due_3"
+                    }
+                  },
+                  {
+                    "op": "if",
+                    "args": [
+                      {
+                        "op": "lte",
+                        "args": [
+                          {
+                            "inForce": {
+                              "sheet": "structures",
+                              "is": "class",
+                              "on": "year_from",
+                              "value": "due_2"
+                            }
+                          },
+                          {
+                            "ref": "today"
+                          }
+                        ]
+                      },
+                      {
+                        "inForce": {
+                          "sheet": "structures",
+                          "is": "class",
+                          "on": "year_from",
+                          "value": "due_2"
+                        }
+                      },
+                      {
+                        "op": "if",
+                        "args": [
+                          {
+                            "op": "lte",
+                            "args": [
+                              {
+                                "inForce": {
+                                  "sheet": "structures",
+                                  "is": "class",
+                                  "on": "year_from",
+                                  "value": "due_1"
+                                }
+                              },
+                              {
+                                "ref": "today"
+                              }
+                            ]
+                          },
+                          {
+                            "inForce": {
+                              "sheet": "structures",
+                              "is": "class",
+                              "on": "year_from",
+                              "value": "due_1"
+                            }
+                          },
+                          null
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "class_of_student",
+          "name": "The student is in this class",
+          "condition": {
+            "op": "eq",
+            "args": [
+              {
+                "col": "class",
+                "via": "student"
+              },
+              {
+                "col": "class"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "entries",
+      "name": "Fee entries",
+      "kind": "ledger",
+      "ledger": {
+        "account": "card",
+        "amount": "amount",
+        "balance": "after",
+        "reverses": "reverses"
+      },
+      "row": {
+        "one": "entry",
+        "many": "entries"
+      },
+      "addAction": "New entry",
+      "titleColumn": "entry",
+      "columns": [
+        {
+          "id": "entry",
+          "name": "Entry",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "card",
+          "name": "Fee card",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "cards"
+          }
+        },
+        {
+          "id": "amount",
+          "name": "Amount",
+          "type": "money",
+          "required": true
+        },
+        {
+          "id": "on",
+          "name": "On",
+          "type": "date",
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "reverses",
+          "name": "Reverses",
+          "type": "link",
+          "link": {
+            "sheet": "entries"
+          }
+        },
+        {
+          "id": "after",
+          "name": "Owing after",
+          "type": "money"
+        }
+      ]
+    },
+    {
+      "id": "payments",
+      "name": "Payments",
+      "kind": "list",
+      "row": {
+        "one": "payment",
+        "many": "payments"
+      },
+      "addAction": "Record a payment",
+      "titleColumn": "receipt_no",
+      "sort": {
+        "column": "paid_on",
+        "dir": "desc"
+      },
+      "columns": [
+        {
+          "id": "receipt_no",
+          "name": "Receipt number",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "card",
+          "name": "Fee card",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "cards"
+          }
+        },
+        {
+          "id": "amount",
+          "name": "Amount",
+          "type": "money",
+          "required": true
+        },
+        {
+          "id": "paid_on",
+          "name": "Paid on",
+          "type": "date",
+          "required": true,
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "mode",
+          "name": "Paid by",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "upi",
+              "name": "UPI"
+            },
+            {
+              "id": "cash",
+              "name": "Cash"
+            },
+            {
+              "id": "card",
+              "name": "Card"
+            },
+            {
+              "id": "cheque",
+              "name": "Cheque"
+            },
+            {
+              "id": "bank",
+              "name": "Bank transfer"
+            }
+          ]
+        },
+        {
+          "id": "reference",
+          "name": "Reference",
+          "type": "text"
+        },
+        {
+          "id": "received_by",
+          "name": "Received by",
+          "type": "person",
+          "default": {
+            "kind": "creator"
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "not_more",
+          "name": "Not more than what's owing",
+          "condition": {
+            "op": "lte",
+            "args": [
+              {
+                "col": "amount"
+              },
+              {
+                "col": "owing",
+                "via": "card"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "concessions",
+      "name": "Concessions",
+      "kind": "list",
+      "row": {
+        "one": "concession",
+        "many": "concessions"
+      },
+      "addAction": "Ask for a concession",
+      "titleColumn": "card",
+      "columns": [
+        {
+          "id": "card",
+          "name": "Fee card",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "cards"
+          }
+        },
+        {
+          "id": "amount",
+          "name": "Amount",
+          "type": "money",
+          "required": true
+        },
+        {
+          "id": "reason",
+          "name": "Reason",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "sibling",
+              "name": "Sibling in the school"
+            },
+            {
+              "id": "staff",
+              "name": "Child of staff"
+            },
+            {
+              "id": "merit",
+              "name": "Merit"
+            },
+            {
+              "id": "need",
+              "name": "Family's need"
+            },
+            {
+              "id": "other",
+              "name": "Other"
+            }
+          ]
+        },
+        {
+          "id": "note",
+          "name": "Note",
+          "type": "long_text"
+        },
+        {
+          "id": "asked_by",
+          "name": "Asked by",
+          "type": "person",
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "requested",
+          "name": "Requested",
+          "start": true,
+          "tone": "yellow"
+        },
+        {
+          "id": "approved",
+          "name": "Approved",
+          "end": "final",
+          "tone": "done",
+          "moveIn": "not_submitter",
+          "button": "Approve"
+        },
+        {
+          "id": "declined",
+          "name": "Declined",
+          "end": "exit",
+          "tone": "grey",
+          "moveIn": "not_submitter",
+          "button": "Decline"
+        }
+      ],
+      "checks": [
+        {
+          "id": "not_more",
+          "name": "Not more than what's owing",
+          "condition": {
+            "op": "lte",
+            "args": [
+              {
+                "col": "amount"
+              },
+              {
+                "col": "owing",
+                "via": "card"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "accountant",
+      "name": "Accountant",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:accountant"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "principal",
+      "name": "Principal",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:principal"
+        ]
+      },
+      "can": [
+        "see",
+        "move_steps"
+      ],
+      "scope": "all"
+    }
+  ],
+  "rules": [
+    {
+      "id": "charge_year",
+      "text": "A new fee card is charged the fee for the year.",
+      "reading": {
+        "when": "A fee card is added",
+        "then": "The fee for the year is added to what's owing"
+      },
+      "trigger": {
+        "kind": "row_created",
+        "sheet": "cards"
+      },
+      "condition": {
+        "op": "not",
+        "args": [
+          {
+            "op": "empty",
+            "args": [
+              {
+                "col": "year_fee"
+              }
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "sheet": "entries"
+          },
+          "map": {
+            "entry": "Fee for the year",
+            "card": {
+              "ref": "row"
+            },
+            "amount": {
+              "col": "year_fee"
+            },
+            "on": {
+              "col": "year_from"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "payment",
+      "text": "A payment lowers what's owing on the fee card.",
+      "reading": {
+        "when": "A payment is recorded",
+        "then": "Its amount is taken off what's owing"
+      },
+      "trigger": {
+        "kind": "row_created",
+        "sheet": "payments"
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "sheet": "entries"
+          },
+          "map": {
+            "entry": "Payment",
+            "card": {
+              "col": "card"
+            },
+            "amount": {
+              "op": "sub",
+              "args": [
+                0,
+                {
+                  "col": "amount"
+                }
+              ]
+            },
+            "on": {
+              "col": "paid_on"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "concession_asked",
+      "text": "A concession waits on the principal.",
+      "reading": {
+        "when": "A concession is asked for",
+        "then": "It waits on the principal to approve or decline it"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "concessions",
+        "step": "requested"
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "person": "@slot:principal",
+          "step": "requested",
+          "label": "Approve or decline"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "concession_approved",
+      "text": "An approved concession lowers what's owing on the fee card.",
+      "reading": {
+        "when": "A concession is approved",
+        "then": "Its amount is taken off what's owing"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "concessions",
+        "step": "approved"
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "sheet": "entries"
+          },
+          "map": {
+            "entry": "Concession",
+            "card": {
+              "col": "card"
+            },
+            "amount": {
+              "op": "sub",
+              "args": [
+                0,
+                {
+                  "col": "amount"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "overdue",
+      "text": "A week after each instalment is due, tell the accountant about fee cards with fees overdue.",
+      "reading": {
+        "when": "7 days after an instalment's due date",
+        "then": "If fees are overdue on a fee card, the accountant is told"
+      },
+      "trigger": {
+        "kind": "date_reached",
+        "sheet": "cards",
+        "date": "last_due",
+        "offsetDays": 7
+      },
+      "condition": {
+        "op": "gt",
+        "args": [
+          {
+            "col": "overdue"
+          },
+          0
+        ]
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "people": [
+            "@slot:accountant"
+          ],
+          "message": "Fees are overdue on a fee card."
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "Late fees",
+    "Receipts numbered by Bike",
+    "Fees by transport route"
+  ]
+}

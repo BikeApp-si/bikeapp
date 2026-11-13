@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Projects\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Projects\",\"one\":\"project\",\"many\":\"projects\",\"sees\":\"all\",\"add\":null,\"edit\":false,\"delete\":false,\"steps\":[\"Proposed\",\"Active\",\"On hold\",\"Done\",\"Cancelled\"],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Client\",\"Contract\",\"Project manager\",\"Kind\",\"Start\",\"End\",\"Budget\",\"Spent\",\"Remaining\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you look up the company's projects, with their clients, managers, dates, budgets and what has been spent.\",\"steps\":[{\"title\":\"Look up a project\",\"text\":\"Open the Projects list and find the project you need. You can see its client, contract, project manager, dates, budget, what has been spent and what remains.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Projects\",\"step\":null}}],\"waits\":[],\"cannot\":[\"You can't add a project here.\",\"You can't change a project's details here.\",\"You can't move a project on to its next step.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 181,
+      "tokensOut": 494,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 3004
+  }
+}

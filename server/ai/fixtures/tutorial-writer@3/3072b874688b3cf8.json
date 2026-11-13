@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Customer contracts\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Contracts\",\"one\":\"contract\",\"many\":\"contracts\",\"sees\":\"all\",\"add\":\"New contract\",\"edit\":true,\"delete\":true,\"steps\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\",\"Renewed\",\"Ended\"],\"movesFrom\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\"],\"movesTo\":[\"Draft\",\"Signed\",\"Active\",\"Renewal due\",\"Renewed\",\"Ended\"],\"stepRules\":[],\"columns\":[\"Customer\",\"Annual value\",\"Start\",\"Renews on\",\"Notice\",\"Notice date\",\"Owner\",\"Billing email\",\"Customer contact\",\"Legal review\"]}],\"rules\":[\"60 days before a contract's notice date, if it is still Active, move it to Renewal due and email its owner to ask them to act on the renewal.\",\"30 days before a contract's notice date, if it is still in Renewal due, tell Wade and the owner.\",\"When a contract over $50,000 a year is added, tell Wade and Krishna that it needs legal review before it is signed.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you keep customer contracts, from first draft through renewal or end.\",\"steps\":[{\"title\":\"Add a contract\",\"text\":\"Use New contract to start a contract for a customer. Fill in the customer, annual value, start date, renewal date, notice period and notice date, plus the owner and billing details. Contracts over $50,000 a year need legal review before they are signed.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Contracts\",\"step\":null}},{\"title\":\"Look up a contract\",\"text\":\"Find any contract to check its value, dates, owner or where it stands. You can see all contracts, not only your own.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Contracts\",\"step\":null}},{\"title\":\"Update a contract\",\"text\":\"Edit a contract's details when terms or contacts change. Keep the dates and owner current so reminders reach the right person.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Contracts\",\"step\":null}},{\"title\":\"Move a contract along\",\"text\":\"Move a contract to its next stage as it progresses, such as from Draft to Signed, or from Renewal due to Renewed or Ended.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Contracts\",\"step\":\"Signed\"}}],\"waits\":[\"Before a contract's notice date, the system moves Active contracts to Renewal due and emails the owner.\",\"30 days before the notice date, Wade and the owner are told about any contract still in Renewal due.\",\"When a contract over $50,000 a year is added, Wade and Krishna are told it needs legal review before signing.\"],\"cannot\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 363,
+      "tokensOut": 507,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2943
+  }
+}

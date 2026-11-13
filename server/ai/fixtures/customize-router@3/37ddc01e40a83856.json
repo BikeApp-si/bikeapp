@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nContracts over $50,000 need a legal review by Lena before they’re Active. Also remind owners 90 days before the notice date.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 52,
+      "tokensOut": 10,
+      "cacheRead": 0,
+      "cacheWrite": 630
+    },
+    "ms": 1322
+  }
+}

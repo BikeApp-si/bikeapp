@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Exams and report cards\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Report cards\",\"one\":\"report card\",\"many\":\"report cards\",\"sees\":\"own\",\"add\":\"New report card\",\"edit\":true,\"delete\":false,\"steps\":[\"Draft\",\"Ready to check\",\"Issued\"],\"movesFrom\":[\"Draft\"],\"movesTo\":[\"Ready to check\"],\"stepRules\":[],\"columns\":[\"Student\",\"Section\",\"Class teacher\",\"Year\",\"Term\",\"Working days\",\"Days present\",\"Marks\",\"Out of\",\"Class teacher's remarks\"]},{\"name\":\"Marks\",\"one\":\"subject\",\"many\":\"subjects\",\"sees\":\"own\",\"add\":\"Add a subject\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Report card\",\"Subject\",\"Internal assessment (20)\",\"Exam (80)\",\"Total\",\"Out of\",\"Grade\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you prepare report cards for the students in your class and record each subject's marks.\",\"steps\":[{\"title\":\"Start a report card\",\"text\":\"Add a new report card for each student you teach. Fill in the student, section, term and the attendance figures for the term.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Report cards\",\"step\":null}},{\"title\":\"Add the marks for each subject\",\"text\":\"Open the report card and add a line for each subject, with the internal assessment and exam marks. The total and grade are worked out for you.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Marks\",\"step\":null}},{\"title\":\"Write your remarks\",\"text\":\"Edit the report card to write your remarks in the class teacher's remarks column.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Report cards\",\"step\":null}},{\"title\":\"Send the report card for checking\",\"text\":\"When the report card is complete, move it on to Ready to check so it can be checked.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Report cards\",\"step\":\"Ready to check\"}}],\"waits\":[\"Someone checks the report card once you move it to Ready to check.\",\"The school issues the report card after checking; you can't change it then.\"],\"cannot\":[\"You see only your own report cards and marks.\",\"You can't move a report card on once it is ready to check.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 322,
+      "tokensOut": 415,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2425
+  }
+}

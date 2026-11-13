@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Attendance\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Absences\",\"one\":\"absence\",\"many\":\"absences\",\"sees\":\"all\",\"add\":\"Mark an absence\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Student\",\"Section\",\"Date\",\"Reason\",\"Leave note\",\"Parents called on\",\"Note\",\"Marked by\"]}],\"rules\":[\"An absence with no known reason waits on the class teacher to call the parents.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you record which students are absent and why, for your classes.\",\"steps\":[{\"title\":\"Mark an absence\",\"text\":\"Open Absences and add a row for each student who is away. Fill in the student, section, date and reason, so the record is complete.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Absences\",\"step\":null}},{\"title\":\"Update an absence\",\"text\":\"If you learn more, such as a reason or a note that the parents have been called, edit the row so it stays accurate.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Absences\",\"step\":null}}],\"waits\":[\"If an absence has no known reason, the class teacher calls the parents.\"],\"cannot\":[\"You can't delete an absence once it is recorded.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 184,
+      "tokensOut": 233,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 1792
+  }
+}

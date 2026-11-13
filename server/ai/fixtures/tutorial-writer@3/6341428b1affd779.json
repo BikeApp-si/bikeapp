@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Timesheets\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Time\",\"one\":\"time entry\",\"many\":\"time entries\",\"sees\":\"all\",\"add\":\"Log time\",\"edit\":true,\"delete\":true,\"steps\":[\"Draft\",\"Submitted\",\"Approved\",\"Rejected\"],\"movesFrom\":[\"Draft\",\"Submitted\"],\"movesTo\":[\"Draft\",\"Submitted\",\"Approved\",\"Rejected\"],\"stepRules\":[\"Approved: not by the person who submitted the time entry\",\"Rejected: not by the person who submitted the time entry\"],\"columns\":[\"Who\",\"Project\",\"Date\",\"Hours\",\"Work done\",\"Billable\",\"Rate\",\"Value\"]},{\"name\":\"Rates\",\"one\":\"rate\",\"many\":\"rates\",\"sees\":\"all\",\"add\":\"New rate\",\"edit\":true,\"delete\":true,\"dated\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Who\",\"From\",\"Until\",\"Rate an hour\"]}],\"rules\":[\"Submitted time waits on the person's manager.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you log your hours on each project and send them on for approval.\",\"steps\":[{\"title\":\"Log your time\",\"text\":\"Add a time entry for each day you worked on a project. Say which project, the date, the hours and what you did.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Time\",\"step\":null}},{\"title\":\"Send your time for approval\",\"text\":\"When a day is ready, move its time entry on to Submitted so your manager can see it. Keep it in Draft while you are still working on it.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Time\",\"step\":\"Submitted\"}},{\"title\":\"Check your rates\",\"text\":\"Look up the rate an hour that applies to you and the dates it covers. Your rate sets the value of each time entry.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Rates\",\"step\":null}}],\"waits\":[\"Your manager approves or rejects submitted time before it counts.\",\"Your manager's approval comes before your time is final.\",\"Once submitted, your time waits on your manager.\"],\"cannot\":[\"You can't approve or reject your own time entries.\",\"You can't move a time entry on to Approved or Rejected.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 355,
+      "tokensOut": 363,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2322
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nRemind owners 90 days before the notice date instead of 60.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 30,
+      "tokensOut": 10,
+      "cacheRead": 0,
+      "cacheWrite": 630
+    },
+    "ms": 1017
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: If a contract is still in Draft 14 days after it was added, remind its owner.\nBike: (sent a preview)\nAdmin: Add this rule\nBike: Applying the change to Customer contracts. This takes a few seconds.\n\nLatest message:\nMake sure big contracts are handled properly.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 111,
+      "tokensOut": 10,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 787
+  }
+}

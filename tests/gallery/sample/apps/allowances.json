@@ -1,0 +1,30 @@
+{
+  "name": "Allowances",
+  "icon": "wallet",
+  "description": "What each person may still spend",
+  "sheets": [
+    {
+      "id": "entries",
+      "name": "Allowance entries",
+      "kind": "ledger",
+      "ledger": { "account": "who", "amount": "amount", "balance": "after", "reverses": "reverses" },
+      "row": { "one": "entry", "many": "entries" },
+      "addAction": "New entry",
+      "titleColumn": "entry",
+      "columns": [
+        { "id": "entry", "name": "Entry", "type": "text", "required": true },
+        { "id": "who", "name": "Who", "type": "person", "required": true },
+        { "id": "amount", "name": "Amount", "type": "money", "required": true },
+        { "id": "request", "name": "Request", "type": "link", "link": { "capability": "@app:requests", "sheet": "requests", "pick": true } },
+        { "id": "reverses", "name": "Reverses", "type": "link", "link": { "sheet": "entries" } },
+        { "id": "after", "name": "Balance after", "type": "money" }
+      ]
+    }
+  ],
+  "roles": [
+    { "id": "leads", "name": "Team leads", "members": { "kind": "people", "people": ["@slot:team_leads"] }, "can": ["see", "add"], "scope": "all" },
+    { "id": "own", "name": "Everyone", "members": { "kind": "everyone" }, "can": ["see"], "scope": "own", "scopeColumns": { "entries": { "column": "who" } } }
+  ],
+  "rules": [],
+  "later": []
+}

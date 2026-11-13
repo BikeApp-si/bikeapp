@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Staff leave\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Leave\",\"one\":\"leave request\",\"many\":\"leave requests\",\"sees\":\"all\",\"add\":\"Ask for leave\",\"edit\":false,\"delete\":false,\"steps\":[\"Requested\",\"Approved\",\"Declined\"],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[\"Approved: not by the person who submitted the leave request\",\"Declined: not by the person who submitted the leave request\"],\"columns\":[\"Who\",\"Type\",\"From\",\"To\",\"Days\",\"Reason\"]},{\"name\":\"Substitutions\",\"one\":\"substitution\",\"many\":\"substitutions\",\"sees\":\"all\",\"add\":\"New substitution\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Section\",\"Date\",\"Period\",\"In place of\",\"Substitute\",\"Leave\",\"Note\"]}],\"rules\":[\"When leave is approved, tell the person and the office.\",\"Tell a substitute about the period they take.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you ask for leave and record who covers your classes when you are away.\",\"steps\":[{\"title\":\"Ask for leave\",\"text\":\"Fill in the leave request with the type, the dates, the days and the reason. It stays Requested until the office decides.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Leave\",\"step\":null}},{\"title\":\"Check your leave\",\"text\":\"Look at your leave requests to see whether each one is Requested, Approved or Declined.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Leave\",\"step\":null}},{\"title\":\"Record a substitution\",\"text\":\"When you need cover, add the section, date, period and the person you are replacing. Add the substitute and any note they need.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Substitutions\",\"step\":null}}],\"waits\":[\"The office approves or declines each leave request, not you.\",\"Your leave request stays Requested until someone decides it.\",\"When leave is approved, the office and you are told.\",\"The substitute is told about the period they take.\"],\"cannot\":[\"You can't delete a leave request or a substitution.\",\"You can't approve or decline your own leave.\",\"You can't change a leave request after you send it.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 340,
+      "tokensOut": 1237,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 6438
+  }
+}

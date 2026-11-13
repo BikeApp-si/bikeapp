@@ -1,0 +1,43 @@
+{
+  "name": "Requests",
+  "icon": "inbox",
+  "description": "Things people ask the office for",
+  "sheets": [
+    {
+      "id": "requests",
+      "name": "Requests",
+      "kind": "list",
+      "row": { "one": "request", "many": "requests" },
+      "addAction": "New request",
+      "titleColumn": "what",
+      "columns": [
+        { "id": "what", "name": "What", "type": "text", "required": true },
+        { "id": "amount", "name": "Amount", "type": "money", "required": true },
+        { "id": "category", "name": "Category", "type": "link", "link": { "capability": "@app:categories", "sheet": "categories", "pick": true } },
+        { "id": "who", "name": "Who", "type": "person", "required": true, "default": { "kind": "creator" } },
+        { "id": "status", "name": "Status", "type": "step" }
+      ],
+      "steps": [
+        { "id": "submitted", "name": "Submitted", "start": true },
+        { "id": "approved", "name": "Approved", "moveIn": "not_submitter" },
+        { "id": "declined", "name": "Declined", "end": "exit", "moveIn": "not_submitter" },
+        { "id": "done", "name": "Done", "end": "final" }
+      ]
+    }
+  ],
+  "roles": [
+    { "id": "everyone", "name": "Everyone", "members": { "kind": "everyone" }, "can": ["see", "add"], "scope": "own", "scopeColumns": { "requests": { "column": "who" } } },
+    { "id": "approver", "name": "Approver", "members": { "kind": "people", "people": ["@slot:approver"] }, "can": ["see", "edit", "move_steps"], "scope": "all" }
+  ],
+  "rules": [
+    {
+      "id": "to_approver",
+      "text": "Submitted requests wait on the approver.",
+      "reading": { "when": "A request is Submitted", "then": "It waits on the approver to approve or decline it" },
+      "trigger": { "kind": "enters_step", "sheet": "requests", "step": "submitted" },
+      "actions": [{ "kind": "ask_person", "person": "@slot:approver", "step": "submitted", "label": "Approve or decline" }],
+      "enabled": true
+    }
+  ],
+  "later": []
+}

@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Onboarding\",\"admin\":false,\"view\":null,\"sheets\":[{\"name\":\"Plans\",\"one\":\"plan\",\"many\":\"plans\",\"sees\":\"all\",\"add\":\"Plan a starter's first week\",\"edit\":true,\"delete\":true,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Name\",\"Start date\",\"Manager\",\"Buddy\",\"Laptop and accounts\"]},{\"name\":\"Tasks\",\"one\":\"task\",\"many\":\"tasks\",\"sees\":\"all\",\"add\":\"New task\",\"edit\":true,\"delete\":true,\"steps\":[\"To do\",\"Doing\",\"Done\"],\"movesFrom\":[\"To do\",\"Doing\"],\"movesTo\":[\"To do\",\"Doing\",\"Done\"],\"stepRules\":[],\"columns\":[\"Plan\",\"Task\",\"Owner\",\"Due\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you set up each new starter's first week and track the tasks that get them ready.\",\"steps\":[{\"title\":\"Plan a starter's first week\",\"text\":\"Start a plan for each new starter with their start date, manager, buddy, and laptop and accounts.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Plans\",\"step\":null}},{\"title\":\"Add a task\",\"text\":\"Add the tasks each starter needs to their plan, with an owner and a due date.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Tasks\",\"step\":null}},{\"title\":\"Move a task along\",\"text\":\"Move a task from To do to Doing, or on to Done, as the work moves forward.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Tasks\",\"step\":\"Doing\"}},{\"title\":\"Update a plan\",\"text\":\"Edit a plan when a starter's details or dates change.\",\"does\":{\"kind\":\"edit\",\"sheet\":\"Plans\",\"step\":null}}],\"waits\":[\"A task stays where it is until someone moves it on.\"],\"cannot\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 283,
+      "tokensOut": 1153,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 5889
+  }
+}

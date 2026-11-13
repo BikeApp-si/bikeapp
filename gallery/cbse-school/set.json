@@ -1,0 +1,74 @@
+{
+  "name": "K-12 school (CBSE)",
+  "version": 1,
+  "description": "Classes and students, admissions, fees, attendance, report cards and staff leave for a CBSE school, written from CBSE's bye-laws and assessment scheme.",
+  "listed": true,
+  "tagline": "School ERP for CBSE schools",
+  "expects": "For schools in India: ₹ and a year from April.",
+  "leavesOut": [
+    "Parents and students don't sign in: Bike is for the school's staff.",
+    "Messages to parents: Bike tells the staff, who call or write to the family.",
+    "Timetables: Bike doesn't keep calendars of periods and rooms yet.",
+    "Filing with CBSE, UDISE+ or the state: Bike doesn't connect to other systems yet.",
+    "Transport and the library: they come in the next version of this set."
+  ],
+  "slots": [
+    {
+      "key": "principal",
+      "name": "Principal",
+      "titles": [
+        "Principal",
+        "Head of school",
+        "Headmistress",
+        "Headmaster"
+      ],
+      "does": "Approves concessions, staff leave and transfer certificates, and issues report cards.",
+      "one": true
+    },
+    {
+      "key": "office",
+      "name": "Office",
+      "titles": [
+        "Office manager",
+        "Office administrator",
+        "Admissions officer",
+        "Administrator"
+      ],
+      "does": "Keeps admissions and student records.",
+      "one": true
+    },
+    {
+      "key": "accountant",
+      "name": "Accountant",
+      "titles": [
+        "Accountant",
+        "Accounts officer",
+        "Fee clerk"
+      ],
+      "does": "Keeps fees: structures, fee cards and payments.",
+      "one": true
+    },
+    {
+      "key": "teachers",
+      "name": "Teachers",
+      "titles": [
+        "Teacher",
+        "PGT",
+        "TGT",
+        "PRT",
+        "Subject teacher"
+      ],
+      "does": "Fill in marks on report cards."
+    }
+  ],
+  "apps": [
+    "students",
+    "admissions",
+    "fees",
+    "attendance",
+    "exams",
+    "staff_leave"
+  ],
+  "beta": true,
+  "usedBy": "schools"
+}

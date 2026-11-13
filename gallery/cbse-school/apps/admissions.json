@@ -1,0 +1,525 @@
+{
+  "name": "Admissions",
+  "icon": "user-plus",
+  "description": "Enquiries and applications, up to the day a child is admitted",
+  "sheets": [
+    {
+      "id": "enquiries",
+      "name": "Enquiries",
+      "kind": "list",
+      "row": {
+        "one": "enquiry",
+        "many": "enquiries"
+      },
+      "addAction": "New enquiry",
+      "titleColumn": "child",
+      "sort": {
+        "column": "status",
+        "dir": "asc",
+        "then": {
+          "column": "enquired_on",
+          "dir": "desc"
+        }
+      },
+      "columns": [
+        {
+          "id": "child",
+          "name": "Child's name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "parent",
+          "name": "Parent's name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "phone",
+          "name": "Phone",
+          "type": "phone",
+          "required": true
+        },
+        {
+          "id": "email",
+          "name": "Email",
+          "type": "email"
+        },
+        {
+          "id": "class",
+          "name": "Class wanted",
+          "type": "link",
+          "link": {
+            "capability": "@app:students",
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "source",
+          "name": "Heard from",
+          "type": "choice",
+          "options": [
+            {
+              "id": "walk_in",
+              "name": "Walk-in"
+            },
+            {
+              "id": "phone",
+              "name": "Phone call"
+            },
+            {
+              "id": "website",
+              "name": "Website"
+            },
+            {
+              "id": "referral",
+              "name": "A parent at the school"
+            },
+            {
+              "id": "other",
+              "name": "Other"
+            }
+          ]
+        },
+        {
+          "id": "enquired_on",
+          "name": "Enquired on",
+          "type": "date",
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "notes",
+          "name": "Notes",
+          "type": "long_text"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "new",
+          "name": "New",
+          "start": true,
+          "tone": "blue"
+        },
+        {
+          "id": "contacted",
+          "name": "Contacted",
+          "tone": "violet",
+          "button": "Mark contacted"
+        },
+        {
+          "id": "applied",
+          "name": "Applied",
+          "end": "final",
+          "tone": "done",
+          "button": "Mark applied"
+        },
+        {
+          "id": "not_interested",
+          "name": "Not interested",
+          "end": "exit",
+          "tone": "grey"
+        }
+      ]
+    },
+    {
+      "id": "applications",
+      "name": "Applications",
+      "kind": "list",
+      "row": {
+        "one": "application",
+        "many": "applications"
+      },
+      "addAction": "New application",
+      "titleColumn": "child",
+      "sort": {
+        "column": "status",
+        "dir": "asc",
+        "then": {
+          "column": "applied_on",
+          "dir": "desc"
+        }
+      },
+      "columns": [
+        {
+          "id": "child",
+          "name": "Child's name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "class",
+          "name": "Class applied for",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:students",
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "dob",
+          "name": "Date of birth",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "gender",
+          "name": "Gender",
+          "type": "choice",
+          "options": [
+            {
+              "id": "girl",
+              "name": "Girl"
+            },
+            {
+              "id": "boy",
+              "name": "Boy"
+            },
+            {
+              "id": "other",
+              "name": "Other"
+            }
+          ]
+        },
+        {
+          "id": "applied_on",
+          "name": "Applied on",
+          "type": "date",
+          "default": {
+            "kind": "today"
+          }
+        },
+        {
+          "id": "enquiry",
+          "name": "Enquiry",
+          "type": "link",
+          "link": {
+            "sheet": "enquiries",
+            "pick": true
+          }
+        },
+        {
+          "id": "father",
+          "name": "Father's name",
+          "type": "text"
+        },
+        {
+          "id": "mother",
+          "name": "Mother's name",
+          "type": "text"
+        },
+        {
+          "id": "guardian",
+          "name": "Guardian's name",
+          "type": "text"
+        },
+        {
+          "id": "phone",
+          "name": "Phone",
+          "type": "phone",
+          "required": true
+        },
+        {
+          "id": "email",
+          "name": "Email",
+          "type": "email"
+        },
+        {
+          "id": "address",
+          "name": "Address",
+          "type": "long_text"
+        },
+        {
+          "id": "last_school",
+          "name": "Last school",
+          "type": "text"
+        },
+        {
+          "id": "birth_certificate",
+          "name": "Birth certificate",
+          "type": "file"
+        },
+        {
+          "id": "last_tc",
+          "name": "Transfer certificate from the last school",
+          "type": "file"
+        },
+        {
+          "id": "last_report",
+          "name": "Last report card",
+          "type": "file"
+        },
+        {
+          "id": "aadhaar",
+          "name": "Aadhaar number",
+          "type": "text"
+        },
+        {
+          "id": "interaction_on",
+          "name": "Interaction on",
+          "type": "datetime"
+        },
+        {
+          "id": "interaction_notes",
+          "name": "Interaction notes",
+          "type": "long_text"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "applied",
+          "name": "Applied",
+          "start": true,
+          "tone": "blue"
+        },
+        {
+          "id": "interaction",
+          "name": "Interaction",
+          "tone": "violet",
+          "button": "Set an interaction"
+        },
+        {
+          "id": "offered",
+          "name": "Offered",
+          "tone": "orange",
+          "button": "Offer a seat"
+        },
+        {
+          "id": "admitted",
+          "name": "Admitted",
+          "end": "final",
+          "tone": "done",
+          "button": "Admit"
+        },
+        {
+          "id": "declined",
+          "name": "Declined",
+          "end": "exit",
+          "tone": "grey",
+          "button": "Decline"
+        },
+        {
+          "id": "withdrawn",
+          "name": "Withdrawn",
+          "end": "exit",
+          "tone": "grey",
+          "button": "Withdrawn"
+        }
+      ],
+      "form": {
+        "tabs": [
+          {
+            "name": "Child",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "child",
+                  "class",
+                  "dob",
+                  "gender",
+                  "applied_on",
+                  "enquiry",
+                  "last_school"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Family",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "father",
+                  "mother",
+                  "guardian",
+                  "phone",
+                  "email",
+                  "address"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Documents",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "birth_certificate",
+                  "last_tc",
+                  "last_report",
+                  "aadhaar"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Interaction",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "interaction_on",
+                  "interaction_notes"
+                ]
+              }
+            ]
+          }
+        ],
+        "quick": [
+          "child",
+          "class",
+          "dob",
+          "phone"
+        ]
+      }
+    }
+  ],
+  "roles": [
+    {
+      "id": "office",
+      "name": "Office",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:office"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "principal",
+      "name": "Principal",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:principal"
+        ]
+      },
+      "can": [
+        "see",
+        "edit",
+        "move_steps"
+      ],
+      "scope": "all"
+    }
+  ],
+  "rules": [
+    {
+      "id": "interaction",
+      "text": "When an interaction is set, tell the principal.",
+      "reading": {
+        "when": "An application moves to Interaction",
+        "then": "The principal is told"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "applications",
+        "step": "interaction"
+      },
+      "actions": [
+        {
+          "kind": "notify",
+          "people": [
+            "@slot:principal"
+          ],
+          "message": "An interaction was set for an application."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "admitted",
+      "text": "When a child is admitted, they are added to Students.",
+      "reading": {
+        "when": "An application is admitted",
+        "then": "The child is added to Students in Classes and students"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "applications",
+        "step": "admitted"
+      },
+      "actions": [
+        {
+          "kind": "create_row_in",
+          "target": {
+            "capability": "@app:students",
+            "sheet": "students"
+          },
+          "map": {
+            "name": {
+              "col": "child"
+            },
+            "class": {
+              "col": "class"
+            },
+            "dob": {
+              "col": "dob"
+            },
+            "gender": {
+              "col": "gender"
+            },
+            "father": {
+              "col": "father"
+            },
+            "mother": {
+              "col": "mother"
+            },
+            "guardian": {
+              "col": "guardian"
+            },
+            "phone": {
+              "col": "phone"
+            },
+            "email": {
+              "col": "email"
+            },
+            "address": {
+              "col": "address"
+            },
+            "last_school": {
+              "col": "last_school"
+            },
+            "birth_certificate": {
+              "col": "birth_certificate"
+            },
+            "last_tc": {
+              "col": "last_tc"
+            },
+            "aadhaar": {
+              "col": "aadhaar"
+            }
+          }
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "Admission tests with marks per subject",
+    "A waiting list by class when seats are full"
+  ]
+}

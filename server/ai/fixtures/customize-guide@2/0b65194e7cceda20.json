@@ -1,0 +1,16 @@
+{
+  "message": "How it reads now:\nLeads sheet\nCompany (text, required), Contact (text), Email (email), Source (Referral, Inbound, Outbound or Event), Expected value a year (money), Owner (person, whoever adds it), Next follow-up (date), Notes (long text).\n\nCompanies sheet\nName (text, required), Website (url).\n\nSteps\nNew → Contacted → Qualified → Proposal → Won or Lost\n\nWho can see and do what\nWade Wilson and Dev Kumar see every lead, add, edit and move them, and change how it works.\nLead owners see their own leads and can add, edit and move them.\nEveryone else sees nothing.\n\nConnections\nPeople fills Owner.\n\nLater\nA Contacts sheet for several people at one company\nA reminder to the owner when a follow-up date arrives\n\nComing soon\nConnections to other software\n\nThe chat so far:\nAdmin: Add a Companies sheet with just a name and a website. No owner.\nBike: (sent a preview)\nAdmin: Apply\nBike: Applying the change to Sales leads. This takes a few seconds.\nAdmin: Why can't lead owners see companies?\nBike: Lead owners can't see companies because the Companies sheet has only a Name and a Website, with no Owner or other person question to show which companies belong to whom. Until someone says how it should be seen, Bike shows that sheet to no one in that role. Since you asked for no owner on companies, the simplest fix is to let lead owners see all companies. If you'd rather they see only some, the sheet would need a person question, such as an Owner, to decide which ones.\n\nLatest message:\nCan Bike send a Slack message when a lead is won?",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"answer\":\"Bike can't send Slack messages yet, because connections to Slack aren't in Bike. The nearest thing is a rule that emails people in the company when a lead reaches Won, such as its owner. Add it with the suggestion below, then click Apply.\",\"table\":null,\"section\":null,\"suggestions\":[{\"label\":\"Email the owner when a lead is won\",\"changes\":[{\"kind\":\"rule\",\"sheet\":null,\"new_sheet\":null,\"column\":null,\"step\":null,\"after\":null,\"rename\":null,\"movers\":null,\"role\":null,\"person\":null,\"rule\":{\"sentence\":\"When a lead reaches Won, email its Owner that the lead was won.\",\"replaces\":null},\"view\":null,\"labels\":null,\"hint\":null,\"sort\":null,\"check\":null,\"form\":null,\"show_when\":null,\"access\":null,\"link\":null,\"formula\":null,\"explain\":\"Emails the lead's owner when it reaches Won. This is the nearest to a Slack message.\",\"part\":null}]}],\"cant\":true}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 548,
+      "tokensOut": 811,
+      "cacheRead": 16578,
+      "cacheWrite": 0
+    },
+    "ms": 4215
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "message": "{\"today\":\"2026-10-27\",\"rows_read\":\"139 purchases\",\"table\":{\"columns\":[\"Team\",\"Budget\",\"Spent\",\"Left\",\"Used\"],\"rows\":[[\"Engineering\",60000,52400,7600,87],[\"Marketing\",25000,23300,1700,93],[\"Sales\",30000,15000,15000,50],[\"Operations\",15000,7000,8000,47],[\"People\",10000,4200,5800,42]],\"totals\":{\"Budget\":140000,\"Spent\":101900,\"Left\":38100}},\"previous\":{\"ranOn\":\"Oct 26\",\"table\":{\"columns\":[\"Team\",\"Budget\",\"Spent\",\"Left\",\"Used\"],\"rows\":[[\"Engineering\",60000,49200,10800,82],[\"Marketing\",25000,21800,3200,87],[\"Sales\",30000,14100,15900,47],[\"Operations\",15000,6300,8700,42],[\"People\",10000,3900,6100,39]],\"totals\":{\"Budget\":140000,\"Spent\":95300,\"Left\":44700}}}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"sentence\":\"Ran again with data to Oct 27: **$101,900 spent of $140,000**, $6,600 more than on Oct 26 ($95,300); Engineering added the most, now at $52,400 and 87% used, while Marketing is nearly out at 93% used with only $1,700 left.\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 330,
+      "tokensOut": 103,
+      "cacheRead": 588,
+      "cacheWrite": 137
+    },
+    "ms": 1605
+  }
+}

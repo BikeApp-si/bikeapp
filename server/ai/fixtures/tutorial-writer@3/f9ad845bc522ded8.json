@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Exams and report cards\",\"admin\":true,\"view\":null,\"sheets\":[{\"name\":\"Report cards\",\"one\":\"report card\",\"many\":\"report cards\",\"sees\":\"all\",\"add\":\"New report card\",\"edit\":true,\"delete\":false,\"steps\":[\"Draft\",\"Ready to check\",\"Issued\"],\"movesFrom\":[\"Draft\",\"Ready to check\"],\"movesTo\":[\"Draft\",\"Ready to check\",\"Issued\"],\"stepRules\":[],\"columns\":[\"Student\",\"Section\",\"Class teacher\",\"Year\",\"Term\",\"Working days\",\"Days present\",\"Marks\",\"Out of\",\"Class teacher's remarks\"]},{\"name\":\"Marks\",\"one\":\"subject\",\"many\":\"subjects\",\"sees\":\"all\",\"add\":\"Add a subject\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Report card\",\"Subject\",\"Internal assessment (20)\",\"Exam (80)\",\"Total\",\"Out of\",\"Grade\"]},{\"name\":\"Exams\",\"one\":\"exam\",\"many\":\"exams\",\"sees\":\"all\",\"add\":\"New exam\",\"edit\":true,\"delete\":false,\"steps\":[],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[],\"columns\":[\"Subject\",\"Class\",\"Term\",\"Kind\",\"Date\",\"Maximum marks\",\"Teacher\"]}],\"rules\":[\"A report card ready to check waits on the principal to issue it.\"]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you prepare and keep track of report cards and exams for the school.\",\"steps\":[{\"title\":\"Create a report card\",\"text\":\"Start a new report card for a student, filling in the student, section, class teacher, year, term, working days, days present and the student's details. Add the class teacher's remarks as you go.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Report cards\",\"step\":null}},{\"title\":\"Enter the marks for each subject\",\"text\":\"On the report card, add a subject for each one the student studied, with the internal assessment and exam marks. The total and grade work out from these.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Marks\",\"step\":null}},{\"title\":\"Set up an exam\",\"text\":\"Add each exam with its subject, class, term, kind, date, maximum marks and teacher so the marks have something to belong to.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Exams\",\"step\":null}},{\"title\":\"Move a report card forward\",\"text\":\"When a report card is ready, move it on to the next step so it can be checked and then issued. You can move it from Draft or Ready to check.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Report cards\",\"step\":\"Ready to check\"}}],\"waits\":[\"The principal issues a report card that is ready to check.\"],\"cannot\":[\"You can't issue a report card yourself.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 466,
+      "tokensOut": 422,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2871
+  }
+}

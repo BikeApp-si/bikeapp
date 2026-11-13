@@ -1,0 +1,16 @@
+{
+  "message": "The expense:\n{\"What for\":\"Canva Pro\",\"Who\":\"Nina Park\",\"Date\":\"Sep 8, 2026\",\"Amount\":\"$120\",\"Status\":\"Submitted\"}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"value\":\"Software\",\"reason\":\"“Canva Pro” is a design software subscription, so it fits Software.\",\"confidence\":0.9,\"flags\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 64,
+      "tokensOut": 53,
+      "cacheRead": 777,
+      "cacheWrite": 0
+    },
+    "ms": 1351
+  }
+}

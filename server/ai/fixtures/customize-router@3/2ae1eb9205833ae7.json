@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: Add this rule\nBike: Applying the change to Customer contracts. This takes a few seconds.\nAdmin: Make sure big contracts are handled properly.\nBike: Contracts over $50,000 already go through a legal review by Lena. What else should happen for big contracts?\n\nLatest message:\nAdd Leo Grant as a contract owner for the Northwind account.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 134,
+      "tokensOut": 10,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 745
+  }
+}

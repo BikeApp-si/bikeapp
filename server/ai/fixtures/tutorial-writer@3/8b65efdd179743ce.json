@@ -1,0 +1,16 @@
+{
+  "message": "{\"access\":{\"capability\":\"Spend\",\"admin\":false,\"view\":\"Your own expenses\",\"sheets\":[{\"name\":\"Purchases\",\"one\":\"purchase\",\"many\":\"purchases\",\"sees\":\"own\",\"add\":\"Request a purchase\",\"edit\":true,\"delete\":false,\"steps\":[\"Submitted\",\"Approved\",\"Ordered\",\"Received\",\"Rejected\"],\"movesFrom\":[],\"movesTo\":[],\"stepRules\":[\"Approved: not by the person who submitted the purchase\",\"Rejected: not by the person who submitted the purchase\"],\"columns\":[\"What\",\"Team\",\"Requested by\",\"Date\",\"Supplier\",\"Total\"]},{\"name\":\"Expenses\",\"one\":\"expense\",\"many\":\"expenses\",\"sees\":\"own\",\"add\":\"Add an expense\",\"edit\":true,\"delete\":false,\"steps\":[\"Needs a receipt\",\"Submitted\",\"Approved\",\"Paid\",\"Rejected\"],\"movesFrom\":[\"Needs a receipt\"],\"movesTo\":[\"Submitted\",\"Rejected\"],\"stepRules\":[\"Out of Needs a receipt: only by the person who submitted the expense\",\"Approved: not by the person who submitted the expense\",\"Rejected: not by the person who submitted the expense\"],\"columns\":[\"What for\",\"Who\",\"Date\",\"Amount\",\"Category\",\"Paid with\",\"Receipt\",\"Paid on\",\"Note\"]}],\"rules\":[]}}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"purpose\":\"Where you request purchases for your team and claim back what you paid for work.\",\"steps\":[{\"title\":\"Add an expense\",\"text\":\"Add each thing you paid for work, with the date, amount and receipt. Keep it at Needs a receipt until you have the receipt, then send it on.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Expenses\",\"step\":null}},{\"title\":\"Send an expense on\",\"text\":\"When the receipt is attached, move the expense on to Submitted so it can be approved. You can only move your own expenses out of Needs a receipt.\",\"does\":{\"kind\":\"move\",\"sheet\":\"Expenses\",\"step\":\"Submitted\"}},{\"title\":\"Request a purchase\",\"text\":\"Use Request a purchase for things your team needs to buy before you spend anything. Fill in what it is, the supplier and the total.\",\"does\":{\"kind\":\"add\",\"sheet\":\"Purchases\",\"step\":null}},{\"title\":\"Check your purchases\",\"text\":\"Look through your own purchases to see whether each one has been approved, ordered or received.\",\"does\":{\"kind\":\"read\",\"sheet\":\"Purchases\",\"step\":null}}],\"waits\":[\"Someone else approves your submitted expenses and purchases; you can't approve your own.\",\"Approved expenses are paid by someone else, and you see the paid date once it is done.\",\"A rejected expense or purchase goes back to you, and it can't be approved by you.\"],\"cannot\":[\"You see only your own expenses and purchases.\",\"You can't delete an expense or a purchase.\",\"You can't move a rejected or approved expense on yourself.\"]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 436,
+      "tokensOut": 502,
+      "cacheRead": 1620,
+      "cacheWrite": 0
+    },
+    "ms": 2776
+  }
+}

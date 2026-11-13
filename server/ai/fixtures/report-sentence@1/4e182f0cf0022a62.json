@@ -1,0 +1,16 @@
+{
+  "message": "{\"today\":\"2026-10-26\",\"rows_read\":\"128 purchases\",\"table\":{\"columns\":[\"Team\",\"Budget\",\"Spent\",\"Left\",\"Used\"],\"rows\":[[\"Engineering\",60000,49200,10800,82],[\"Marketing\",25000,21800,3200,87],[\"Sales\",30000,14100,15900,47],[\"Operations\",15000,6300,8700,42],[\"People\",10000,3900,6100,39]],\"totals\":{\"Budget\":140000,\"Spent\":95300,\"Left\":44700}},\"previous\":null}",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"sentence\": \"**$95,300 spent of $140,000 budgeted, 68% used so far this quarter (Oct 1–26)**, with Marketing closest to its limit at 87% used and Engineering next at 82%, while Sales, Operations and People have used less than half.\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 175,
+      "tokensOut": 93,
+      "cacheRead": 0,
+      "cacheWrite": 734
+    },
+    "ms": 1535
+  }
+}

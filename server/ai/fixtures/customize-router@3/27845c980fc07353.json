@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nKeep leave in a ledger: an approved request takes its days off as an entry, and Left counts the entries.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 44,
+      "tokensOut": 10,
+      "cacheRead": 620,
+      "cacheWrite": 7
+    },
+    "ms": 826
+  }
+}

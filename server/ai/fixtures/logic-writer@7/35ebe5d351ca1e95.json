@@ -1,0 +1,16 @@
+{
+  "message": "Capabilities:\n[\n {\n  \"name\": \"Spend\",\n  \"sheets\": [\n   {\n    \"name\": \"Purchases\",\n    \"kind\": \"document\",\n    \"columns\": [\n     \"What (text; required)\",\n     \"Team (choice; choices: Engineering, Marketing, Sales, Operations, People)\",\n     \"Requested by (person)\",\n     \"Date (date)\",\n     \"Supplier (text)\",\n     \"Total (computed; worked out: the total of Amount in Purchase lines)\",\n     \"Status (step)\"\n    ],\n    \"steps\": [\n     \"Submitted (start)\",\n     \"Approved\",\n     \"Ordered\",\n     \"Received (last)\",\n     \"Rejected (exit)\"\n    ]\n   },\n   {\n    \"name\": \"Purchase lines\",\n    \"kind\": \"lines\",\n    \"lines_of\": \"Purchases\",\n    \"columns\": [\n     \"Item (text; required)\",\n     \"Quantity (number; required)\",\n     \"Unit price (money; required)\",\n     \"Amount (computed; worked out: Quantity × Unit price)\"\n    ]\n   },\n   {\n    \"name\": \"Expenses\",\n    \"kind\": \"list\",\n    \"columns\": [\n     \"What for (text; required)\",\n     \"Who (person; required)\",\n     \"Date (date; required)\",\n     \"Amount (money; required)\",\n     \"Category (choice; choices: Meals, Travel, Software, Cloud, Office, Other)\",\n     \"Paid with (choice; choices: My own card, Company card)\",\n     \"Receipt (file)\",\n     \"Paid on (date)\",\n     \"Note (text)\",\n     \"Status (step)\"\n    ],\n    \"steps\": [\n     \"Needs a receipt (start)\",\n     \"Submitted\",\n     \"Approved\",\n     \"Paid (last)\",\n     \"Rejected (exit)\"\n    ]\n   }\n  ],\n  \"roles\": [\n   \"Finance: every row\",\n   \"Requesters: their own rows\",\n   \"Purchase approvers: every row\"\n  ],\n  \"rules\": [\n   \"An expense added with its receipt is Submitted.\",\n   \"When a receipt is attached to an expense that needs one, it is Submitted.\",\n   \"Submitted expenses wait on Lena to approve them.\",\n   \"An expense without a category: an AI step suggests one, Lena confirms.\"\n  ]\n }\n]\n\nSentences:\n1. An expense added with its receipt, or for $75 or less, is Submitted.",
+  "retry": null,
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "text": "{\"rules\":[{\"capability\":\"Spend\",\"sheet\":\"Expenses\",\"text\":\"An expense added with its receipt, or for $75 or less, is Submitted.\",\"when\":\"An expense is added with a receipt attached, or with an amount of $75 or less\",\"then\":\"It moves to Submitted\",\"trigger\":{\"kind\":\"row_created\",\"step\":null,\"field\":null,\"date\":null,\"offset_days\":null},\"condition\":\"{\\\"op\\\":\\\"or\\\",\\\"args\\\":[{\\\"op\\\":\\\"not\\\",\\\"args\\\":[{\\\"op\\\":\\\"empty\\\",\\\"args\\\":[{\\\"col\\\":\\\"Receipt\\\"}]}]},{\\\"op\\\":\\\"lte\\\",\\\"args\\\":[{\\\"col\\\":\\\"Amount\\\"},75]}]}\",\"actions\":[{\"kind\":\"move_to_step\",\"step\":\"Submitted\",\"target\":null,\"via\":null,\"map\":[],\"people\":[],\"columns\":[],\"message\":null,\"person\":null,\"column\":null,\"manager_of\":null,\"until\":null,\"label\":null,\"decision\":null,\"question\":null,\"answer_column\":null}]}],\"could_not\":[]}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 793,
+      "tokensOut": 532,
+      "cacheRead": 0,
+      "cacheWrite": 7320
+    },
+    "ms": 4023
+  }
+}

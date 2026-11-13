@@ -1,0 +1,16 @@
+{
+  "message": "The chat so far:\nAdmin: Also ask for the start date when a contract is added.\nBike: (sent a preview)\nAdmin: Apply\nBike: Applying the change to Customer contracts. This takes a few seconds.\n\nLatest message:\nOnly ask for the customer and the value when a contract is added.",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"change\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 103,
+      "tokensOut": 10,
+      "cacheRead": 630,
+      "cacheWrite": 0
+    },
+    "ms": 1057
+  }
+}

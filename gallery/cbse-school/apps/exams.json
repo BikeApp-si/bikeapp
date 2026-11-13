@@ -1,0 +1,633 @@
+{
+  "name": "Exams and report cards",
+  "icon": "award",
+  "description": "The year's exams, and report cards with marks and grades per subject",
+  "sheets": [
+    {
+      "id": "report_cards",
+      "name": "Report cards",
+      "kind": "list",
+      "row": {
+        "one": "report card",
+        "many": "report cards"
+      },
+      "addAction": "New report card",
+      "titleColumn": "student",
+      "sort": {
+        "column": "status",
+        "dir": "asc"
+      },
+      "columns": [
+        {
+          "id": "student",
+          "name": "Student",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:students",
+            "sheet": "students"
+          }
+        },
+        {
+          "id": "section",
+          "name": "Section",
+          "type": "link",
+          "link": {
+            "capability": "@app:students",
+            "sheet": "classes",
+            "pick": true
+          },
+          "required": true
+        },
+        {
+          "id": "class_teacher",
+          "name": "Class teacher",
+          "type": "person",
+          "required": true,
+          "default": {
+            "kind": "creator"
+          }
+        },
+        {
+          "id": "year",
+          "name": "Year",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "term",
+          "name": "Term",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "term_1",
+              "name": "Term 1"
+            },
+            {
+              "id": "term_2",
+              "name": "Term 2"
+            }
+          ]
+        },
+        {
+          "id": "working_days",
+          "name": "Working days",
+          "type": "number",
+          "min": 0
+        },
+        {
+          "id": "days_present",
+          "name": "Days present",
+          "type": "number",
+          "min": 0
+        },
+        {
+          "id": "marks",
+          "name": "Marks",
+          "type": "computed",
+          "result": "number",
+          "expr": {
+            "sumOf": {
+              "sheet": "marks",
+              "column": "total",
+              "by": "report_card"
+            }
+          }
+        },
+        {
+          "id": "out_of",
+          "name": "Out of",
+          "type": "computed",
+          "result": "number",
+          "expr": {
+            "sumOf": {
+              "sheet": "marks",
+              "column": "out_of",
+              "by": "report_card"
+            }
+          }
+        },
+        {
+          "id": "remarks",
+          "name": "Class teacher's remarks",
+          "type": "long_text"
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "step"
+        }
+      ],
+      "steps": [
+        {
+          "id": "draft",
+          "name": "Draft",
+          "start": true,
+          "tone": "grey"
+        },
+        {
+          "id": "checked",
+          "name": "Ready to check",
+          "tone": "yellow",
+          "button": "Send to the principal"
+        },
+        {
+          "id": "issued",
+          "name": "Issued",
+          "end": "final",
+          "tone": "done",
+          "button": "Issue"
+        }
+      ],
+      "checks": [
+        {
+          "id": "student_in_section",
+          "name": "The student is in this section",
+          "condition": {
+            "op": "eq",
+            "args": [
+              {
+                "col": "section",
+                "via": "student"
+              },
+              {
+                "col": "section"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "marks",
+      "name": "Marks",
+      "kind": "list",
+      "row": {
+        "one": "subject",
+        "many": "subjects"
+      },
+      "titleColumn": "subject",
+      "columns": [
+        {
+          "id": "report_card",
+          "name": "Report card",
+          "type": "link",
+          "required": true,
+          "link": {
+            "sheet": "report_cards"
+          }
+        },
+        {
+          "id": "subject",
+          "name": "Subject",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "english",
+              "name": "English"
+            },
+            {
+              "id": "hindi",
+              "name": "Hindi"
+            },
+            {
+              "id": "third_language",
+              "name": "Third language"
+            },
+            {
+              "id": "mathematics",
+              "name": "Mathematics"
+            },
+            {
+              "id": "science",
+              "name": "Science"
+            },
+            {
+              "id": "social_science",
+              "name": "Social Science"
+            },
+            {
+              "id": "computers",
+              "name": "Computer Applications"
+            },
+            {
+              "id": "evs",
+              "name": "Environmental Studies"
+            },
+            {
+              "id": "art",
+              "name": "Art Education"
+            },
+            {
+              "id": "health",
+              "name": "Health and Physical Education"
+            }
+          ]
+        },
+        {
+          "id": "internal",
+          "name": "Internal assessment (20)",
+          "type": "number",
+          "min": 0,
+          "max": 20
+        },
+        {
+          "id": "exam",
+          "name": "Exam (80)",
+          "type": "number",
+          "min": 0,
+          "max": 80
+        },
+        {
+          "id": "total",
+          "name": "Total",
+          "type": "computed",
+          "result": "number",
+          "expr": {
+            "op": "add",
+            "args": [
+              {
+                "col": "internal"
+              },
+              {
+                "col": "exam"
+              }
+            ]
+          }
+        },
+        {
+          "id": "out_of",
+          "name": "Out of",
+          "type": "computed",
+          "result": "number",
+          "expr": 100
+        },
+        {
+          "id": "grade",
+          "name": "Grade",
+          "type": "computed",
+          "result": "text",
+          "expr": {
+            "op": "if",
+            "args": [
+              {
+                "op": "gt",
+                "args": [
+                  {
+                    "col": "total"
+                  },
+                  90
+                ]
+              },
+              "A1",
+              {
+                "op": "if",
+                "args": [
+                  {
+                    "op": "gt",
+                    "args": [
+                      {
+                        "col": "total"
+                      },
+                      80
+                    ]
+                  },
+                  "A2",
+                  {
+                    "op": "if",
+                    "args": [
+                      {
+                        "op": "gt",
+                        "args": [
+                          {
+                            "col": "total"
+                          },
+                          70
+                        ]
+                      },
+                      "B1",
+                      {
+                        "op": "if",
+                        "args": [
+                          {
+                            "op": "gt",
+                            "args": [
+                              {
+                                "col": "total"
+                              },
+                              60
+                            ]
+                          },
+                          "B2",
+                          {
+                            "op": "if",
+                            "args": [
+                              {
+                                "op": "gt",
+                                "args": [
+                                  {
+                                    "col": "total"
+                                  },
+                                  50
+                                ]
+                              },
+                              "C1",
+                              {
+                                "op": "if",
+                                "args": [
+                                  {
+                                    "op": "gt",
+                                    "args": [
+                                      {
+                                        "col": "total"
+                                      },
+                                      40
+                                    ]
+                                  },
+                                  "C2",
+                                  {
+                                    "op": "if",
+                                    "args": [
+                                      {
+                                        "op": "gte",
+                                        "args": [
+                                          {
+                                            "col": "total"
+                                          },
+                                          33
+                                        ]
+                                      },
+                                      "D",
+                                      "E"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "addAction": "Add a subject",
+      "form": {
+        "tabs": [
+          {
+            "name": "Marks",
+            "sections": [
+              {
+                "name": null,
+                "columns": [
+                  "report_card",
+                  "subject",
+                  "internal",
+                  "exam"
+                ]
+              }
+            ]
+          }
+        ],
+        "quick": [
+          "subject",
+          "internal",
+          "exam"
+        ]
+      }
+    },
+    {
+      "id": "exams",
+      "name": "Exams",
+      "kind": "list",
+      "row": {
+        "one": "exam",
+        "many": "exams"
+      },
+      "addAction": "New exam",
+      "titleColumn": "subject",
+      "sort": {
+        "column": "date",
+        "dir": "asc"
+      },
+      "columns": [
+        {
+          "id": "subject",
+          "name": "Subject",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "english",
+              "name": "English"
+            },
+            {
+              "id": "hindi",
+              "name": "Hindi"
+            },
+            {
+              "id": "third_language",
+              "name": "Third language"
+            },
+            {
+              "id": "mathematics",
+              "name": "Mathematics"
+            },
+            {
+              "id": "science",
+              "name": "Science"
+            },
+            {
+              "id": "social_science",
+              "name": "Social Science"
+            },
+            {
+              "id": "computers",
+              "name": "Computer Applications"
+            },
+            {
+              "id": "evs",
+              "name": "Environmental Studies"
+            },
+            {
+              "id": "art",
+              "name": "Art Education"
+            },
+            {
+              "id": "health",
+              "name": "Health and Physical Education"
+            }
+          ]
+        },
+        {
+          "id": "class",
+          "name": "Class",
+          "type": "link",
+          "required": true,
+          "link": {
+            "capability": "@app:students",
+            "sheet": "classes",
+            "pick": true
+          }
+        },
+        {
+          "id": "term",
+          "name": "Term",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "term_1",
+              "name": "Term 1"
+            },
+            {
+              "id": "term_2",
+              "name": "Term 2"
+            }
+          ]
+        },
+        {
+          "id": "kind",
+          "name": "Kind",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "id": "periodic",
+              "name": "Periodic test"
+            },
+            {
+              "id": "half_yearly",
+              "name": "Half-yearly exam"
+            },
+            {
+              "id": "annual",
+              "name": "Annual exam"
+            }
+          ]
+        },
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "max_marks",
+          "name": "Maximum marks",
+          "type": "number",
+          "min": 1
+        },
+        {
+          "id": "teacher",
+          "name": "Teacher",
+          "type": "person"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "principal",
+      "name": "Principal",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:principal"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "teachers",
+      "name": "Teachers",
+      "members": {
+        "kind": "people",
+        "people": [
+          "@slot:teachers"
+        ]
+      },
+      "can": [
+        "see",
+        "add",
+        "edit"
+      ],
+      "sheets": [
+        "exams",
+        "report_cards",
+        "marks"
+      ],
+      "scope": "all"
+    },
+    {
+      "id": "class_teachers",
+      "name": "Class teachers",
+      "members": {
+        "kind": "everyone"
+      },
+      "can": [
+        "see",
+        "add",
+        "edit",
+        "move_steps"
+      ],
+      "moveFrom": [
+        "draft"
+      ],
+      "sheets": [
+        "report_cards",
+        "marks"
+      ],
+      "scope": "own",
+      "scopeColumns": {
+        "report_cards": {
+          "column": "class_teacher"
+        },
+        "marks": {
+          "column": "class_teacher",
+          "via": "report_card"
+        }
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "to_principal",
+      "text": "A report card ready to check waits on the principal to issue it.",
+      "reading": {
+        "when": "A report card is sent to the principal",
+        "then": "It waits on the principal to issue it"
+      },
+      "trigger": {
+        "kind": "enters_step",
+        "sheet": "report_cards",
+        "step": "checked"
+      },
+      "actions": [
+        {
+          "kind": "ask_person",
+          "person": "@slot:principal",
+          "step": "checked",
+          "label": "Check and issue"
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "later": [
+    "The Holistic Progress Card for the middle stage, once CBSE notifies it",
+    "Co-scholastic grades (work education, art, health)"
+  ]
+}

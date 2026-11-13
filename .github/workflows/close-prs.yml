@@ -1,0 +1,20 @@
+# Bike takes issues, not pull requests, for now (README › Contributing): a pull request is closed with a pointer
+# to issues. Its code is never checked out or run.
+name: Pull requests
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr close "$PR" --comment "Thank you for this. Bike doesn't take pull requests yet: changes are made in our own repository and arrive with the next release. Please open an issue (https://github.com/BikeApp-si/bikeapp/issues/new/choose) describing the problem or the change, and link this pull request if it shows the idea."

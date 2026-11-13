@@ -1,0 +1,16 @@
+{
+  "message": "Latest message:\nwhat other sheets can be added here to improve this capability?",
+  "retry": null,
+  "response": {
+    "model": "claude-haiku-5-5",
+    "text": "{\"way\":\"advise\"}",
+    "stop": "done",
+    "usage": {
+      "tokensIn": 26,
+      "tokensOut": 11,
+      "cacheRead": 620,
+      "cacheWrite": 10
+    },
+    "ms": 765
+  }
+}
