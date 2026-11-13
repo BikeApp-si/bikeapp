@@ -8,7 +8,7 @@ deterministic kernel decides, applies and records every change, so the AI never 
 ![Bike reads a company's write-up, policies and old-system export, and plans six connected apps with the data each brings in](docs/images/build.png)
 
 - **Built from your documents, not from templates.** Bike reads how you already work and drafts a set of connected
-  apps (contracts, hiring, spend, time off) with their steps, roles and rules, in under an hour.
+  apps (contracts, hiring, spend, time off) with their steps, roles and rules, in under 30 minutes.
 - **Change an app by describing the change.** An admin types the change beside the app ("contracts over $50k need
   legal review") and sees it as a picture and as plain text. Bike also lists what else it touches. Nothing is live
   until the admin clicks Apply.
