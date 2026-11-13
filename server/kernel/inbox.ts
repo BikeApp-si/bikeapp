@@ -38,7 +38,7 @@ async function seen(w: Work, accessOf: ReturnType<typeof accessFor>, row: RowRea
   return { a, sheet };
 }
 
-// Who sent a row, for the Inbox (Wade, Nov 7): the person its creator column names; otherwise whoever added it,
+// Who sent a row, for the Inbox (decided Nov 7): the person its creator column names; otherwise whoever added it,
 // unless it came in through an import, which sends nothing (an admin moving data in isn't asking for anything).
 function sentBy(sheet: Sheet, row: RowRead): string | null {
   const creator = sheet.columns.some((c) => c.type === "person" && c.default?.kind === "creator");

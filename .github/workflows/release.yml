@@ -1,5 +1,5 @@
-# The open Bike's image, from this repo's own code: on a release tag (v0.6.1), built for x86-64 and ARM on GitHub's
-# own machines of each kind, pushed to ghcr.io/bikeapp-si/bikeapp as 0.6.1 (one tag for both; the version .env
+# The open Bike's image, from this repo's own code: on a release tag (v0.6.2), built for x86-64 and ARM on GitHub's
+# own machines of each kind, pushed to ghcr.io/bikeapp-si/bikeapp as 0.6.2 (one tag for both; the version .env
 # names; no "latest", so nothing updates by surprise), and signed with cosign (keyless, by this workflow), so
 # update.sh and `cosign verify` (docs/install.md) prove an image came from here.
 name: release

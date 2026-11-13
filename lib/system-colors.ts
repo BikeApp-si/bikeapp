@@ -5,7 +5,7 @@
 export const SYSTEM_COLORS = {
   search: "#C026D3",
   home: "#1673D1",
-  inbox: "#E11D48", // M31, rose (Wade, Nov 7)
+  inbox: "#E11D48", // M31, rose (decided Nov 7)
   chats: "#6366F1",
   reports: "#7C3AED", // M33, violet (m33-d, approved Nov 8)
   people: "#EA580C",

@@ -91,7 +91,7 @@ model you host yourself, once it passes the same recorded tests Anthropic's mode
 
 ## Where we are today
 
-Stages 1 and 2 are live: Bike 0.6.1, in a pilot at bikeapp.si and on GitHub.
+Stages 1 and 2 are live: Bike 0.6.2, in a pilot at bikeapp.si and on GitHub.
 
 ![Customize: an admin describes a change beside the app, shown as a picture](docs/images/customize.png)
 
@@ -121,7 +121,7 @@ checked for viruses).
 ```sh
 mkdir bike && cd bike
 for f in compose.yaml .env.example update.sh; do
-  curl -fsSLO "https://raw.githubusercontent.com/BikeApp-si/bikeapp/v0.6.1/$f"
+  curl -fsSLO "https://raw.githubusercontent.com/BikeApp-si/bikeapp/v0.6.2/$f"
 done
 cp .env.example .env   # then fill it in: each line says how
 docker compose up -d

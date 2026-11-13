@@ -58,7 +58,7 @@ export type FromAddress = {
   timeZone: string;
 };
 
-// Where a company's year, numbers and dates aren't the default (M26): India; the UK and Australia (Wade, Nov 6), whose
+// Where a company's year, numbers and dates aren't the default (M26): India; the UK and Australia (decided Nov 6), whose
 // companies mostly keep their books from April and July and write the day first. Everyone else gets January to
 // December, 1,234,567 and "Nov 14, 2026", and changes them in Settings.
 const BY_COUNTRY: Record<string, Pick<FromAddress, "fiscalYearStart" | "numberGrouping" | "dateStyle">> = {

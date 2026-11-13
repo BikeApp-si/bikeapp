@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTLINED } from "@/components/buttons";
 import { Check, History } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,8 +12,7 @@ import { cn } from "@/lib/utils";
 
 export type VersionRow = { version: number; when: string; what: string };
 
-export const outlined =
-  "inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white px-3.5 text-[15px] font-medium text-ink shadow-[0_1px_2px_rgba(0,0,0,.05)] hover:bg-page";
+export const outlined = OUTLINED;
 
 export function OntologyVersions({ versions, showing }: { versions: VersionRow[]; showing: number | null }) {
   const [open, setOpen] = useState(false);

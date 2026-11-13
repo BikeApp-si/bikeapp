@@ -152,7 +152,7 @@ describe("Updates", () => {
   });
 });
 
-describe("imports (Wade, Nov 7)", () => {
+describe("imports (decided Nov 7)", () => {
   it("send nothing: an imported candidate's changes and waits aren't its importer's", async () => {
     const [ravi] = await k.as("priya", (tx, c) => importRows(tx, c, hiring, "candidates", [{ values: { name: "Ravi Menon" } }], { source: "candidates.csv" }), at(29));
     await k.as("ada", (tx, c) => moveStep(tx, c, ravi!, "offer"), at(29, 5)); // the rule asks Ada

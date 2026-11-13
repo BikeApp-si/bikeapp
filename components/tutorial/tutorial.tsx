@@ -19,7 +19,7 @@ type Ctx = State & { capName: string; open: () => void; seen: () => Promise<void
 const TutorialContext = createContext<Ctx | null>(null);
 
 export function TutorialProvider({ capId, capName, introduce: asked, children }: { capId: string; capName: string; introduce: boolean; children: React.ReactNode }) {
-  // With no model (O3) there is no tutorial: no card, no Help button (Wade, Nov 12).
+  // With no model (O3) there is no tutorial: no card, no Help button (decided Nov 12).
   const model = useModel();
   const introduce = asked && !model.none;
   // Only a capability whose card may show reads it when the page opens; others when the link is clicked.

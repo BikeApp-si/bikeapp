@@ -9,6 +9,10 @@ const KINDS: Record<Kind, string> = {
   ghost: "border-0 bg-transparent font-normal text-muted hover:bg-fill hover:text-ink",
 };
 
+// An outlined button as a link (the Ontology's Download, Settings' tabs): white, a 1 px line, a faint shadow, 32 px.
+export const OUTLINED =
+  "inline-flex h-8 items-center gap-1.5 rounded-[6px] border border-line bg-white px-3.5 text-[15px] font-medium text-ink shadow-[0_1px_2px_rgba(0,0,0,.05)] hover:bg-page";
+
 export function Button({ kind = "outline", small, className, ...props }: { kind?: Kind; small?: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button

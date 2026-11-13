@@ -20,7 +20,7 @@ beside them.
    ```sh
    mkdir bike && cd bike
    for f in compose.yaml .env.example update.sh; do
-     curl -fsSLO "https://raw.githubusercontent.com/BikeApp-si/bikeapp/v0.6.1/$f"
+     curl -fsSLO "https://raw.githubusercontent.com/BikeApp-si/bikeapp/v0.6.2/$f"
    done
    cp .env.example .env
    ```
@@ -30,7 +30,7 @@ beside them.
 3. Check the image is the one Bike's release built from this repo's code (cosign runs in its own container):
 
    ```sh
-   docker run --rm ghcr.io/sigstore/cosign/cosign:v2.4.1 verify ghcr.io/bikeapp-si/bikeapp:0.6.1 \
+   docker run --rm ghcr.io/sigstore/cosign/cosign:v2.4.1 verify ghcr.io/bikeapp-si/bikeapp:0.6.2 \
      --certificate-identity-regexp '^https://github.com/BikeApp-si/bikeapp/' \
      --certificate-oidc-issuer https://token.actions.githubusercontent.com
    ```

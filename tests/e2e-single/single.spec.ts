@@ -94,6 +94,10 @@ test("Wade sees the instance's health in Settings › Instance; Maya can't open 
   await page.goto(at("/settings"));
   await page.getByRole("tab", { name: "Instance" }).click();
   await page.waitForURL(at("/settings/instance"));
+  // The tabs as the Ontology's outlined buttons, the open one marked (docs/design/o6/settings-tabs.png).
+  await expect(page.getByRole("tab", { name: "Instance" })).toHaveAttribute("aria-selected", "true");
+  await expect(page.getByRole("tab", { name: "Company" })).toHaveAttribute("aria-selected", "false");
+  await page.screenshot({ path: "tmp/screens/o6-settings-tabs.png" });
   await expect(page.getByText(`http://localhost:${SINGLE_PORT}`)).toBeVisible();
   for (const name of ["Database", "File storage", "Virus scanner", "Email", "Clock", "AI"]) await expect(page.locator(`[data-health="${name}"]`)).toHaveAttribute("data-ok", "true");
   await expect(page.getByText("On this server’s disk. A test file was saved, read and removed.")).toBeVisible();
