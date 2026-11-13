@@ -21,8 +21,16 @@ deterministic kernel decides, applies and records every change, so the AI never 
 - **AI for building, not for every click.** Everyday work is plain forms, tables and approvals with almost no AI
   calls, so it stays fast, cheap and predictable.
 
-Bike is for companies of 10 to 50 people. This repository is the Bike a company runs on its own server, for one
-company at one address. BikeApp also runs it as a hosted service at [bikeapp.si](https://bikeapp.si).
+This repository is the Bike a company runs on its own server, for one company at one address. BikeApp also runs it as a hosted service at [bikeapp.si](https://bikeapp.si).
+
+![Customize: an admin describes a change beside the app, shown as a picture](docs/images/customize.png)
+
+| | |
+|---|---|
+| ![Home: ask about your data, or start from an app set](docs/images/home.png) | ![An app's sheet as a table](docs/images/table.png) |
+| **Home.** Ask about your data, describe what you need, or start from a ready-made app set. | **An app.** Each sheet is a table with its steps, owners and totals. |
+
+![A row's record, with its details, related rows and history](docs/images/record.png)
 
 ## How it works
 
