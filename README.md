@@ -23,15 +23,6 @@ deterministic kernel decides, applies and records every change, so the AI never 
 
 This repository is the Bike a company runs on its own server, for one company at one address. BikeApp also runs it as a hosted service at [bikeapp.si](https://bikeapp.si).
 
-![Customize: an admin describes a change beside the app, shown as a picture](docs/images/customize.png)
-
-| | |
-|---|---|
-| ![Home: ask about your data, or start from an app set](docs/images/home.png) | ![An app's sheet as a table](docs/images/table.png) |
-| **Home.** Ask about your data, describe what you need, or start from a ready-made app set. | **An app.** Each sheet is a table with its steps, owners and totals. |
-
-![A row's record, with its details, related rows and history](docs/images/record.png)
-
 ## How it works
 
 - **The kernel is the only writer.** Screens, imports, rules and the AI's plans all call it. Every write is one
@@ -47,6 +38,82 @@ This repository is the Bike a company runs on its own server, for one company at
 - **Access lives in the kernel and the database.** Every row carries its company's id under Postgres row-level
   security, and what the AI is given, and what a report can show, is limited to what the asking person may see.
 - **The Audit log is append-only**, and admins see it exactly as recorded.
+
+## The mission
+
+Every company runs on software that someone else designed for some other company. People bend their work to fit
+it, pay consultants to change it, and keep the rest in spreadsheets.
+
+Bike's mission is to end that: **the all-in-one ERP for any kind of business, of any size, in any industry**, built
+from how the company already works, changed by saying what should change, and run by everyone with point and click.
+Every number computed, never guessed. Every change on record. The AI proposes; the company decides.
+
+## The plan
+
+We get there in five stages. Each one stands on the one before it.
+
+**Stage 1 · Build a company's apps from how it works.** ✅ *Done.*
+Upload your write-up, policies and old exports, or describe the work, and Bike plans and builds the connected apps
+in an afternoon: contracts, hiring, onboarding, purchasing and spend, time off, budgets, projects. Admins change any
+app in plain words. Rules are tested on your last 90 days before they go live. Reports are asked in words and
+computed by the kernel. Everyone works in forms, tables, boards, an Inbox and Waiting on me.
+
+**Stage 2 · Let any company run it, anywhere.** ✅ *Done (0.6).*
+Bike is open source. One `docker compose up` on your own server, x86-64 or ARM; your own AI key or none at all;
+nightly backups; signed updates you can roll back. Or use the hosted service at [bikeapp.si](https://bikeapp.si).
+
+**Stage 3 · Open it to everyone the company works with.** 🚀 *Next (0.7).*
+
+- **Forms for people outside the company,** on your website: an application, a request, an order, landing in the
+  app it belongs to.
+- **AI chat for everyone,** not only admins: questions about your own work, then tasks it proposes and you confirm,
+  switched on per person and never beyond what that person may see.
+- **AI task automation:** a rule hands a task to the AI, and a person confirms what it proposes.
+- **Status updates** written or uploaded, landing as rows in the right app.
+- **How to use Bike:** a manual for each person, written for what they can see and do.
+- **Your admins' own AI reading Bike** (MCP), read-only, through the same access checks.
+- **Undo a data move,** and **save a grouped table or a board as a view.**
+
+**Stage 4 · Become the whole ERP.** *Not scheduled yet.*
+
+- **Accounting** (a general ledger and financial statements) and **payroll.**
+- **Connections:** email in, approve from the email, Slack, banks, QuickBooks and Xero.
+- **Dashboards.**
+- **Lines in a record,** **add one for every row** (a fee card for every student of a class), **imports that fix
+  themselves,** **duplicates and gaps found for you,** and **a practice copy** of your company.
+- **Sign-in with your own accounts** (SSO), **the Audit log kept longer and exported,** and **mobile apps.**
+
+**Stage 5 · Every kind of business.** *Not scheduled yet.*
+Ready-made app sets for each industry, today a professional services firm and a K-12 school, both in beta; an AI
+model you host yourself, once it passes the same recorded tests Anthropic's models pass.
+
+## Where we are today
+
+Stages 1 and 2 are live: Bike 0.6.1, in a pilot at bikeapp.si and on GitHub.
+
+![Bike reads a company's write-up, policies and old-system export, and plans six connected apps with the data each brings in](docs/images/build.png)
+
+**Built from your documents.** Upload how you run, and Bike plans your apps and what each brings in. Nothing is built until you click Build all.
+
+![Customize: an admin describes a change beside the app, shown as a picture](docs/images/customize.png)
+
+| | |
+|---|---|
+| ![Home: ask about your data, or start from an app set](docs/images/home.png) | ![An app's sheet as a table](docs/images/table.png) |
+| **Home.** Ask about your data, describe what you need, or start from a ready-made app set. | **An app.** Each sheet is a table with its steps, owners and totals. |
+
+![A row's record, with its details, related rows and history](docs/images/record.png)
+
+Bike is early, and it isn't the whole ERP yet: Stage 4's list is what's missing today.
+
+## How you can help
+
+- **Try it** on your own server ([install](docs/install.md)) and tell us what broke or felt wrong:
+  [open an issue](https://github.com/BikeApp-si/bikeapp/issues/new/choose).
+- **Tell us what your business runs on** that Bike can't build yet. That decides what comes next.
+- **Star the repository** if Bike is useful to you, so others find it.
+- **Report security problems privately** ([SECURITY.md](SECURITY.md)).
+- Code: Bike takes issues, not pull requests, for now; fixes arrive with the next release.
 
 ## Run it
 
