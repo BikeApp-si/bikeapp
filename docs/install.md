@@ -6,7 +6,7 @@ beside them.
 
 ## What you need
 
-- A Linux machine with 2 CPUs and 4–8 GB of memory (ClamAV alone uses about 1.5 GB), and Docker with Compose v2.
+- A 64-bit Linux machine, x86-64 or ARM, with 2 CPUs and 4–8 GB of memory (ClamAV alone uses about 1.5 GB), and Docker with Compose v2.
 - An address for Bike, such as `https://bike.example.com`, with HTTPS from your own proxy or load balancer, or from
   Caddy beside Bike (see [HTTPS](#https)). A plain `http://` address on your own network works too, but people's
   sign-ins then cross it unencrypted.
@@ -20,7 +20,7 @@ beside them.
    ```sh
    mkdir bike && cd bike
    for f in compose.yaml .env.example update.sh; do
-     curl -fsSLO "https://raw.githubusercontent.com/BikeApp-si/bikeapp/v0.6.0/$f"
+     curl -fsSLO "https://raw.githubusercontent.com/BikeApp-si/bikeapp/v0.6.1/$f"
    done
    cp .env.example .env
    ```
@@ -30,7 +30,7 @@ beside them.
 3. Check the image is the one Bike's release built from this repo's code (cosign runs in its own container):
 
    ```sh
-   docker run --rm ghcr.io/sigstore/cosign/cosign:v2.4.1 verify ghcr.io/bikeapp-si/bikeapp:0.6.0 \
+   docker run --rm ghcr.io/sigstore/cosign/cosign:v2.4.1 verify ghcr.io/bikeapp-si/bikeapp:0.6.1 \
      --certificate-identity-regexp '^https://github.com/BikeApp-si/bikeapp/' \
      --certificate-oidc-issuer https://token.actions.githubusercontent.com
    ```

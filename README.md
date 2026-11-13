@@ -56,7 +56,7 @@ checked for viruses).
 ```sh
 mkdir bike && cd bike
 for f in compose.yaml .env.example update.sh; do
-  curl -fsSLO "https://raw.githubusercontent.com/BikeApp-si/bikeapp/v0.6.0/$f"
+  curl -fsSLO "https://raw.githubusercontent.com/BikeApp-si/bikeapp/v0.6.1/$f"
 done
 cp .env.example .env   # then fill it in: each line says how
 docker compose up -d

@@ -1,9 +1,9 @@
 # Update Bike
 
-Each release has a version (`0.6.1`); `.env`'s `BIKE_VERSION` says which one runs. To update:
+Each release has a version (`0.6.2`); `.env`'s `BIKE_VERSION` says which one runs. To update:
 
 ```sh
-sh update.sh 0.6.1
+sh update.sh 0.6.2
 ```
 
 It checks the new image's signature (with cosign, in its own container: nothing to install), makes a backup, sets
@@ -11,7 +11,7 @@ It checks the new image's signature (with cosign, in its own container: nothing 
 nothing changes. Settings › Instance says when a newer version is out (Bike asks GitHub once a day; nothing about
 your company is sent; `UPDATE_CHECK=off` in `.env` stops it).
 
-To go back, run it with the version before: `sh update.sh 0.6.0`. Bike's database updates only add, so the version
+To go back, run it with the version before: `sh update.sh 0.6.1`. Bike's database updates only add, so the version
 before runs on the updated database and keeps everything entered since.
 
 When Bike starts on a version with database updates to apply, it makes a backup first, whether or not `update.sh`

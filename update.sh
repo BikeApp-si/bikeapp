@@ -1,5 +1,5 @@
 #!/bin/sh
-# Moves Bike to another version, newer or older: sh update.sh 0.6.1 (and back: sh update.sh 0.6.0). Run it in the
+# Moves Bike to another version, newer or older: sh update.sh 0.6.2 (and back: sh update.sh 0.6.1). Run it in the
 # folder with compose.yaml and .env. It
 #   1. checks the new image's signature: it must be the one Bike's release published from its public code;
 #   2. makes a backup of Bike as it is now, into ./backups;
@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 NEW=${1:-}
 case "$NEW" in
-  "" | *[!0-9A-Za-z.-]*) echo "Usage: sh update.sh <version>, for example: sh update.sh 0.6.1" >&2; exit 2 ;;
+  "" | *[!0-9A-Za-z.-]*) echo "Usage: sh update.sh <version>, for example: sh update.sh 0.6.2" >&2; exit 2 ;;
 esac
 [ -f .env ] || { echo "There is no .env here. Run update.sh in the folder with compose.yaml and .env." >&2; exit 2; }
 OLD=$(sed -n 's/^BIKE_VERSION=//p' .env)
