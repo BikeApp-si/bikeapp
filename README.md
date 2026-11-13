@@ -5,6 +5,8 @@ Upload how your company runs (policies, spreadsheets, forms) and Bike proposes y
 rules between them; after that, any admin can change an app by describing the change. The AI only ever proposes: a
 deterministic kernel decides, applies and records every change, so the AI never touches your data.
 
+![Bike reads a company's write-up, policies and old-system export, and plans six connected apps with the data each brings in](docs/images/build.png)
+
 - **Built from your documents, not from templates.** Bike reads how you already work and drafts a set of connected
   apps (contracts, hiring, spend, time off) with their steps, roles and rules, in under an hour.
 - **Change an app by describing the change.** An admin types the change beside the app ("contracts over $50k need
@@ -90,10 +92,6 @@ model you host yourself, once it passes the same recorded tests Anthropic's mode
 ## Where we are today
 
 Stages 1 and 2 are live: Bike 0.6.1, in a pilot at bikeapp.si and on GitHub.
-
-![Bike reads a company's write-up, policies and old-system export, and plans six connected apps with the data each brings in](docs/images/build.png)
-
-**Built from your documents.** Upload how you run, and Bike plans your apps and what each brings in. Nothing is built until you click Build all.
 
 ![Customize: an admin describes a change beside the app, shown as a picture](docs/images/customize.png)
 
